@@ -6,42 +6,50 @@ import java.awt.CardLayout;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-public class Window extends JFrame {
-    private CardLayout cardLayout;
-    private JPanel cardPanel;
+import app.settings.Screen;
 
-    MenuPanel menu;
-    GamePanel game;
+public class Window extends JFrame {
+    protected CardLayout pageController = new CardLayout();
+    protected JPanel pages = new JPanel(pageController);
+
+    LoginPage login = new LoginPage();
+    SignupPage signup = new SignupPage();
+    MenuPage menu = new MenuPage();
+    OptionsPage options = new OptionsPage();
+    GamePage game = new GamePage();
 
     public Window(){
-        cardLayout = new CardLayout();
-        cardPanel = new JPanel(cardLayout);
-
-        menu = new MenuPanel();
-        game = new GamePanel();
-
-        cardPanel.add(menu, "Menu");
-        cardPanel.add(game, "Game");
+        pages.add(login, "Login");
+        pages.add(signup, "Signup");
+        pages.add(menu, "Menu");
+        pages.add(options, "Options");
+        pages.add(game, "Game");
 
         setMenuActions();
 
-        this.add(cardPanel);
-        this.setTitle(App.GAME_TITLE);
-        this.pack();
+        pageController.show(pages, "Menu");
+        this.add(pages);
+        this.setTitle(App.NAME);
+        this.setSize(Screen.SCREEN_DIMENSIONS);
         this.setResizable(false);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setLocationRelativeTo(null);
         this.setVisible(true);
     }
 
+    void setLoginActions(){
+
+    }
+    void setSignupActions(){
+        
+    }
     void setMenuActions(){
         menu.getStartBtn().addActionListener(e -> {
-            cardLayout.show(cardPanel, "Game");
+            pageController.show(pages, "Game");
             game.start(e);
         });
         menu.getOptionsBtn().addActionListener(e -> {
-            cardLayout.show(cardPanel, "Game");
-            game.start(e);
+            pageController.show(pages, "Options");
         });
         menu.getExitBtn().addActionListener(e -> System.exit(0));
     }

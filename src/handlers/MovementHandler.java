@@ -3,11 +3,11 @@ package handlers;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-public class Movement implements KeyListener {
+public class MovementHandler implements KeyListener {
     public boolean upKeyPressed, downKeyPressed, leftKeyPressed, rightKeyPressed;
     int upKey, downKey, leftKey, rightKey;
 
-    public Movement(int up, int down, int left, int right){
+    public MovementHandler(int up, int down, int left, int right){
         this.upKey = up;
         this.downKey = down;
         this.leftKey = left;

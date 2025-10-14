@@ -1,4 +1,4 @@
-package components.entity; 
+package models; 
 
 import java.awt.Image;
 import java.awt.Rectangle;

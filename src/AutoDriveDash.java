@@ -1,6 +1,6 @@
 import app.App;
 
-public class Main {
+public class AutoDriveDash {
     public static void main(String[] args) throws Exception {
         new App();
     }

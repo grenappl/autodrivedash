@@ -1,11 +1,10 @@
 package views;
 
-import components.entity.Player;
 import handlers.PauseHandler;
 import handlers.SpawnHandler;
+import models.Player;
 
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -18,7 +17,7 @@ import javax.swing.Timer;
 import app.settings.Screen;
 import app.settings.ColorPallete;
 
-public class GamePanel extends JPanel implements Screen {
+public class GamePage extends JPanel implements Screen {
     private static final int SCORE_INTERVAL = 100;
 
     private Player player;
@@ -32,18 +31,17 @@ public class GamePanel extends JPanel implements Screen {
     private int scrollSpd = 6;
     private int startCount = 3;
 
-    public GamePanel(){
-        this.setPreferredSize(new Dimension(SCREEN_WIDTH, SCREEN_HEIGHT));
-        this.setDoubleBuffered(true);
-        this.setFocusable(true);
+    public GamePage(){
+        setDoubleBuffered(true);
+        setFocusable(true);
     }
 
     public void start(ActionEvent _e){
         setPlayer();
-        this.scoreTimer = new Timer(SCORE_INTERVAL, e -> player.score++);
-        this.spawn = new SpawnHandler();
-        this.requestFocusInWindow();
-        this.addKeyListener(player.movement);
+        scoreTimer = new Timer(SCORE_INTERVAL, e -> player.score++);
+        spawn = new SpawnHandler();
+        requestFocusInWindow();
+        addKeyListener(player.movement);
 
         introThrd = new IntroThread();
         introThrd.setDaemon(true);

@@ -1,9 +1,9 @@
-package components.entity;
+package models;
 
 import java.util.ArrayList;
 
 import app.settings.Screen;
-import handlers.Movement;
+import handlers.MovementHandler;
 
 public class Player extends Entity implements Screen {
     static final int HITBOX_POS_X = 4;
@@ -12,7 +12,7 @@ public class Player extends Entity implements Screen {
     static final int HITBOX_POS_HEIGHT = -36;
 
     public double x, y;
-    public Movement movement;
+    public MovementHandler movement;
     public int score;
 
     public boolean hasCollided = false;
@@ -31,7 +31,7 @@ public class Player extends Entity implements Screen {
         this.y = (double)y;
         this.maxSpd = (double)spd;
         this.hitbox.y = SCREEN_HEIGHT_CENTER;
-        this.movement = new Movement(up, down, left, right);
+        this.movement = new MovementHandler(up, down, left, right);
     }
 
     public void move(){
