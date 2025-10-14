@@ -6,12 +6,11 @@ import app.settings.Screen;
 import handlers.MovementHandler;
 
 public class Player extends Entity implements Screen {
-    static final int HITBOX_POS_X = 4;
-    static final int HITBOX_POS_Y = 20;
-    static final int HITBOX_POS_WIDTH = -12;
-    static final int HITBOX_POS_HEIGHT = -36;
+    static final int HITBOX_POS_X = 0;
+    static final int HITBOX_POS_Y = 13;
+    static final int HITBOX_POS_WIDTH = -0;
+    static final int HITBOX_POS_HEIGHT = -27;
 
-    public double x, y;
     public MovementHandler movement;
     public int score;
 
@@ -19,19 +18,14 @@ public class Player extends Entity implements Screen {
     public int scoreInterval = 10;
     double vx = 0, vy = 0;
     double ax = 0, ay = 0;
-    double maxSpd;
     double accel = 0.2;
     double friction = 0.2;
 
     public Player(
-            int x, int y, int width, int height, int spd, String filePath, 
-            int up, int down, int left, int right){ 
-        super(0, 0, width, height, spd, filePath);
-        this.x = (double)x;
-        this.y = (double)y;
-        this.maxSpd = (double)spd;
+            double x, double y, int width, int height, double spd, String filePath, MovementHandler movement){ 
+        super(x, y, width, height, spd, filePath);
         this.hitbox.y = SCREEN_HEIGHT_CENTER;
-        this.movement = new MovementHandler(up, down, left, right);
+        this.movement = movement;
     }
 
     public void move(){
@@ -63,8 +57,8 @@ public class Player extends Entity implements Screen {
             else if(vy < 0) vy = Math.min(0, vy + friction);
         }
 
-        vx = Math.max(-maxSpd, Math.min(maxSpd, vx));
-        vy = Math.max(-(maxSpd), Math.min(maxSpd, vy));
+        vx = Math.max(-spd, Math.min(spd, vx));
+        vy = Math.max(-(spd), Math.min(spd, vy));
 
         x += vx;
         y += vy;

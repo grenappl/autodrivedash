@@ -10,8 +10,8 @@ import javax.swing.JPanel;
 public class BgPanel extends JPanel {
     private Image img;
 
-    public BgPanel(String imgPath) {
-        this.img = new ImageIcon(imgPath).getImage();
+    public BgPanel(String filePath) {
+        this.img = new ImageIcon(filePath).getImage();
         this.setOpaque(false);
         this.setLayout(new GridBagLayout());
     }

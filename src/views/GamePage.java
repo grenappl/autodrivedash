@@ -1,5 +1,6 @@
 package views;
 
+import handlers.MovementHandler;
 import handlers.PauseHandler;
 import handlers.SpawnHandler;
 import models.Player;
@@ -58,11 +59,11 @@ public class GamePage extends JPanel implements Screen {
 
     void setPlayer(){
         this.player = new Player(
-            -(TILE_SIZE),
-            SCREEN_HEIGHT_CENTER,
-            TILE_SIZE, TILE_SIZE, 3, 
-            "images/p.png",
-            KeyEvent.VK_UP, KeyEvent.VK_DOWN, KeyEvent.VK_LEFT, KeyEvent.VK_RIGHT);
+            (double) -(TILE_SIZE),
+            (double)SCREEN_HEIGHT_CENTER,
+            TILE_SIZE, TILE_SIZE, 2.5,
+            "assets/images/p.png",
+            new MovementHandler(KeyEvent.VK_UP, KeyEvent.VK_DOWN, KeyEvent.VK_LEFT, KeyEvent.VK_RIGHT));
     }
 
     class IntroThread extends Thread {
@@ -113,7 +114,7 @@ public class GamePage extends JPanel implements Screen {
                     lastTime = currentTime;
                     if(delta >= 1){
                         if(introThrd.isAlive()){
-                            player.x += (double)player.spd - 2;
+                            player.x += player.spd - 1.5;
                         } else {
                             update();
                         }
@@ -145,12 +146,14 @@ public class GamePage extends JPanel implements Screen {
         g2D.setColor(Color.WHITE);
         for(int i = 0; i < spawn.entities.size(); i++){
             spawn.entities.get(i).move();
-            g2D.fillRect(spawn.entities.get(i).hitbox.x,  spawn.entities.get(i).hitbox.y, spawn.entities.get(i).hitbox.width, spawn.entities.get(i).hitbox.height);
+            g2D.drawRect(spawn.entities.get(i).hitbox.x,  spawn.entities.get(i).hitbox.y, spawn.entities.get(i).hitbox.width, spawn.entities.get(i).hitbox.height);
             if(spawn.entities.get(i).x <= -(TILE_SIZE)) spawn.entities.remove(i--);
         }
 
         // player
         g2D.drawImage(player.sprite, (int)player.x, (int)player.y, player.width, player.height, null);
+        g2D.setColor(Color.BLUE);
+        g2D.drawRect(player.hitbox.x, player.hitbox.y, player.hitbox.width, player.hitbox.height);
 
         // texts
         g2D.setColor(Color.BLACK);

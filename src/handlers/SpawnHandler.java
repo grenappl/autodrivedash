@@ -29,7 +29,7 @@ public class SpawnHandler implements Screen {
             if(randomInt(1, 10) <= (int)(Car.SPAWN_CHANCE * 10)){
                 entities.add(
                     new Car(
-                        SCREEN_WIDTH + TILE_SIZE, 
+                        SCREEN_WIDTH + TILE_SIZE,
                         randomInt(TILE_SIZE * 2, SCREEN_HEIGHT - TILE_SIZE * 3), 
                         TILE_SIZE, TILE_SIZE, randomInt(1, 3), 
                         null)

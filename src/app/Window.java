@@ -1,4 +1,5 @@
 package app;
+
 import views.*;
 
 import java.awt.CardLayout;
@@ -9,25 +10,24 @@ import javax.swing.JPanel;
 import app.settings.Screen;
 
 public class Window extends JFrame {
-    protected CardLayout pageController = new CardLayout();
-    protected JPanel pages = new JPanel(pageController);
+    private CardLayout pageController = new CardLayout();
+    private JPanel pages = new JPanel(pageController);
 
-    LoginPage login = new LoginPage();
-    SignupPage signup = new SignupPage();
-    MenuPage menu = new MenuPage();
-    OptionsPage options = new OptionsPage();
-    GamePage game = new GamePage();
+    private LoginPage loginPage = new LoginPage();
+    private SignupPage signupPage = new SignupPage();
+    private MenuPage menuPage = new MenuPage();
+    private OptionsPage optionsPage = new OptionsPage();
+    private GamePage gamePage = new GamePage();
 
     public Window(){
-        pages.add(login, "Login");
-        pages.add(signup, "Signup");
-        pages.add(menu, "Menu");
-        pages.add(options, "Options");
-        pages.add(game, "Game");
+        pages.add(loginPage, "Login");
+        pages.add(signupPage, "Signup");
+        pages.add(menuPage, "Menu");
+        pages.add(optionsPage, "Options");
+        pages.add(gamePage, "Game");
 
         setMenuActions();
 
-        pageController.show(pages, "Menu");
         this.add(pages);
         this.setTitle(App.NAME);
         this.setSize(Screen.SCREEN_DIMENSIONS);
@@ -37,20 +37,29 @@ public class Window extends JFrame {
         this.setVisible(true);
     }
 
-    void setLoginActions(){
+    public CardLayout getPageController() { return pageController; }
+    public JPanel getPages() { return pages; }
 
-    }
-    void setSignupActions(){
-        
-    }
+    public LoginPage getLoginPage() { return loginPage; }
+    public SignupPage getSignupPage() { return signupPage; }
+    public MenuPage getMenuPage() { return menuPage; }
+    public OptionsPage getOptionsPage() { return optionsPage; }
+    public GamePage getGamePage() { return gamePage; }
+
     void setMenuActions(){
-        menu.getStartBtn().addActionListener(e -> {
+        menuPage.getStartBtn().addActionListener(e -> {
             pageController.show(pages, "Game");
-            game.start(e);
+            gamePage.start(e);
         });
-        menu.getOptionsBtn().addActionListener(e -> {
+        menuPage.getOptionsBtn().addActionListener(_ -> {
             pageController.show(pages, "Options");
         });
-        menu.getExitBtn().addActionListener(e -> System.exit(0));
+        menuPage.getExitBtn().addActionListener(_ -> System.exit(0));
+    }
+    void setOptionsActions(){
+    
+    }
+    void setGameActions(){
+
     }
 }
