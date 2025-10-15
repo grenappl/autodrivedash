@@ -1,65 +1,59 @@
 package app;
 
 import views.*;
+import controllers.*;
 
 import java.awt.CardLayout;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import app.settings.Screen;
+import bases.BaseController;
+import bases.BasePage;
 
-public class Window extends JFrame {
-    private CardLayout pageController = new CardLayout();
-    private JPanel pages = new JPanel(pageController);
+public class Window extends JFrame {                                           
+    public final String LOGIN_KEY = "Login";
+    public final String SIGNUP_KEY = "Signup";
+    public final String MENU_KEY = "Menu";
+    public final String OPTIONS_KEY = "Options";
+    public final String GAME_KEY = "Game";
 
-    private LoginPage loginPage = new LoginPage();
-    private SignupPage signupPage = new SignupPage();
-    private MenuPage menuPage = new MenuPage();
-    private OptionsPage optionsPage = new OptionsPage();
-    private GamePage gamePage = new GamePage();
+    private Map<String, BasePage> pages = new HashMap<>();
+    private Map<String, BaseController> controllers = new HashMap<>();
+
+    public Map<String, BasePage> getPages() { return pages; }
+    public Map<String, BaseController> getControllers() { return controllers; }
+
+    private CardLayout cardLayout = new CardLayout();
+    private JPanel cardPanel = new JPanel(cardLayout);
 
     public Window(){
-        pages.add(loginPage, "Login");
-        pages.add(signupPage, "Signup");
-        pages.add(menuPage, "Menu");
-        pages.add(optionsPage, "Options");
-        pages.add(gamePage, "Game");
+        pages.put(LOGIN_KEY, new LoginPage());
+        pages.put(SIGNUP_KEY, new SignupPage());
+        pages.put(MENU_KEY, new MenuPage());
+        pages.put(OPTIONS_KEY, new OptionsPage());
+        pages.put(GAME_KEY, new GamePage());
 
-        setMenuActions();
+        controllers.put(LOGIN_KEY, new LoginController((LoginPage) pages.get(LOGIN_KEY)));
+        controllers.put(SIGNUP_KEY, new SignupController((SignupPage) pages.get(SIGNUP_KEY)));
+        controllers.put(MENU_KEY, new MenuController((MenuPage) pages.get(MENU_KEY)));
+        controllers.put(OPTIONS_KEY, new OptionsController((OptionsPage) pages.get(OPTIONS_KEY)));
+        controllers.put(GAME_KEY, new GameController((GamePage) pages.get(GAME_KEY)));
 
-        this.add(pages);
+        for(String key : pages.keySet()) cardPanel.add(pages.get(key), key);
+
+        cardLayout.show(cardPanel, MENU_KEY);
+        this.add(cardPanel);
         this.setTitle(App.NAME);
-        this.setSize(Screen.SCREEN_DIMENSIONS);
+        this.pack();
         this.setResizable(false);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setLocationRelativeTo(null);
-        this.setVisible(true);
     }
 
-    public CardLayout getPageController() { return pageController; }
-    public JPanel getPages() { return pages; }
-
-    public LoginPage getLoginPage() { return loginPage; }
-    public SignupPage getSignupPage() { return signupPage; }
-    public MenuPage getMenuPage() { return menuPage; }
-    public OptionsPage getOptionsPage() { return optionsPage; }
-    public GamePage getGamePage() { return gamePage; }
-
-    void setMenuActions(){
-        menuPage.getStartBtn().addActionListener(e -> {
-            pageController.show(pages, "Game");
-            gamePage.start(e);
-        });
-        menuPage.getOptionsBtn().addActionListener(_ -> {
-            pageController.show(pages, "Options");
-        });
-        menuPage.getExitBtn().addActionListener(_ -> System.exit(0));
-    }
-    void setOptionsActions(){
-    
-    }
-    void setGameActions(){
-
+    public void display(String key){
+        cardLayout.show(cardPanel, key);
     }
 }

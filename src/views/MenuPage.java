@@ -3,7 +3,6 @@ package views;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -15,36 +14,49 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import app.App;
-import app.settings.Screen;
-import components.BgPanel;
+import bases.BasePage;
+import components.ImagePanel;
 
-public class MenuPage extends JPanel implements Screen {
+public class MenuPage extends BasePage {
     private JLabel title;
     private JButton startBtn, optionsBtn, exitBtn;
 
-    public MenuPage(){
-        // super("assets/images/p.png");
-        this.setLayout(new BorderLayout());
-        JPanel topCtn, centerCtn, bottomCtn;
+    public JButton getStartBtn(){ return startBtn; }
+    public JButton getOptionsBtn(){ return optionsBtn; }
+    public JButton getExitBtn(){ return exitBtn; }
 
+    public MenuPage(){
+        super(null, null);
+
+        ImagePanel bg = new ImagePanel(null);
+        bg.fullScreen();
+        this.add(bg, Integer.valueOf(0));
+
+        JPanel mainCtn = new JPanel();
+        mainCtn.setBounds(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+        mainCtn.setOpaque(false);
+        mainCtn.setLayout(new BorderLayout());
+        this.add(mainCtn, Integer.valueOf(1));
+
+        JPanel topCtn, centerCtn, bottomCtn;
         topCtn = new JPanel();
         topCtn.setPreferredSize(new Dimension(0, 100));
         topCtn.setBorder(BorderFactory.createLineBorder(Color.RED));
-        this.add(topCtn, BorderLayout.NORTH);
+        mainCtn.add(topCtn, BorderLayout.NORTH);
 
         centerCtn = new JPanel(new GridBagLayout());
-        this.add(centerCtn, BorderLayout.CENTER);
+        mainCtn.add(centerCtn, BorderLayout.CENTER);
 
         bottomCtn = new JPanel();
         bottomCtn.setPreferredSize(new Dimension(40, 100));
         bottomCtn.setBorder(BorderFactory.createLineBorder(Color.RED));
-        this.add(bottomCtn, BorderLayout.SOUTH);
+        mainCtn.add(bottomCtn, BorderLayout.SOUTH);
 
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.fill = GridBagConstraints.HORIZONTAL;
 
         title = new JLabel(App.NAME);
-        title.setFont(new Font("Ink Free", Font.BOLD, 40));
+        title.setFont(new Font(FONT_HEADER, Font.BOLD, TEXT_LG));
         gbc.gridx = 0;
         gbc.gridy = 0;
         title.setBorder(BorderFactory.createLineBorder(Color.BLUE));
@@ -69,8 +81,4 @@ public class MenuPage extends JPanel implements Screen {
         btnsCtn.setBorder(BorderFactory.createLineBorder(Color.BLUE));
         centerCtn.add(btnsCtn, gbc);
     }
-
-    public JButton getStartBtn(){ return startBtn; }
-    public JButton getOptionsBtn(){ return optionsBtn; }
-    public JButton getExitBtn(){ return exitBtn; }
 }

@@ -1,4 +1,4 @@
-package models;
+package models.game;
 
 public class Car extends Entity{
     public static final int SPAWN_RATE = 750;

@@ -1,6 +1,6 @@
-package handlers;
+package bases;
 
-abstract public class PauseHandler {
+public abstract class PauseThread extends Thread {
     public boolean paused = false;
     public boolean running = true;
 
@@ -13,7 +13,7 @@ abstract public class PauseHandler {
         notify();
     }
 
-    public synchronized void stop(){
+    public synchronized void shut(){
         running = false;
         notify();
     }

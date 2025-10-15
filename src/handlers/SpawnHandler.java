@@ -6,8 +6,8 @@ import java.util.concurrent.ThreadLocalRandom;
 import javax.swing.Timer;
 
 import app.settings.Screen;
-import models.Car;
-import models.Entity;
+import models.game.Car;
+import models.game.Entity;
 
 public class SpawnHandler implements Screen {
     public ArrayList<Entity> entities;
@@ -25,7 +25,7 @@ public class SpawnHandler implements Screen {
     }
     int randomInt(int min, int max){ return ThreadLocalRandom.current().nextInt(min, max + 1); }
     void setCarSpawn(){
-        this.carTimer = new Timer(Car.SPAWN_RATE, e -> {
+        this.carTimer = new Timer(250, e -> {
             if(randomInt(1, 10) <= (int)(Car.SPAWN_CHANCE * 10)){
                 entities.add(
                     new Car(

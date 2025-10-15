@@ -3,15 +3,17 @@ package views;
 import java.awt.GridBagLayout;
 
 import javax.swing.JButton;
-import javax.swing.JPanel;
 
 import app.settings.Screen;
+import bases.BasePage;
 
-public class OptionsPage extends JPanel implements Screen {
+public class OptionsPage extends BasePage {
+
+    
     public OptionsPage(){
-        // setPreferredSize(SCREEN_DIMENSIONS);
-        setLayout(new GridBagLayout());
-        JButton btn = new JButton("Options");
-        this.add(btn);
+        super(null, null);
+
+        // JButton btn = new JButton("Options");
+        // this.add(btn);
     }
 }

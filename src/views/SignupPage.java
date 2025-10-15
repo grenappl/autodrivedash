@@ -3,19 +3,18 @@ package views;
 import java.awt.GridBagLayout;
 
 import javax.swing.JButton;
-import javax.swing.JPanel;
 
 import app.settings.Screen;
-import controllers.SignupController;
+import bases.BasePage;
 
-public class SignupPage extends JPanel implements Screen {
-    private SignupController ctrl = new SignupController();
-    private JButton signupBtn, goLoginBtn;
+public class SignupPage extends BasePage {
+    private JButton signupBtn, goToLoginBtn;
+
+    public JButton getGoToLoginBtn(){ return goToLoginBtn; }
 
     public SignupPage(){
-        this.setLayout(new GridBagLayout());
-        goLoginBtn = new JButton("Sign in to your Account!");
-        goLoginBtn.addActionListener(ctrl.switchToLoginPage());
-        this.add(goLoginBtn);
+        super(new GridBagLayout(), null);
+        goToLoginBtn = new JButton("Sign in to your Account!");
+        mainCtn.add(goToLoginBtn);
     }
 }

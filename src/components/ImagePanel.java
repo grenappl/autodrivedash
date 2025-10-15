@@ -1,24 +1,27 @@
 package components;
 
 import java.awt.Graphics;
-import java.awt.GridBagLayout;
 import java.awt.Image;
 
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
-public class BgPanel extends JPanel {
+import app.settings.Screen;
+
+public class ImagePanel extends JPanel implements Screen {
     private Image img;
 
-    public BgPanel(String filePath) {
-        this.img = new ImageIcon(filePath).getImage();
-        this.setOpaque(false);
-        this.setLayout(new GridBagLayout());
+    public ImagePanel(String filePath) {
+        if(filePath != null) this.img = new ImageIcon(filePath).getImage();
     }
 
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         g.drawImage(img, 0, 0, getWidth(), getHeight(), this);
+    }
+
+    public void fullScreen(){
+        this.setBounds(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
     }
 }
