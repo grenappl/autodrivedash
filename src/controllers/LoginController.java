@@ -5,6 +5,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 import app.App;
 import bases.BaseController;
@@ -15,29 +17,43 @@ public class LoginController extends BaseController {
 
     public LoginController(LoginPage loginPage){
         super(loginPage);
-        this.getLoginPage().getLoginButton().addMouseListener(handleLoginBtnActions());
-        this.getLoginPage().getGoToSignUpButton().addActionListener(showSignup());
+        this.getLoginPage().getLoginBtn().addMouseListener(handleLoginBtnActions());
+        this.getLoginPage().getGoToSignUpBtn().addActionListener(showSignup());
     }
 
     public MouseListener handleLoginBtnActions(){
         LoginPage lp = this.getLoginPage();
-        Color origColor = lp.getLoginButton().getBackground();
+        Color origColor = lp.getLoginBtn().getBackground();
 
         return new MouseListener() {
             @Override
             public void mouseEntered(MouseEvent e) {
-                lp.getLoginButton().setBackground(Color.GRAY);
+                lp.getLoginBtn().setBackground(Color.GRAY);
             }
             @Override
             public void mouseExited(MouseEvent e) {
-                lp.getLoginButton().setBackground(origColor);
+                lp.getLoginBtn().setBackground(origColor);
             }
             @Override
             public void mouseClicked(MouseEvent e) {
                 String email = lp.getEmailField().getText();
                 String password = String.valueOf(lp.getPasswordField().getPassword());
 
-                System.out.println(email + " | " + password);
+                try {
+                    ResultSet result = App.db.users.findByEmailAndPassword(email, password);
+                    if(result.next()){ // go to menu
+                        System.out.println(
+                            result.getInt("id") + " | " +
+                            result.getString("email") + " | " +
+                            result.getString("password")
+                        );
+                    } else { // show error pop
+                        System.out.println("No results");
+                    }
+                    result.close();
+                } catch (SQLException e1) {
+                    e1.printStackTrace();
+                }
             }
 
             @Override

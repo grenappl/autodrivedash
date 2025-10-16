@@ -4,17 +4,28 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-import models.db.User;
+import models.db.Users;
+import utils.DatabaseTable;
 
 public class Database {
-    private final String DB_URL = "jdbc:mysql://localhost:3306/car_game"; 
-    private final String DB_USER = "root";
-    private final String DB_PASSWORD = "";
+    private final String URL = "jdbc:mysql://localhost:3306/car_game";
+    private final String USER = "root";
+    private final String PASSWORD = "";
 
-    public User users;
+    private final DatabaseTable userTable = new DatabaseTable(
+        "users",
+        new String[]{"username", "email", "password"}
+    );
+
+    public Users users;
 
     public Database() throws SQLException {
-        Connection conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
-        users = new User(conn);
+        Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
+        users = new Users(conn, userTable);
+        System.out.println("Database connected successfully.");
+    }
+
+    public DatabaseTable getUserTable(){
+        return this.userTable;
     }
 }

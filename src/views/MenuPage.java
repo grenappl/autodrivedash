@@ -15,7 +15,7 @@ import javax.swing.JPanel;
 
 import app.App;
 import bases.BasePage;
-import components.ImagePanel;
+import views.components.ImagePanel;
 
 public class MenuPage extends BasePage {
     private JLabel title;

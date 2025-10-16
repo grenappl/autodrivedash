@@ -44,7 +44,7 @@ public class Window extends JFrame {
 
         for(String key : pages.keySet()) cardPanel.add(pages.get(key), key);
 
-        cardLayout.show(cardPanel, MENU_KEY);
+        cardLayout.show(cardPanel, LOGIN_KEY);
         this.add(cardPanel);
         this.setTitle(App.NAME);
         this.pack();

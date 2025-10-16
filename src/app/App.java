@@ -9,13 +9,12 @@ public class App {
 
     public static Database db;
     public static Window window;
-
     public App(){
-        // try {
-        //     db = new Database();
-        // } catch (SQLException e) {
-        //     e.printStackTrace();
-        // }
+        try {
+            db = new Database();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         SwingUtilities.invokeLater(() -> {
             window = new Window();
             window.setVisible(true);

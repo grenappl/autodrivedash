@@ -7,7 +7,7 @@ import javax.swing.JPanel;
 
 import app.settings.Screen;
 import app.settings.Styles;
-import components.ImagePanel;
+import views.components.ImagePanel;
 
 public abstract class BasePage extends JLayeredPane implements Screen, Styles {
     protected JPanel mainCtn;

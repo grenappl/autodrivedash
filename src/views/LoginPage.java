@@ -19,7 +19,7 @@ import javax.swing.JTextField;
 import javax.swing.border.Border;
 
 import bases.BasePage;
-import components.RoundButton;
+import views.components.RoundButton;
 
 public class LoginPage extends BasePage {
     private JTextField emailField;
@@ -29,8 +29,8 @@ public class LoginPage extends BasePage {
 
     public JTextField getEmailField(){ return emailField; }
     public JPasswordField getPasswordField(){ return passwordField; }
-    public JButton getLoginButton(){ return loginBtn; }
-    public JButton getGoToSignUpButton(){ return goToSignupBtn; }
+    public JButton getLoginBtn(){ return loginBtn; }
+    public JButton getGoToSignUpBtn(){ return goToSignupBtn; }
 
     public LoginPage(){
         super(new GridBagLayout(), null);
@@ -61,10 +61,10 @@ public class LoginPage extends BasePage {
         emailField.setPreferredSize(new Dimension(0, 10));
         fieldsCtn.add(emailField);
 
-        JLabel passLb = new JLabel("Password");
-        passLb.setFont(new Font(FONT_MAIN, Font.PLAIN, TEXT_SM));
-        passLb.setDisplayedMnemonic('P');
-        fieldsCtn.add(passLb);
+        JLabel passwordLb = new JLabel("Password");
+        passwordLb.setFont(new Font(FONT_MAIN, Font.PLAIN, TEXT_SM));
+        passwordLb.setDisplayedMnemonic('P');
+        fieldsCtn.add(passwordLb);
 
         passwordField = new JPasswordField();
         passwordField.setPreferredSize(new Dimension(0, 10));
