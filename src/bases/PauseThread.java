@@ -8,7 +8,7 @@ public abstract class PauseThread extends Thread {
         paused = true;
     }
 
-    public synchronized void resume(){
+    public synchronized void unpause(){
         paused = false;
         notify();
     }

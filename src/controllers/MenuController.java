@@ -14,7 +14,7 @@ public class MenuController extends BaseController {
         super(menuPage);
         this.getGamePage().getStartBtn().addActionListener(showGame());
         this.getGamePage().getOptionsBtn().addActionListener(showOptions());
-        this.getGamePage().getExitBtn().addActionListener(_ -> System.exit(0));
+        this.getGamePage().getExitBtn().addActionListener(e -> System.exit(0));
     }
 
     public ActionListener showGame(){

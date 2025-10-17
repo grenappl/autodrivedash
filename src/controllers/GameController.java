@@ -45,7 +45,7 @@ public class GameController extends BaseController implements Screen {
         this.setPlayer();
         page.addKeyListener(player.movement);
         spawn = new SpawnHandler();
-        scoreTimer = new Timer(SCORE_INTERVAL, _ -> player.score++);
+        scoreTimer = new Timer(SCORE_INTERVAL, e -> player.score++);
         page.requestFocusInWindow();
 
         gameIntro = new GameIntro(this, (GamePage)page);
