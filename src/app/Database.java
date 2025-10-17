@@ -12,7 +12,7 @@ public class Database {
     private final String USER = "root";
     private final String PASSWORD = "";
 
-    private final DatabaseTable userTable = new DatabaseTable(
+    private final DatabaseTable USER_TABLE = new DatabaseTable(
         "users",
         new String[]{"username", "email", "password"}
     );
@@ -21,11 +21,11 @@ public class Database {
 
     public Database() throws SQLException {
         Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
-        users = new Users(conn, userTable);
-        System.out.println("Database connected successfully.");
+        users = new Users(conn, USER_TABLE);
+        System.out.println("Database connected successfully!");
     }
 
     public DatabaseTable getUserTable(){
-        return this.userTable;
+        return this.USER_TABLE;
     }
 }

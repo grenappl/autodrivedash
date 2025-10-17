@@ -17,8 +17,8 @@ public class SignupController extends BaseController {
 
     public SignupController(SignupPage signupPage){
         super(signupPage);
-        this.getSignupPage().getSignupBtn().addMouseListener(handleSignupBtnActions());
-        this.getSignupPage().getGoToLoginBtn().addActionListener(showLogin());
+        getSignupPage().getSignupBtn().addMouseListener(handleSignupBtnActions());
+        getSignupPage().getGoToLoginBtn().addActionListener(showLogin());
     }
 
     public MouseListener handleSignupBtnActions(){
@@ -48,7 +48,7 @@ public class SignupController extends BaseController {
                     confPassword);
                 if(password.equals(confPassword)){
                     try {
-                        int result = App.db.users.createUser(username, email, confPassword);
+                        int result = App.db.users.signup(username, email, password);
                         System.out.println(result);
                     } catch (SQLException e1) {
                         e1.printStackTrace();

@@ -5,23 +5,15 @@ public class DatabaseTable {
     private String[] columns;
 
     public DatabaseTable(String name, String[] columns){
-        setName(name);
-        setColumns(columns);
+        this.name = name;
+        this.columns = columns;
     }
 
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String[] getColumns() {
-        return columns;
-    }
-
-    public void setColumns(String[] columns) {
-        this.columns = columns;
+    public String getColumn(int i) {
+        return columns[i - 1];
     }
 }

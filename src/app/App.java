@@ -9,6 +9,7 @@ public class App {
 
     public static Database db;
     public static Window window;
+    
     public App(){
         try {
             db = new Database();

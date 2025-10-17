@@ -11,7 +11,7 @@ public class Entity {
     public Rectangle hitbox;
     public Image sprite;
     
-    public Entity(double x, double y, int width, int height, double spd, String filePath){
+    protected Entity(double x, double y, int width, int height, double spd, String filePath){
         this.x = x;
         this.y = y;
         this.width = width;

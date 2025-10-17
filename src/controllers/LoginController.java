@@ -17,8 +17,8 @@ public class LoginController extends BaseController {
 
     public LoginController(LoginPage loginPage){
         super(loginPage);
-        this.getLoginPage().getLoginBtn().addMouseListener(handleLoginBtnActions());
-        this.getLoginPage().getGoToSignUpBtn().addActionListener(showSignup());
+        getLoginPage().getLoginBtn().addMouseListener(handleLoginBtnActions());
+        getLoginPage().getGoToSignUpBtn().addActionListener(showSignup());
     }
 
     public MouseListener handleLoginBtnActions(){
