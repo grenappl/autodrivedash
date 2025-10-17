@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-import models.db.Users;
+import models.LoginModel;
 import utils.DatabaseTable;
 
 public class Database {
@@ -17,11 +17,11 @@ public class Database {
         new String[]{"username", "email", "password"}
     );
 
-    public Users users;
+    public LoginModel users;
 
     public Database() throws SQLException {
         Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
-        users = new Users(conn, USER_TABLE);
+        users = new LoginModel(conn, USER_TABLE);
         System.out.println("Database connected successfully!");
     }
 
