@@ -2,14 +2,11 @@ package models;
 
 import java.sql.Connection;
 
-import bases.DatabaseModel;
-import utils.DatabaseTable;
+import bases.Model;
 
-public class SignupModel extends DatabaseModel {
-
-    protected SignupModel(Connection conn, DatabaseTable table) {
-        super(conn, table);
-        //TODO Auto-generated constructor stub
+public class SignupModel extends Model {
+    public SignupModel(Connection conn) {
+        super(conn);
     }
     
 }

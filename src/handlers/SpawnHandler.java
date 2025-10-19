@@ -6,8 +6,8 @@ import java.util.concurrent.ThreadLocalRandom;
 import javax.swing.Timer;
 
 import app.settings.Screen;
-import models.game.Car;
-import models.game.Entity;
+import bases.Entity;
+import models.Car;
 
 public class SpawnHandler implements Screen {
     public ArrayList<Entity> entities;

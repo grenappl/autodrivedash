@@ -1,38 +1,54 @@
 package controllers;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.io.IOException;
 
 import app.App;
-import bases.BaseController;
-import views.MenuPage;
+import handlers.Movement;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.input.KeyEvent;
 
-public class MenuController extends BaseController {
-    public MenuPage getGamePage(){ return (MenuPage)this.page; }
+public class MenuController {
+    @FXML private Button startBtn;
 
-    public MenuController(MenuPage menuPage){
-        super(menuPage);
-        this.getGamePage().getStartBtn().addActionListener(showGame());
-        this.getGamePage().getOptionsBtn().addActionListener(showOptions());
-        this.getGamePage().getExitBtn().addActionListener(e -> System.exit(0));
+    @FXML
+    protected void showGame(ActionEvent e) throws IOException {
+        GameController gameCtrl = App.window.getGameController();
+        Parent gamePage = App.window.getGamePage();
+        App.window.display(gameCtrl.setScene(gamePage));
+        gamePage.requestFocus();
     }
 
-    public ActionListener showGame(){
-        return new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                App.window.display(App.window.GAME_KEY);
-                ((GameController)App.window.getControllers().get(App.window.GAME_KEY)).startGame();
-            }
-        };
-    }
+    // public MenuPage getGamePage(){ return (MenuPage)this.page; }
 
-    public ActionListener showOptions(){
-        return new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // App.window.getCardLayout().show(App.window.getCardPanel(), "Options");
-            }
-        };
-    }
+    // public MenuController(MenuPage menuPage){
+    //     super(menuPage);
+    //     this.getGamePage().getStartBtn().addActionListener(showGame());
+    //     this.getGamePage().getOptionsBtn().addActionListener(showOptions());
+    //     this.getGamePage().getExitBtn().addActionListener(e -> System.exit(0));
+    // }
+
+    // public ActionListener showGame(){
+    //     return new ActionListener() {
+    //         @Override
+    //         public void actionPerformed(ActionEvent e) {
+    //             AutoDriveDash.window.display(AutoDriveDash.window.GAME_KEY);
+    //             ((GameController)AutoDriveDash.window.getControllers().get(AutoDriveDash.window.GAME_KEY)).startGame();
+    //         }
+    //     };
+    // }
+
+    // public ActionListener showOptions(){
+    //     return new ActionListener() {
+    //         @Override
+    //         public void actionPerformed(ActionEvent e) {
+    //             // App.window.getCardLayout().show(App.window.getCardPanel(), "Options");
+    //         }
+    //     };
+    // }
 }

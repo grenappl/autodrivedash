@@ -4,28 +4,36 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+import models.GameModel;
 import models.LoginModel;
+import models.SignupModel;
 import utils.DatabaseTable;
 
 public class Database {
-    private final String URL = "jdbc:mysql://localhost:3306/car_game";
-    private final String USER = "root";
-    private final String PASSWORD = "";
+    private Connection conn;
+    private final String DB_URL = "jdbc:mysql://localhost:3306/car_game";
+    private final String DB_USER = "root";
+    private final String DB_PASSWORD = "";
 
-    private final DatabaseTable USER_TABLE = new DatabaseTable(
+    private DatabaseTable userTable = new DatabaseTable(
         "users",
         new String[]{"username", "email", "password"}
     );
 
-    public LoginModel users;
-
-    public Database() throws SQLException {
-        Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
-        users = new LoginModel(conn, USER_TABLE);
-        System.out.println("Database connected successfully!");
+    public DatabaseTable getUserTable(){
+        return this.userTable;
     }
 
-    public DatabaseTable getUserTable(){
-        return this.USER_TABLE;
+    public Database() {
+        try {
+            conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
+            System.out.println("Database connected successfully!");
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+
+        App.window.getLoginController().setModel(new LoginModel(conn));
+        App.window.getSignupController().setModel(new SignupModel(conn));
+        App.window.getGameController().setModel(new GameModel(conn));
     }
 }

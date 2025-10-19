@@ -1,24 +1,29 @@
 package app;
 
-import java.sql.SQLException;
+import java.io.IOException;
 
-import javax.swing.SwingUtilities;
+import javafx.application.Application;
+import javafx.stage.Stage;
 
-public class App {
-    public static final String NAME = "Auto Drive Dash";
-
+public class App extends Application {
+    private static String name = "Auto Drive Dash";
     public static Database db;
     public static Window window;
-    
-    public App(){
+
+    @Override
+    public void start(Stage stage) {
         try {
+            window = new Window();
             db = new Database();
-        } catch (SQLException e) {
+            window.setTitle(name);
+            window.show();
+        } 
+        catch (IOException e) {
             e.printStackTrace();
         }
-        SwingUtilities.invokeLater(() -> {
-            window = new Window();
-            window.setVisible(true);
-        });
+    }
+
+    public static void main(String[] args) {
+        launch(args);
     }
 }

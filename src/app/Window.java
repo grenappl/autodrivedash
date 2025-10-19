@@ -1,59 +1,58 @@
 package app;
 
-import views.*;
 import controllers.*;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 
-import java.awt.CardLayout;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
+import app.settings.Screen;
 
-import bases.BaseController;
-import bases.BasePage;
+public class Window extends Stage implements Screen {                
+    public final String LOGIN = "/views/LoginPage.fxml";
+    public final String SIGNUP = "/views/SignupPage.fxml";
+    public final String MENU = "/views/MenuPage.fxml";
+    public final String OPTIONS = "/views/OptionsPage.fxml";
+    public final String GAME = "/views/GamePage.fxml";
+    private String[] keys = {LOGIN, SIGNUP, MENU, GAME};
 
-public class Window extends JFrame {                                           
-    public final String LOGIN_KEY = "Login";
-    public final String SIGNUP_KEY = "Signup";
-    public final String MENU_KEY = "Menu";
-    public final String OPTIONS_KEY = "Options";
-    public final String GAME_KEY = "Game";
+    private Map<String, Parent> pages = new HashMap<>();
+    private Map<String, Object> controllers = new HashMap<>();
 
-    private Map<String, BasePage> pages = new HashMap<>();
-    private Map<String, BaseController> controllers = new HashMap<>();
+    public Parent getLoginPage() { return this.pages.get(LOGIN); }
+    public Parent getSignupPage() { return this.pages.get(SIGNUP); }
+    public Parent getMenuPage() { return this.pages.get(MENU); }
+    public Parent getOptionsPage() { return this.pages.get(OPTIONS); }
+    public Parent getGamePage() { return this.pages.get(GAME); }
 
-    public Map<String, BasePage> getPages() { return pages; }
-    public Map<String, BaseController> getControllers() { return controllers; }
+    public LoginController getLoginController() { return (LoginController)this.controllers.get(LOGIN); }
+    public SignupController getSignupController() { return (SignupController)this.controllers.get(SIGNUP); }
+    public MenuController getMenuController() { return (MenuController)this.controllers.get(MENU); }
+    public OptionsController getOptionsController() { return (OptionsController)this.controllers.get(OPTIONS); }
+    public GameController getGameController() { return (GameController)this.controllers.get(GAME); }
 
-    private CardLayout cardLayout = new CardLayout();
-    private JPanel cardPanel = new JPanel(cardLayout);
+    public Window() throws IOException {
+        for(String key : keys){
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(key));
+            pages.put(key, loader.load());
+            controllers.put(key, loader.getController());
+        }
 
-    public Window(){
-        pages.put(LOGIN_KEY, new LoginPage());
-        pages.put(SIGNUP_KEY, new SignupPage());
-        pages.put(MENU_KEY, new MenuPage());
-        pages.put(OPTIONS_KEY, new OptionsPage());
-        pages.put(GAME_KEY, new GamePage());
+        String css = this.getClass().getResource("styles/main.css").toExternalForm();
+        Parent root = pages.get(MENU); // start page
+        root.getStylesheets().add(css);
 
-        controllers.put(LOGIN_KEY, new LoginController((LoginPage) pages.get(LOGIN_KEY)));
-        controllers.put(SIGNUP_KEY, new SignupController((SignupPage) pages.get(SIGNUP_KEY)));
-        controllers.put(MENU_KEY, new MenuController((MenuPage) pages.get(MENU_KEY)));
-        controllers.put(OPTIONS_KEY, new OptionsController((OptionsPage) pages.get(OPTIONS_KEY)));
-        controllers.put(GAME_KEY, new GameController((GamePage) pages.get(GAME_KEY)));
-
-        for(String key : pages.keySet()) cardPanel.add(pages.get(key), key);
-
-        cardLayout.show(cardPanel, MENU_KEY);
-        this.add(cardPanel);
-        this.setTitle(App.NAME);
-        this.pack();
+        this.setScene(new Scene(root, SCREEN_WIDTH, SCREEN_HEIGHT));
         this.setResizable(false);
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setLocationRelativeTo(null);
+        this.centerOnScreen();
     }
-
-    public void display(String key){
-        cardLayout.show(cardPanel, key);
+    
+    public void display(Scene scene){
+        this.setScene(scene);
+        this.show();
     }
 }

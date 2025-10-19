@@ -7,16 +7,17 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import bases.DatabaseModel;
+import app.App;
+import bases.Model;
 
-public class LoginModel extends DatabaseModel {
-    public LoginModel(Connection conn, DatabaseTable table){
-        super(conn, table);
+public class LoginModel extends Model {
+    public LoginModel(Connection conn){
+        super(conn);
     }
 
     public ResultSet findByEmailAndPassword(String email, String password) throws SQLException {
-        String nameCol = getTable().getColumn(1);
-        String emailCol = getTable().getColumn(2);
+        String nameCol = App.db.getUserTable().getColumn(1);
+        String emailCol = App.db.getUserTable().getColumn(2);
         
         String query = "SELECT * FROM users WHERE " + nameCol + " = ? AND " + emailCol + " = ?";
         PreparedStatement stmt = getConn().prepareStatement(query);
@@ -26,13 +27,14 @@ public class LoginModel extends DatabaseModel {
     }
 
     public int signup(String username, String email, String password) throws SQLException {
-        String nameCol = getTable().getColumn(1);
-        String emailCol = getTable().getColumn(2);
-        String pwCol = getTable().getColumn(3);
+        String tableName =  App.db.getUserTable().getName();
+        String nameCol = App.db.getUserTable().getColumn(1);
+        String emailCol = App.db.getUserTable().getColumn(2);
+        String pwCol = App.db.getUserTable().getColumn(3);
 
         String hashedPassword = null; // need to hash passwords
 
-        String query = "INSERT INTO" + getTable().getName() +
+        String query = "INSERT INTO" + tableName +
             " (" + nameCol + ", " + emailCol + ", " + pwCol + ") VALUES (?, ?, ?)";
         PreparedStatement stmt = getConn().prepareStatement(query);
         stmt.setString(0, username);

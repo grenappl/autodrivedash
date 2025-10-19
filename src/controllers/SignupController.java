@@ -9,67 +9,69 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import app.App;
-import bases.BaseController;
-import views.SignupPage;
+import models.SignupModel;
 
-public class SignupController extends BaseController {
-    public SignupPage getSignupPage(){ return (SignupPage)this.page; }
-
-    public SignupController(SignupPage signupPage){
-        super(signupPage);
-        getSignupPage().getSignupBtn().addMouseListener(handleSignupBtnActions());
-        getSignupPage().getGoToLoginBtn().addActionListener(showLogin());
+public class SignupController {
+    private SignupModel signupModel;
+    public void setModel(SignupModel model) {
+        this.signupModel = model;
     }
 
-    public MouseListener handleSignupBtnActions(){
-        SignupPage sp = this.getSignupPage();
-        Color origColor = sp.getSignupBtn().getBackground();
+    // public SignupController(SignupPage signupPage){
+    //     super(signupPage);
+    //     getSignupPage().getSignupBtn().addMouseListener(handleSignupBtnActions());
+    //     getSignupPage().getGoToLoginBtn().addActionListener(showLogin());
+    // }
 
-        return new MouseListener() {
-            @Override
-            public void mouseEntered(MouseEvent e) {
-                sp.getSignupBtn().setBackground(Color.GRAY);
-            }
-            @Override
-            public void mouseExited(MouseEvent e) {
-                sp.getSignupBtn().setBackground(origColor);
-            }
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                String username = sp.getUsernameField().getText();
-                String email = sp.getEmailField().getText();
-                String password = String.valueOf(sp.getPasswordField().getPassword());
-                String confPassword = String.valueOf(sp.getConfirmPasswordField().getPassword());
+    // public MouseListener handleSignupBtnActions(){
+    //     SignupPage sp = this.getSignupPage();
+    //     Color origColor = sp.getSignupBtn().getBackground();
 
-                System.out.println(
-                    username + " | " +
-                    email + " | " +
-                    password + " | " +
-                    confPassword);
-                if(password.equals(confPassword)){
-                    try {
-                        int result = App.db.users.signup(username, email, password);
-                        System.out.println(result);
-                    } catch (SQLException e1) {
-                        e1.printStackTrace();
-                    }
-                } else {
-                    System.out.println("Passwords don't match!");
-                }
-            }
+    //     return new MouseListener() {
+    //         @Override
+    //         public void mouseEntered(MouseEvent e) {
+    //             sp.getSignupBtn().setBackground(Color.GRAY);
+    //         }
+    //         @Override
+    //         public void mouseExited(MouseEvent e) {
+    //             sp.getSignupBtn().setBackground(origColor);
+    //         }
+    //         @Override
+    //         public void mouseClicked(MouseEvent e) {
+    //             String username = sp.getUsernameField().getText();
+    //             String email = sp.getEmailField().getText();
+    //             String password = String.valueOf(sp.getPasswordField().getPassword());
+    //             String confPassword = String.valueOf(sp.getConfirmPasswordField().getPassword());
 
-            @Override
-            public void mousePressed(MouseEvent e) {}
-            @Override
-            public void mouseReleased(MouseEvent e) {}
-        };
-    }
-    public ActionListener showLogin(){
-        return new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                App.window.display(App.window.LOGIN_KEY);
-            }
-        };
-    }
+    //             System.out.println(
+    //                 username + " | " +
+    //                 email + " | " +
+    //                 password + " | " +
+    //                 confPassword);
+    //             if(password.equals(confPassword)){
+    //                 try {
+    //                     int result = AutoDriveDash.db.users.signup(username, email, password);
+    //                     System.out.println(result);
+    //                 } catch (SQLException e1) {
+    //                     e1.printStackTrace();
+    //                 }
+    //             } else {
+    //                 System.out.println("Passwords don't match!");
+    //             }
+    //         }
+
+    //         @Override
+    //         public void mousePressed(MouseEvent e) {}
+    //         @Override
+    //         public void mouseReleased(MouseEvent e) {}
+    //     };
+    // }
+    // public ActionListener showLogin(){
+    //     return new ActionListener() {
+    //         @Override
+    //         public void actionPerformed(ActionEvent e) {
+    //             AutoDriveDash.window.display(AutoDriveDash.window.LOGIN_KEY);
+    //         }
+    //     };
+    // }
 }
