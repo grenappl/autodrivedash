@@ -22,13 +22,12 @@ public class LoginController {
     @FXML private Button createOneBtn;
 
     @FXML private void goToSignup(ActionEvent e) throws IOException {
-        App.window.display(new Scene(App.window.getSignupPage()));
+
     }
     @FXML private void handleLogin(ActionEvent e) {
         try {
             loginModel.findByEmailAndPassword(null, null);
         } catch (SQLException e1) {
-            // TODO Auto-generated catch block
             e1.printStackTrace();
         }
     }

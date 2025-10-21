@@ -2,6 +2,7 @@ package autodrivedash.menu;
 
 import java.io.IOException;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -13,44 +14,21 @@ import javafx.scene.input.KeyEvent;
 
 import autodrivedash.App;
 import autodrivedash.game.GameController;
-import autodrivedash.game.handlers.Movement;
+
+import static com.almasb.fxgl.dsl.FXGL.*;
 
 public class MenuController {
     @FXML private Button startBtn;
 
+    public Button getStartBtn(){ return this.startBtn; }
+
     @FXML
-    protected void showGame(ActionEvent e) throws IOException {
-        GameController gameCtrl = App.window.getGameController();
-        Parent gamePage = App.window.getGamePage();
-        App.window.display(gameCtrl.setScene(gamePage));
-        gamePage.requestFocus();
+    protected void showGame(ActionEvent e){
+
+        // need to get options/customize data
     }
 
-    // public MenuPage getGamePage(){ return (MenuPage)this.page; }
-
-    // public MenuController(MenuPage menuPage){
-    //     super(menuPage);
-    //     this.getGamePage().getStartBtn().addActionListener(showGame());
-    //     this.getGamePage().getOptionsBtn().addActionListener(showOptions());
-    //     this.getGamePage().getExitBtn().addActionListener(e -> System.exit(0));
-    // }
-
-    // public ActionListener showGame(){
-    //     return new ActionListener() {
-    //         @Override
-    //         public void actionPerformed(ActionEvent e) {
-    //             AutoDriveDash.window.display(AutoDriveDash.window.GAME_KEY);
-    //             ((GameController)AutoDriveDash.window.getControllers().get(AutoDriveDash.window.GAME_KEY)).startGame();
-    //         }
-    //     };
-    // }
-
-    // public ActionListener showOptions(){
-    //     return new ActionListener() {
-    //         @Override
-    //         public void actionPerformed(ActionEvent e) {
-    //             // App.window.getCardLayout().show(App.window.getCardPanel(), "Options");
-    //         }
-    //     };
+    // protected void goToLogin(){
+    //     App.ui.display();
     // }
 }
