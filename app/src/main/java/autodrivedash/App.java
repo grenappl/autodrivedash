@@ -98,7 +98,7 @@ public final class App extends GameApplication implements ScreenConstants {
             @Override
             protected void onCollision(Entity player, Entity enemy) {
                 if(!Player.isInvincible()){
-                    System.err.println("Player has collided!");
+                    System.out.println("Player has collided!");
                     Player.setIsInvincible(true);
                     runOnce(() -> {
                         System.out.println("NOT invincible!");

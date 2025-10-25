@@ -57,7 +57,6 @@ public class MainMenu extends FXGLMenu {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource(key));
                 ui.put(key, loader.load());
                 ui.get(key).setId(key);
-                System.out.println(ui.get(key));
                 controllers.put(key, loader.getController());
             }
         } catch (IOException e) {
@@ -68,7 +67,7 @@ public class MainMenu extends FXGLMenu {
         this.getSignupController().setModel(new SignupModel());
         this.getMenuController().setModel(new MenuModel());
 
-        display(getLoginPage());
+        display(getMenuPage());
         getContentRoot().setCursor(Cursor.DEFAULT);
     }
     
