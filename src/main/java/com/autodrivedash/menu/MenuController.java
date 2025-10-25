@@ -18,14 +18,18 @@ import autodrivedash.game.GameController;
 import static com.almasb.fxgl.dsl.FXGL.*;
 
 public class MenuController {
+    private MenuModel menuModel;
+    public void setModel(MenuModel model) {
+        this.menuModel = model;
+    }
+
     @FXML private Button startBtn;
 
     public Button getStartBtn(){ return this.startBtn; }
 
     @FXML
     protected void showGame(ActionEvent e){
-
-        // need to get options/customize data
+        App.getMainMenu().startGame();
     }
 
     // protected void goToLogin(){

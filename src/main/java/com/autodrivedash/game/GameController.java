@@ -40,11 +40,6 @@ public class GameController implements ScreenConstants {
 
 
     // LOGIC
-    public boolean isPaused = false;
-
-    private PlayerMovement playerMovement;
-    public PlayerMovement getPlayerMovement(){ return this.playerMovement; }
-
     public void startGame(){
         // App.window.display(App.window.getGamePage());
 

@@ -1,4 +1,4 @@
-package autodrivedash.login;
+package autodrivedash.menu.login;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

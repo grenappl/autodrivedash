@@ -1,0 +1,23 @@
+.transparent-btn {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
+    -fx-cursor: hand;
+}
+
+.txt-field {
+    -fx-background-radius: 15;
+    -fx-padding: 5px 10px;
+}
+
+.signin-btn {
+    -fx-background-color: #2b5797;
+    -fx-text-fill: white;
+    -fx-background-radius: 15;
+    -fx-cursor: hand;
+}
+
+.popup-bg {
+    -fx-background-color: #666666;
+}

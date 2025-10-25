@@ -1,4 +1,4 @@
-package autodrivedash.signup;
+package autodrivedash.menu.signup;
 
 import java.awt.Color;
 import java.awt.event.ActionEvent;

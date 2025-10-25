@@ -4,10 +4,12 @@ import java.io.IOException;
 import java.util.Map;
 
 import autodrivedash.db.Database;
+import autodrivedash.game.GameMenu;
 import autodrivedash.game.entity.EntitySpawner;
 import autodrivedash.game.entity.EntityType;
 import autodrivedash.game.entity.player.Player;
 import autodrivedash.menu.MenuFactory;
+import autodrivedash.menu.MainMenu;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Cursor;
 import javafx.util.Duration;
@@ -21,8 +23,15 @@ import static com.almasb.fxgl.dsl.FXGL.*;
 
 public final class App extends GameApplication implements ScreenConstants {
     private static final String NAME = "Auto Drive Dash";
-    public static UiManager ui;
+    private static MainMenu mainMenu;
+    private static GameMenu gameMenu;
     public static Database db;
+
+    public static MainMenu getMainMenu(){ return mainMenu; }
+    public static GameMenu getGameMenu(){ return gameMenu; }
+
+    public static void setMainMenu(MainMenu newMainMenu){ mainMenu = newMainMenu; }
+    public static void setGameMenu(GameMenu newGameMenu){ gameMenu = newGameMenu; }
 
     public static void main(String[] args) {
         launch(args);
@@ -41,7 +50,7 @@ public final class App extends GameApplication implements ScreenConstants {
 
     @Override
     protected void onPreInit(){
-        System.out.println(getGameScene());
+
     }
 
     @Override
@@ -71,7 +80,7 @@ public final class App extends GameApplication implements ScreenConstants {
 
     @Override
     protected void initGameVars(Map<String, Object> vars) {
-
+        // vars.put();
     }
 
     @Override
@@ -107,7 +116,7 @@ public final class App extends GameApplication implements ScreenConstants {
     @Override
     protected void initUI() {
         try {
-            getGameScene().addUINode(FXMLLoader.load(getClass().getResource(UiManager.GAME)));
+            getGameScene().addUINode(FXMLLoader.load(getClass().getResource("/ui/game.fxml")));
             getGameScene().setCursor(Cursor.DEFAULT);
         } catch (IOException e) {
             e.printStackTrace();

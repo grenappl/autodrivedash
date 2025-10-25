@@ -1,4 +1,4 @@
-package autodrivedash.signup;
+package autodrivedash.menu.signup;
 
 import java.sql.Connection;
 

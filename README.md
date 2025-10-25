@@ -18,16 +18,15 @@ Automatically stores player progress, preferences, and high scores in a database
 ## Technologies Used
 
 #### Frameworks/Libraries
-- `JavaFX`
-- `FXGL`
+- `JavaFX/FXGL`
 - `MySQL Connector/J`
-#### Archtecture
+#### Architecture
 - `ECS` (Entity-Component-System)
 - `MVC` (Model-View-Controller)
 #### Tools
-- `VS Code`: IDE
-- `Git/Github`: Version Control
-- `Figma`: Layouts/Designs
-- `SceneBuilder`: UI Creation
-- `Piskel`: Pixel Art
-- `MySQL`: Database
+- `VS Code` - IDE
+- `Git/Github` - Version Control
+- `Figma` - Layouts/Designs
+- `SceneBuilder` - UI Creation
+- `Piskel` - Pixel Art
+- `MySQL` - Database

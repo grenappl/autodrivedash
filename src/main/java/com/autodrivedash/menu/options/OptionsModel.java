@@ -1,4 +1,4 @@
-package autodrivedash.options;
+package autodrivedash.menu.options;
 
 public class OptionsModel {
     
