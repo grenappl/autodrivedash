@@ -26,7 +26,6 @@ Automatically stores player progress, preferences, and high scores in a database
 #### Tools
 - `VS Code` - IDE
 - `Git/Github` - Version Control
-- `Figma` - Layouts/Designs
 - `SceneBuilder` - UI Creation
 - `Piskel` - Pixel Art
 - `MySQL` - Database

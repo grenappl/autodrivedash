@@ -17,12 +17,14 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class GameMenu extends FXGLMenu {
-    public static final String GAME_MENU = "/ui/game.fxml";
-    private String[] keys = {GAME_MENU};
+    public static final String PAUSE_MENU = "/ui/pause-menu.fxml";
+    public static final String PAUSE_SETTINGS = "/ui/pause-settings.fxml";
+
+    private String[] keys = {PAUSE_MENU, PAUSE_SETTINGS};
 
     private Map<String, Parent> ui = new HashMap<>();
 
-    public Parent getMainGame() { return this.ui.get(GAME_MENU); }
+    public Parent getMainGame() { return this.ui.get(PAUSE_MENU); }
 
     public GameMenu(MenuType type) {
         super(type);
@@ -35,17 +37,11 @@ public class GameMenu extends FXGLMenu {
         // } catch (IOException e) {
         //     e.printStackTrace();
         // }
-        
-        var resumeBtn = new Button("Resume");
-        resumeBtn.setOnAction(e -> fireResume());
-
-        var optionsBtn = new Button("Options");
-        optionsBtn.setOnAction(e -> getGameController().gotoGameMenu());
 
         var mainMenuBtn = new Button("Main Menu");
         mainMenuBtn.setOnAction(e -> fireExitToMainMenu());
 
-        var box = new VBox(15, resumeBtn, optionsBtn, mainMenuBtn);
+        var box = new VBox(15, mainMenuBtn);
         box.setFillWidth(true);
         box.setAlignment(Pos.BOTTOM_RIGHT);
         getContentRoot().getChildren().add(box);

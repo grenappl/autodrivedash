@@ -4,12 +4,15 @@ import java.io.IOException;
 import java.util.Map;
 
 import autodrivedash.db.Database;
+import autodrivedash.game.GameController;
 import autodrivedash.game.GameMenu;
 import autodrivedash.game.entity.EntitySpawner;
 import autodrivedash.game.entity.EntityType;
 import autodrivedash.game.entity.player.Player;
+import autodrivedash.game.entity.tile.TileSpawner;
 import autodrivedash.menu.MenuFactory;
 import autodrivedash.menu.MainMenu;
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Cursor;
 import javafx.util.Duration;
@@ -17,6 +20,7 @@ import javafx.util.Duration;
 import com.almasb.fxgl.app.GameApplication;
 import com.almasb.fxgl.app.GameSettings;
 import com.almasb.fxgl.entity.Entity;
+import com.almasb.fxgl.entity.level.Level;
 import com.almasb.fxgl.input.UserAction;
 import com.almasb.fxgl.physics.CollisionHandler;
 import static com.almasb.fxgl.dsl.FXGL.*;
@@ -26,6 +30,7 @@ public final class App extends GameApplication implements ScreenConstants {
     private static MainMenu mainMenu;
     private static GameMenu gameMenu;
     public static Database db;
+    public static GameController gameCtrl;
 
     public static MainMenu getMainMenu(){ return mainMenu; }
     public static GameMenu getGameMenu(){ return gameMenu; }
@@ -80,16 +85,15 @@ public final class App extends GameApplication implements ScreenConstants {
 
     @Override
     protected void initGameVars(Map<String, Object> vars) {
-        // vars.put();
+        vars.put("SCORE", 0);
     }
 
     @Override
     protected void initGame() {
         getGameWorld().addEntityFactory(new EntitySpawner());
-        spawn(EntitySpawner.PLAYER_KEY);
-        spawn(EntitySpawner.ENEMY_CAR_KEY);
-        spawn(EntitySpawner.ENEMY_CAR_KEY);
-        spawn(EntitySpawner.ENEMY_CAR_KEY);
+        getGameWorld().addEntityFactory(new TileSpawner());
+
+        Platform.runLater(() -> gameCtrl.startGame());
     }
 
     @Override
@@ -116,10 +120,19 @@ public final class App extends GameApplication implements ScreenConstants {
     @Override
     protected void initUI() {
         try {
-            getGameScene().addUINode(FXMLLoader.load(getClass().getResource("/ui/game.fxml")));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/ui/game.fxml"));
+            getGameScene().addUINode(loader.load());
+            gameCtrl = loader.getController();
             getGameScene().setCursor(Cursor.DEFAULT);
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    protected void onUpdate(double tpf) {
+        inc("SCORE", 1);
+        int score = geti("SCORE") / 10;
+        gameCtrl.setScore(score);
     }
 }

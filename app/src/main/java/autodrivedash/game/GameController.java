@@ -9,12 +9,14 @@ import javafx.scene.Scene;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.Pane;
+import javafx.scene.text.Text;
 import javafx.util.Duration;
 import autodrivedash.App;
 import autodrivedash.ScreenConstants;
 import autodrivedash.game.entity.EntitySpawner;
 import autodrivedash.game.entity.EntityType;
 import autodrivedash.game.entity.player.PlayerMovement;
+import autodrivedash.game.entity.tile.TileSpawner;
 
 import com.almasb.fxgl.input.Input;
 import com.almasb.fxgl.input.UserAction;
@@ -35,18 +37,24 @@ public class GameController implements ScreenConstants {
     }
     public GameModel getModel(){ return this.gameModel; }
 
-    // FXML
-    // @FXML private Pane bg;
+    @FXML private Text scoreCount;
 
 
-    // LOGIC
     public void startGame(){
-        // App.window.display(App.window.getGamePage());
+        for(int i = 0; i < TILE_MAX_ROW; i++){
+            String key = (i >= 2 && i <= 10) ? TileSpawner.ROAD_KEY : TileSpawner.SIDE_KEY;
+            for(int j = 0; j < TILE_MAX_COL + 2; j++){
+                if(key != TileSpawner.SIDE_KEY)
+                    key = (i == 6 && j % 2 != 0) ? TileSpawner.ROAD_STRIPE_KEY : TileSpawner.ROAD_KEY;
+                spawn(key, TILE_SIZE * j, TILE_SIZE * i);
+            }
+        }
 
-        // playerMovement = new PlayerMovement(KeyCode.UP, KeyCode.DOWN, KeyCode.LEFT, KeyCode.RIGHT);
+        run(() -> spawn(EntitySpawner.ENEMY_CAR_KEY), Duration.millis(500));
 
-        getGameWorld().addEntityFactory(gameModel.getSpawnHandler());
         spawn(EntitySpawner.PLAYER_KEY);
-        spawn(EntitySpawner.ENEMY_CAR_KEY);
+    }
+    public void setScore(int score){
+        scoreCount.setText(String.valueOf(score));
     }
 }
