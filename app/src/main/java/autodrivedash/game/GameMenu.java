@@ -2,7 +2,9 @@ package autodrivedash.game;
 
 import com.almasb.fxgl.app.scene.FXGLMenu;
 import com.almasb.fxgl.app.scene.MenuType;
+import com.almasb.fxgl.dsl.FXGL;
 
+import autodrivedash.App;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
 import javafx.scene.Cursor;
@@ -19,32 +21,39 @@ import java.util.Map;
 public class GameMenu extends FXGLMenu {
     public static final String PAUSE_MENU = "/ui/pause-menu.fxml";
     public static final String PAUSE_SETTINGS = "/ui/pause-settings.fxml";
+    public static final String GAME_OVER = "/ui/game-over.fxml";
 
-    private String[] keys = {PAUSE_MENU, PAUSE_SETTINGS};
+    private String[] keys = { PAUSE_MENU };
 
     private Map<String, Parent> ui = new HashMap<>();
 
-    public Parent getMainGame() { return this.ui.get(PAUSE_MENU); }
+    public Parent getPauseMenu() {
+        return this.ui.get(PAUSE_MENU);
+    }
+
+    private Parent currentPage = null;
 
     public GameMenu(MenuType type) {
         super(type);
-        // try {
-        //     for(String key : keys){
-        //         FXMLLoader loader = new FXMLLoader(getClass().getResource(key));
-        //         pages.put(key, loader.load());
-        //         pages.get(key).setId(key);
-        //     }
-        // } catch (IOException e) {
-        //     e.printStackTrace();
-        // }
+        try {
+            for (String key : keys) {
+                ui.put(key, FXMLLoader.load(getClass().getResource(key)));
+                ui.get(key).setId(key);
+            }
+            display(getPauseMenu());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
-        var mainMenuBtn = new Button("Main Menu");
-        mainMenuBtn.setOnAction(e -> fireExitToMainMenu());
+    public void display(Parent newPage) {
+        if (currentPage != null)
+            getContentRoot().getChildren().removeLast();
+        currentPage = newPage;
+        getContentRoot().getChildren().add(currentPage);
+    }
 
-        var box = new VBox(15, mainMenuBtn);
-        box.setFillWidth(true);
-        box.setAlignment(Pos.BOTTOM_RIGHT);
-        getContentRoot().getChildren().add(box);
-        getContentRoot().setCursor(Cursor.DEFAULT);
+    public void exitToMainMenu() {
+        FXGL.getGameController().gotoMainMenu();
     }
 }

@@ -14,7 +14,12 @@
 | **Game loop**      | `onUpdate(double tpf)`                   | Every frame                             | Your per-frame logic (movement, AI, etc.)   |
 
 ## FXGL Key Shortcuts/Debug Tools while running App
+
 - `Press 1`: opens dev menu (for viewing hitboxes and others)
-- `Press Esc`: opens in-game menu  or pauses the game
+- `Press Esc`: opens in-game menu and pauses the game
 
 ## Color Pallete
+
+- `main-white`: #FFFFFF
+- `shade-grey`: #AAAAAA
+- `main-blue`: #1800ad

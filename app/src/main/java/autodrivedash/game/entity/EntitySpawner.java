@@ -2,30 +2,17 @@ package autodrivedash.game.entity;
 
 import static com.almasb.fxgl.dsl.FXGL.*;
 
-import java.util.concurrent.ThreadLocalRandom;
-
-import javax.swing.Renderer;
-
 import com.almasb.fxgl.dsl.FXGL;
 import com.almasb.fxgl.entity.Entity;
 import com.almasb.fxgl.entity.EntityFactory;
 import com.almasb.fxgl.entity.SpawnData;
 import com.almasb.fxgl.entity.Spawns;
-import com.almasb.fxgl.entity.components.ViewComponent;
-import com.almasb.fxgl.physics.BoundingShape;
-import com.almasb.fxgl.physics.HitBox;
-import com.almasb.fxgl.physics.PhysicsComponent;
-import com.almasb.fxgl.physics.box2d.dynamics.BodyType;
 import com.almasb.fxgl.texture.Texture;
 
-import autodrivedash.App;
 import autodrivedash.ScreenConstants;
-import autodrivedash.game.entity.enemy_movement.EnemyCarMovement;
+import autodrivedash.game.entity.enemyCar.EnemyCarMovement;
 import autodrivedash.game.entity.player.Player;
-import autodrivedash.game.entity.player.PlayerMovement;
-import javafx.geometry.Point2D;
 import javafx.scene.image.Image;
-import javafx.scene.input.KeyCode;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
@@ -47,6 +34,7 @@ public class EntitySpawner implements EntityFactory, ScreenConstants {
             .view(sprite)
             .bbox(Player.getCurrentCharacter().getHitbox())
             .with(Player.getCurrentCharacter().getMovement())
+            .with("LIVES", 3)
             .collidable()
             .zIndex(10)
             .build();

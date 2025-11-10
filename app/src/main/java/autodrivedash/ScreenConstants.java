@@ -6,7 +6,7 @@ public interface ScreenConstants {
     public final int TILE_SIZE = ORIGIN_TILE_SIZE * SCALE;
     public final int TILE_MAX_COL = 16;
     public final int TILE_MAX_ROW = 13;
-    
+
     public final int SCREEN_WIDTH = TILE_SIZE * TILE_MAX_COL;
     public final int SCREEN_HEIGHT = TILE_SIZE * TILE_MAX_ROW;
 

@@ -1,4 +1,4 @@
-package autodrivedash.game.entity.enemy_movement;
+package autodrivedash.game.entity.enemyCar;
 
 import static com.almasb.fxgl.dsl.FXGL.getGameWorld;
 

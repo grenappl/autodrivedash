@@ -1,9 +1,9 @@
 package autodrivedash.menu.options;
 
 public class OptionsController {
-    // public OptionsPage getOptionsPage(){ return (OptionsPage)this.page; }
+    private OptionsModel optionsModel = new OptionsModel();
 
     // public OptionsController(OptionsPage optionsPage){
-    //     super(optionsPage);
+    // super(optionsPage);
     // }
 }

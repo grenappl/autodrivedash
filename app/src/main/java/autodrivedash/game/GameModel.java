@@ -3,69 +3,73 @@ package autodrivedash.game;
 import java.sql.Connection;
 import java.util.ArrayList;
 
+import com.almasb.fxgl.dsl.FXGL;
 import com.almasb.fxgl.entity.Entity;
 
+import autodrivedash.App;
+import autodrivedash.ScreenConstants;
 import autodrivedash.game.entity.EntitySpawner;
 import autodrivedash.game.entity.EntityType;
+import autodrivedash.game.entity.player.Player;
+import autodrivedash.game.entity.tile.TileSpawner;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Text;
+import javafx.util.Duration;
 
 import com.almasb.fxgl.entity.SpawnData;
 import com.almasb.fxgl.entity.EntityFactory;
 import com.almasb.fxgl.entity.Spawns;
 import com.almasb.fxgl.input.UserAction;
+import com.almasb.fxgl.physics.CollisionHandler;
 
 import static com.almasb.fxgl.dsl.FXGL.*;
 
-public class GameModel {
-    KeyCode upKey, downKey, leftKey, rightKey;
+public class GameModel implements ScreenConstants {
+    // init
+    public void spawnEntities() {
+        getGameWorld().addEntityFactory(new EntitySpawner());
+        getGameWorld().addEntityFactory(new TileSpawner());
 
-    private boolean upPressed = false;
-    private boolean downPressed = false;
-    private boolean leftPressed = false;
-    private boolean rightPressed = false;
-
-    private double vx = 0;
-    private double vy = 0;
-
-    private double accel = 700; // pixels / s^2
-    private double maxSpeed = 150; // pixels / s
-    private double friction = 0.8; // per-frame multiplier when no input (0..1)
-    private double stopThreshold = 5; // snap to zero when |v| < threshold
-
-    private UserAction upAction, downAction, leftAction, rightAction;
-
-    public GameModel(KeyCode up, KeyCode down, KeyCode left, KeyCode right) {
-        this.upKey = up;
-        this.downKey = down;
-        this.leftKey = left;
-        this.rightKey = right;
+        for (int i = 0; i < TILE_MAX_ROW; i++) {
+            String key = (i >= 2 && i <= 10) ? TileSpawner.ROAD_KEY : TileSpawner.SIDE_KEY;
+            for (int j = 0; j < TILE_MAX_COL + 2; j++) {
+                if (key != TileSpawner.SIDE_KEY)
+                    key = (i == 6 && j % 2 != 0) ? TileSpawner.ROAD_STRIPE_KEY : TileSpawner.ROAD_KEY;
+                spawn(key, TILE_SIZE * j, TILE_SIZE * i);
+            }
+        }
+        run(() -> spawn(EntitySpawner.ENEMY_CAR_KEY), Duration.millis(500));
+        spawn(EntitySpawner.PLAYER_KEY);
     }
 
-    public EntityType et;
-
-    private Entity player;
-    public Entity getPlayer(){ return this.player; }
-    public void setPlayer(Entity player){
-        this.player = player;
+    public void addCollisions(Text livesCount) {
+        livesCount.setText("3");
+        FXGL.onCollision(EntityType.PLAYER, EntityType.ENEMY_CAR, (player, enemy) -> {
+            if (!Player.isInvincible()) {
+                player.setProperty("LIVES", player.getInt("LIVES") - 1);
+                livesCount.setText(String.valueOf(player.getInt("LIVES")));
+                System.out.println(player.getInt("LIVES"));
+                if (player.getInt("LIVES") > 0) {
+                    Player.setIsInvincible(true);
+                    runOnce(() -> {
+                        Player.setIsInvincible(false);
+                    }, Duration.seconds(Player.invincibilityDuration()));
+                } else {
+                    FXGL.getGameController().pauseEngine();
+                    FXGL.getGameController().gotoGameMenu();
+                }
+            }
+        });
     }
 
-    private ArrayList<Entity> entities = new ArrayList<>();
-
-    private EntitySpawner entitySpawner = new EntitySpawner();
-    public EntitySpawner getSpawnHandler(){ return this.entitySpawner; }
-
-
-
-    // public void setPlayer(){
-    //     player = FXGL.entityBuilder()
-    //         .type(EntityType.PLAYER)
-    //         .at(250, 275)
-    //         .view(FXGL.texture("../../images/p.png",50 ,50))
-    //         .collidable()
-    //         .build();
-    // }
+    // constant updates
+    public void setScore(Text scoreCount) {
+        inc("SCORE", 1);
+        int score = geti("SCORE") / 10;
+        scoreCount.setText(String.valueOf(score));
+    }
 }

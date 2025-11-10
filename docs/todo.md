@@ -1,31 +1,49 @@
 # To Do List
 
 ## Details/Components
+
+- `Create Logo`
 - Create Color Pallete
-- Create Logo
 - Finish UI
 
 ## Page Designs
 
 ### Login
-- Finish Logic
+
 - Create layout
-- Add color
+- Add details
+- Finish Logic
 
 ### Signup
-- Finish Logic
+
 - Create layout
+- Add details
+- Finish Logic
 - Add color
 
-### Menu
+### Start
+
+- `Create layout`
+- Add details
 - Finish Logic
-- Create layout
-- Make Logo
 
 ### Options
-- Finish Logic
-- Create layout
 
-### Game
-- Finish Logic
 - Create layout
+- Add details
+- Finish Logic
+
+### Game UI
+
+- Create layout
+- Finish Logic
+
+### Pause Menu
+
+- Create layout
+- Finish Logic
+
+### Game Over UI
+
+- Create layout
+- Finish Logic

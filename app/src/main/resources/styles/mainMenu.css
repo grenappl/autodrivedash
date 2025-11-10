@@ -1,23 +1,48 @@
-.transparent-btn {
-    -fx-background-color: transparent;
+/* GLOBAL */
+.main-btn {
     -fx-border-color: transparent;
     -fx-focus-color: transparent;
     -fx-faint-focus-color: transparent;
     -fx-cursor: hand;
 }
 
+.popup-bg {
+    -fx-background-color: #666666;
+}
+
+/* start */
+.start-btn {
+    -fx-background-color: linear-gradient(to bottom, #FFFFFF, #AAAAAA);
+    -fx-background-radius: 30;
+    -fx-font-size: 16px;
+}
+
+.start-btn:hover {
+    -fx-background-color: linear-gradient(to bottom, #CCCCCC, #999999);
+}
+
+/* login/signup */
+.signin-label {
+    -fx-text-fill: #FFFFFF;
+    -fx-font-weight: bold;
+}
+
 .txt-field {
+    -fx-focus-color: transparent;
+    -fx-border-color: transparent;
     -fx-background-radius: 15;
     -fx-padding: 5px 10px;
 }
 
 .signin-btn {
-    -fx-background-color: #2b5797;
+    -fx-background-color: #1800ad;
     -fx-text-fill: white;
     -fx-background-radius: 15;
     -fx-cursor: hand;
 }
 
-.popup-bg {
-    -fx-background-color: #666666;
+.underline-btn {
+    -fx-background-color: transparent;
+    -fx-text-fill: #140094;
+    -fx-cursor: hand;
 }
