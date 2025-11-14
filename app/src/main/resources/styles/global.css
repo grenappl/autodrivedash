@@ -1,0 +1,16 @@
+.main-btn {
+    -fx-border-color: transparent;
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
+    -fx-cursor: hand;
+}
+
+.popup-bg {
+    -fx-fill: black;
+    -fx-opacity: 0.4;
+    -fx-stroke: transparent;
+}
+
+.popup-ctn {
+    -fx-background-color: white;
+}

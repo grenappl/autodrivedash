@@ -1,0 +1,15 @@
+.start-btn {
+    -fx-background-color: linear-gradient(to bottom, #FFFFFF, #AAAAAA);
+    -fx-background-radius: 30;
+    -fx-font-size: 16px;
+    -fx-cursor: hand;
+}
+
+.start-btn:hover {
+    -fx-background-color: linear-gradient(to bottom, #CCCCCC, #999999);
+}
+
+.highest-score {
+    -fx-text-fill: white;
+    -fx-font-size: 18px;
+}

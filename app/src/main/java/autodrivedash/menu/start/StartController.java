@@ -12,34 +12,43 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 
 import autodrivedash.App;
 import autodrivedash.game.GameController;
+import autodrivedash.menu.login.LoginController;
 
 import static com.almasb.fxgl.dsl.FXGL.*;
 
 public class StartController {
-    private StartModel startModel = new StartModel();
-
     @FXML
     private Button playBtn, exitBtn;
     @FXML
     private ImageView accountIcon;
+    @FXML
+    private Label highestScoreLabel;
 
     @FXML
     protected void showGame(ActionEvent e) {
-        startModel.startGame();
+        App.getMainMenu().startGame();
     }
 
     @FXML
     protected void checkAccount() {
-        startModel.showLogin();
+        LoginController loginCtrl = App.getMainMenu().getLoginController();
+        loginCtrl.hidePopUp();
+        App.getMainMenu().displayLoginPage();
+        loginCtrl.getLoginBtn().requestFocus();
     }
 
     @FXML
     protected void exitGame() {
-        startModel.exitGame();
+        FXGL.getGameController().exit();
+    }
+
+    public Label getHighestScoreLabel() {
+        return this.highestScoreLabel;
     }
 }

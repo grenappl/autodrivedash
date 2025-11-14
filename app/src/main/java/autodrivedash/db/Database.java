@@ -5,25 +5,30 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public final class Database {
-    private static final String URL = "jdbc:mysql://localhost:3306/car_game";
+    private static final String URL = "jdbc:mysql://localhost:3306/autodrivedash";
     private static final String USER = "root";
     private static final String PASSWORD = "";
 
-    private static Connection conn;
-    public static Connection getConn(){ return conn; }
+    private Connection conn;
+
+    public Connection getConn() {
+        return this.conn;
+    }
 
     private static DatabaseTable userTable = new DatabaseTable(
-        "users",
-        new String[]{"username", "email", "password"}
-    );
-    public static DatabaseTable getUserTable(){ return userTable; }
+            "users",
+            new String[] { "username", "email", "password" });
+
+    public static DatabaseTable getUserTable() {
+        return userTable;
+    }
 
     public Database() {
         try {
-            conn = DriverManager.getConnection(URL, USER, PASSWORD);
+            this.conn = DriverManager.getConnection(URL, USER, PASSWORD);
             System.out.println("Database connected successfully!");
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
     }
 }

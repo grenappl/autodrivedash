@@ -1,7 +1,6 @@
 package autodrivedash.menu.signup;
 
 import java.awt.Color;
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -9,66 +8,95 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import autodrivedash.App;
+import autodrivedash.menu.login.LoginController;
+import javafx.animation.FadeTransition;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.Pane;
+import javafx.scene.text.Text;
+import javafx.util.Duration;
 
 public class SignupController {
-    private SignupModel signupModel = new SignupModel();
+    @FXML
+    private TextField usernameTf, emailTf;
+    @FXML
+    private PasswordField passwordTf, confPasswordTf;
+    @FXML
+    private Button signupBtn;
+    @FXML
+    private Pane popUpCtn, signupCtn;
+    @FXML
+    private Text errorText;
 
-    // public SignupController(SignupPage signupPage){
-    // super(signupPage);
-    // getSignupPage().getSignupBtn().addMouseListener(handleSignupBtnActions());
-    // getSignupPage().getGoToLoginBtn().addActionListener(showLogin());
-    // }
+    @FXML
+    private void goToStart() {
+        App.getMainMenu().displayStartPage();
+    }
 
-    // public MouseListener handleSignupBtnActions(){
-    // SignupPage sp = this.getSignupPage();
-    // Color origColor = sp.getSignupBtn().getBackground();
+    @FXML
+    private void goToLogin(ActionEvent e) {
+        LoginController loginCtrl = App.getMainMenu().getLoginController();
+        loginCtrl.hidePopUp();
+        App.getMainMenu().displayLoginPage();
+        loginCtrl.getLoginBtn().requestFocus();
+    }
 
-    // return new MouseListener() {
-    // @Override
-    // public void mouseEntered(MouseEvent e) {
-    // sp.getSignupBtn().setBackground(Color.GRAY);
-    // }
-    // @Override
-    // public void mouseExited(MouseEvent e) {
-    // sp.getSignupBtn().setBackground(origColor);
-    // }
-    // @Override
-    // public void mouseClicked(MouseEvent e) {
-    // String username = sp.getUsernameField().getText();
-    // String email = sp.getEmailField().getText();
-    // String password = String.valueOf(sp.getPasswordField().getPassword());
-    // String confPassword =
-    // String.valueOf(sp.getConfirmPasswordField().getPassword());
+    @FXML
+    private void handleSignup(ActionEvent e) {
+        String username = usernameTf.getText();
+        String email = emailTf.getText();
+        String password = passwordTf.getText();
+        String confPassword = confPasswordTf.getText();
 
-    // System.out.println(
-    // username + " | " +
-    // email + " | " +
-    // password + " | " +
-    // confPassword);
-    // if(password.equals(confPassword)){
-    // try {
-    // int result = AutoDriveDash.db.users.signup(username, email, password);
-    // System.out.println(result);
-    // } catch (SQLException e1) {
-    // e1.printStackTrace();
-    // }
-    // } else {
-    // System.out.println("Passwords don't match!");
-    // }
-    // }
+        if (checkEmptyFields(username, email, password, confPassword)) {
+            displayError("One or more inputs are empty!");
+            return;
+        }
 
-    // @Override
-    // public void mousePressed(MouseEvent e) {}
-    // @Override
-    // public void mouseReleased(MouseEvent e) {}
-    // };
-    // }
-    // public ActionListener showLogin(){
-    // return new ActionListener() {
-    // @Override
-    // public void actionPerformed(ActionEvent e) {
-    // AutoDriveDash.window.display(AutoDriveDash.window.LOGIN_KEY);
-    // }
-    // };
-    // }
+        if (Signup.confirmPasswords(password, confPassword)) {
+            try {
+                ResultSet result = Signup.find(email);
+                if (result.next()) {
+                    displayError("Duplicate user found!");
+                } else {
+                    Signup.register(username, email, password);
+                    Signup.goLogin();
+                }
+            } catch (SQLException e1) {
+                displayError(e1.getMessage());
+            }
+        } else {
+            displayError("Passwords don't match!");
+        }
+    }
+
+    private boolean checkEmptyFields(String... details) {
+        for (String detail : details) {
+            if (detail.isEmpty())
+                return true;
+        }
+        return false;
+    }
+
+    @FXML
+    public void hidePopUp() {
+        App.getMainMenu().setMouseFocuses(signupCtn, popUpCtn);
+        popUpCtn.setOpacity(0);
+    }
+
+    public Button getSignupBtn() {
+        return this.signupBtn;
+    }
+
+    private void displayError(String error) {
+        App.getMainMenu().setMouseFocuses(popUpCtn, signupCtn);
+        errorText.setText("Error: " + error);
+        FadeTransition ft = new FadeTransition(Duration.millis(50), popUpCtn);
+        ft.setFromValue(0.0);
+        ft.setToValue(1.0);
+        ft.play();
+    }
 }

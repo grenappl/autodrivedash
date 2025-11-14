@@ -12,7 +12,7 @@ import autodrivedash.game.entity.EntitySpawner;
 import autodrivedash.game.entity.EntityType;
 import autodrivedash.game.entity.player.Player;
 import autodrivedash.game.entity.tile.TileSpawner;
-import autodrivedash.menu.MainMenu;
+import autodrivedash.menu.Menu;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Cursor;
@@ -29,12 +29,23 @@ import static com.almasb.fxgl.dsl.FXGL.*;
 
 public final class App extends GameApplication implements ScreenConstants {
     private static final String NAME = "Auto Drive Dash";
-    private static MainMenu mainMenu;
-    private static GameMenu gameMenu;
-    public static Database db;
-    public static GameController gameCtrl;
 
-    public static MainMenu getMainMenu() {
+    private static boolean isUserLogged = false;
+
+    public static boolean isUserLogged() {
+        return isUserLogged;
+    }
+
+    public static void setIsUserLogged(boolean logged) {
+        isUserLogged = logged;
+    }
+
+    private static Menu mainMenu;
+    private static GameMenu gameMenu;
+    private static GameController gameCtrl;
+    private static Database db;
+
+    public static Menu getMainMenu() {
         return mainMenu;
     }
 
@@ -42,14 +53,30 @@ public final class App extends GameApplication implements ScreenConstants {
         return gameMenu;
     }
 
-    public static void setMainMenu(MainMenu newMainMenu) {
+    public static GameController getGameController() {
+        return gameCtrl;
+    }
+
+    public static Database getDb() {
+        return db;
+    }
+
+    public static void setMainMenu(Menu newMainMenu) {
         mainMenu = newMainMenu;
     }
 
     public static void setGameMenu(GameMenu newGameMenu) {
         gameMenu = newGameMenu;
     }
-    
+
+    public static void setGameCtrl(GameController newCtrl) {
+        gameCtrl = newCtrl;
+    }
+
+    public static void setDb(Database newDb) {
+        db = newDb;
+    }
+
     public static void main(String[] args) {
         launch(args);
     }
@@ -72,7 +99,7 @@ public final class App extends GameApplication implements ScreenConstants {
 
     @Override
     protected void initGameVars(Map<String, Object> vars) {
-        vars.put("SCORE", 0);
+        vars.put("SCORE", 0.0);
     }
 
     @Override
@@ -80,7 +107,7 @@ public final class App extends GameApplication implements ScreenConstants {
         try {
             FXMLLoader gameLoader = new FXMLLoader(getClass().getResource("/ui/game.fxml"));
             getGameScene().addUINode(gameLoader.load());
-            gameCtrl = gameLoader.getController();
+            setGameCtrl(gameLoader.getController());
             getGameScene().setCursor(Cursor.DEFAULT);
         } catch (IOException e) {
             e.printStackTrace();

@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.shape.Rectangle?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="624.0" prefWidth="768.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="autodrivedash.game.pauseMenu.PauseController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="624.0" prefWidth="768.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="autodrivedash.game.pauseMenu.PauseMenuController">
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#8d8d8d" height="624.0" opacity="0.7" stroke="TRANSPARENT" strokeType="INSIDE" strokeWidth="0.0" width="768.0" />
       <Button fx:id="mainMenuBtn" layoutX="344.0" layoutY="290.0" mnemonicParsing="false" onAction="#goToMainMenu" prefHeight="45.0" prefWidth="88.0" text="Main Menu" />

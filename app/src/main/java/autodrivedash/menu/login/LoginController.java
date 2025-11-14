@@ -1,7 +1,5 @@
 package autodrivedash.menu.login;
 
-import static com.almasb.fxgl.dsl.FXGL.animationBuilder;
-
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -13,24 +11,37 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
+import javafx.scene.text.Text;
 import javafx.util.Duration;
 import autodrivedash.App;
+import autodrivedash.menu.signup.SignupController;
 
 public class LoginController {
-    private LoginModel loginModel = new LoginModel();
-
     @FXML
-    private TextField emailTf, passwordTf;
+    private TextField emailTf;
+    @FXML
+    private PasswordField passwordTf;
     @FXML
     private Button loginBtn, createAccBtn, errorOkBtn;
     @FXML
-    private Pane popUpCtn;
+    private Pane popUpCtn, loginCtn;
+    @FXML
+    private Text errorText;
 
     @FXML
-    private void goToSignup(ActionEvent e) throws IOException {
+    private void goToStart() {
+        App.getMainMenu().displayStartPage();
+    }
+
+    @FXML
+    private void goToSignup(ActionEvent e) {
+        SignupController signupCtrl = App.getMainMenu().getSignupController();
+        signupCtrl.hidePopUp();
         App.getMainMenu().displaySignupPage();
+        signupCtrl.getSignupBtn().requestFocus();
     }
 
     @FXML
@@ -38,19 +49,33 @@ public class LoginController {
         String email = emailTf.getText();
         String password = passwordTf.getText();
         try {
-            loginModel.findByEmailAndPassword(email, password);
+            ResultSet result = Login.find(email, password);
+            if (result.next()) {
+                Login.goStart(result);
+            } else {
+                displayError("Invalid email or password!");
+            }
         } catch (Exception e1) {
-            popUpCtn.setMouseTransparent(false);
-            FadeTransition ft = new FadeTransition(Duration.millis(50), popUpCtn);
-            ft.setFromValue(0.0);
-            ft.setToValue(1.0);
-            ft.play();
+            displayError(e1.getMessage());
         }
     }
 
     @FXML
-    private void hidePopUp(ActionEvent e) {
-        popUpCtn.setMouseTransparent(true);
+    public void hidePopUp() {
+        App.getMainMenu().setMouseFocuses(loginCtn, popUpCtn);
         popUpCtn.setOpacity(0);
+    }
+
+    public Button getLoginBtn() {
+        return this.loginBtn;
+    }
+
+    private void displayError(String error) {
+        App.getMainMenu().setMouseFocuses(popUpCtn, loginCtn);
+        errorText.setText("Error: " + error);
+        FadeTransition ft = new FadeTransition(Duration.millis(50), popUpCtn);
+        ft.setFromValue(0.0);
+        ft.setToValue(1.0);
+        ft.play();
     }
 }

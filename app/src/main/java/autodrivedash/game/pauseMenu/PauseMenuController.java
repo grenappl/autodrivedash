@@ -4,8 +4,8 @@ import autodrivedash.App;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 
-public class PauseController {
-    PauseModel pauseModel = new PauseModel();
+public class PauseMenuController {
+    PauseMenu pauseModel = new PauseMenu();
 
     @FXML
     private Button mainMenuBtn;

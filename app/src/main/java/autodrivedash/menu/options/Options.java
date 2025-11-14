@@ -1,5 +1,5 @@
 package autodrivedash.menu.options;
 
-public class OptionsModel {
-    
+public class Options {
+
 }

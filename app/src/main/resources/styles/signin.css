@@ -1,0 +1,32 @@
+.signin-ctn {
+    -fx-fill: #AAAAAA;
+    -fx-opacity: 0.3;
+}
+
+.signin-label {
+    -fx-text-fill: #FFFFFF;
+    -fx-font-weight: bold;
+}
+
+.txt-field {
+    -fx-focus-color: transparent;
+    -fx-border-color: transparent;
+    -fx-background-radius: 15;
+    -fx-padding: 5px 10px;
+    -fx-font-size: 14px;
+}
+
+.signin-btn {
+    -fx-background-color: #1800ad;
+    -fx-text-fill: white;
+    -fx-background-radius: 15;
+    -fx-cursor: hand;
+    -fx-font-size: 14px;
+}
+
+.underline-btn {
+    -fx-background-color: transparent;
+    -fx-text-fill: #1800ad;
+    -fx-cursor: hand;
+    -fx-underline: true;
+}

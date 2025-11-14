@@ -1,35 +1,19 @@
 package autodrivedash.game;
 
-import java.sql.Connection;
-import java.util.ArrayList;
-
 import com.almasb.fxgl.dsl.FXGL;
-import com.almasb.fxgl.entity.Entity;
 
-import autodrivedash.App;
 import autodrivedash.ScreenConstants;
 import autodrivedash.game.entity.EntitySpawner;
 import autodrivedash.game.entity.EntityType;
 import autodrivedash.game.entity.player.Player;
 import autodrivedash.game.entity.tile.TileSpawner;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.input.KeyCode;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
-
-import com.almasb.fxgl.entity.SpawnData;
-import com.almasb.fxgl.entity.EntityFactory;
-import com.almasb.fxgl.entity.Spawns;
-import com.almasb.fxgl.input.UserAction;
-import com.almasb.fxgl.physics.CollisionHandler;
 
 import static com.almasb.fxgl.dsl.FXGL.*;
 
 public class GameModel implements ScreenConstants {
-    // init
+    // game init
     public void spawnEntities() {
         getGameWorld().addEntityFactory(new EntitySpawner());
         getGameWorld().addEntityFactory(new TileSpawner());
@@ -68,8 +52,8 @@ public class GameModel implements ScreenConstants {
 
     // constant updates
     public void setScore(Text scoreCount) {
-        inc("SCORE", 1);
-        int score = geti("SCORE") / 10;
-        scoreCount.setText(String.valueOf(score));
+        inc("SCORE", 0.1);
+        double score = getd("SCORE");
+        scoreCount.setText(String.valueOf((int) score));
     }
 }

@@ -10,23 +10,28 @@ import autodrivedash.menu.options.OptionsController;
 import autodrivedash.menu.signup.SignupController;
 import autodrivedash.menu.start.StartController;
 
+import static com.almasb.fxgl.dsl.FXGL.tpf;
+
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
 import com.almasb.fxgl.app.scene.FXGLMenu;
 import com.almasb.fxgl.app.scene.MenuType;
-import com.almasb.fxgl.dsl.FXGL;
 
-public class MainMenu extends FXGLMenu {
+public class Menu extends FXGLMenu {
+    private static final String START = "/ui/start.fxml";
     private static final String LOGIN = "/ui/login.fxml";
     private static final String SIGNUP = "/ui/signup.fxml";
-    private static final String START = "/ui/start.fxml";
     private static final String OPTIONS = "/ui/options.fxml";
 
-    private String[] keys = { LOGIN, SIGNUP, START, OPTIONS };
+    private String[] keys = { START, LOGIN, SIGNUP, OPTIONS };
 
     private Map<String, Parent> ui = new HashMap<>();
+
+    public void displayStartPage() {
+        display(this.ui.get(START));
+    }
 
     public void displayLoginPage() {
         display(this.ui.get(LOGIN));
@@ -34,10 +39,6 @@ public class MainMenu extends FXGLMenu {
 
     public void displaySignupPage() {
         display(this.ui.get(SIGNUP));
-    }
-
-    public void displayStartPage() {
-        display(this.ui.get(START));
     }
 
     public void displayOptionsPage() {
@@ -48,7 +49,6 @@ public class MainMenu extends FXGLMenu {
         if (!getContentRoot().getChildren().isEmpty())
             getContentRoot().getChildren().removeLast();
         getContentRoot().getChildren().add(newPage);
-        System.out.println(getContentRoot().getChildren());
     }
 
     private Map<String, Object> controllers = new HashMap<>();
@@ -69,15 +69,18 @@ public class MainMenu extends FXGLMenu {
         return (OptionsController) this.controllers.get(OPTIONS);
     }
 
-    public MainMenu(MenuType type) {
+    public Menu(MenuType type) {
         super(type);
-        // App.db = new Database();
+        App.setDb(new Database());
         try {
             for (String key : keys) {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource(key));
                 ui.put(key, loader.load());
+                System.out.println("Loading FXML: " + key + " => " + getClass().getResource(key));
                 ui.get(key).setId(key);
                 controllers.put(key, loader.getController());
+                System.out.println("Controller for " + key + " = " + loader.getController());
+                System.out.println();
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -89,5 +92,11 @@ public class MainMenu extends FXGLMenu {
 
     public void startGame() {
         fireNewGame();
+    }
+
+    public void setMouseFocuses(Parent focusedPane, Parent... unfocusedPanes) {
+        focusedPane.setMouseTransparent(false);
+        for (Parent unfocusedPane : unfocusedPanes)
+            unfocusedPane.setMouseTransparent(true);
     }
 }
