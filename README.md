@@ -47,9 +47,11 @@ Automatically stores player progress, preferences, and high scores in a database
 
 #### Project Structure
 
+```
 app/                                  # Main App folder
 ├── build.gradle.kts                  # Build file with dependencies
-├── src/main/
-    ├── resources/                    # Assets folder containing images, styles, ui, etc. 
+└── src/main/
+    ├── resources/                    # Assets folder containing images, styles, ui, etc.
     └── java/autodrivedash/           # Java folder containing source code
         └── App.java                    # Entry File with main method and static methods
+```
