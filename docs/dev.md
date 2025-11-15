@@ -20,6 +20,7 @@
 
 ## Color Pallete
 
-- `main-white`: #FFFFFF
-- `shade-grey`: #AAAAAA
-- `main-blue`: #1800ad
+- `Main White`: #FFFFFF
+- `Main Grey`: #AAAAAA
+- `Main Blue`: #1800ad
+- more tba

@@ -40,7 +40,16 @@ Automatically stores player progress, preferences, and high scores in a database
 
 - `VS Code` - IDE
 - `Git/Github` - Version Control
-- `SceneBuilder` - UI Creation
+- `SceneBuilder` - UI Builder
 - `Piskel` - Pixel Art
 - `MySQL` - Database
 - `Canva` - Design/Layouts
+
+#### Project Structure
+
+app/                                  # Main App folder
+├── build.gradle.kts                  # Build file with dependencies
+├── src/main/
+    ├── resources/                    # Assets folder containing images, styles, ui, etc. 
+    └── java/autodrivedash/           # Java folder containing source code
+        └── App.java                    # Entry File with main method and static methods

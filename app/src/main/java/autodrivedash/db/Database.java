@@ -17,7 +17,7 @@ public final class Database {
 
     private static DatabaseTable userTable = new DatabaseTable(
             "users",
-            new String[] { "username", "email", "password" });
+            new String[] { "username", "email", "password", "highest_score" });
 
     public static DatabaseTable getUserTable() {
         return userTable;

@@ -7,7 +7,7 @@ import javafx.scene.control.Button;
 import javafx.scene.text.Text;
 
 public class GameController {
-    private GameModel gameModel = new GameModel();
+    private Game gameModel = new Game();
 
     @FXML
     private Text scoreCount, livesCount;

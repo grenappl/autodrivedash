@@ -1,21 +1,14 @@
 package autodrivedash.menu.login;
 
-import java.io.IOException;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 
-import com.almasb.fxgl.animation.Animation;
-
-import javafx.animation.FadeTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
-import javafx.util.Duration;
 import autodrivedash.App;
 import autodrivedash.menu.signup.SignupController;
 
@@ -30,6 +23,10 @@ public class LoginController {
     private Pane popUpCtn, loginCtn;
     @FXML
     private Text errorText;
+
+    public Button getLoginBtn() {
+        return this.loginBtn;
+    }
 
     @FXML
     private void goToStart() {
@@ -49,11 +46,12 @@ public class LoginController {
         String email = emailTf.getText();
         String password = passwordTf.getText();
         try {
+            Login.checkEmptyFields(email, password);
             ResultSet result = Login.find(email, password);
             if (result.next()) {
                 Login.goStart(result);
             } else {
-                displayError("Invalid email or password!");
+                throw new Exception("Invalid email or password!");
             }
         } catch (Exception e1) {
             displayError(e1.getMessage());
@@ -62,20 +60,11 @@ public class LoginController {
 
     @FXML
     public void hidePopUp() {
-        App.getMainMenu().setMouseFocuses(loginCtn, popUpCtn);
+        App.getMainMenu().utils.setMouseFocuses(loginCtn, popUpCtn);
         popUpCtn.setOpacity(0);
     }
 
-    public Button getLoginBtn() {
-        return this.loginBtn;
-    }
-
     private void displayError(String error) {
-        App.getMainMenu().setMouseFocuses(popUpCtn, loginCtn);
-        errorText.setText("Error: " + error);
-        FadeTransition ft = new FadeTransition(Duration.millis(50), popUpCtn);
-        ft.setFromValue(0.0);
-        ft.setToValue(1.0);
-        ft.play();
+        App.getMainMenu().utils.displayError(popUpCtn, loginCtn, errorText, error);
     }
 }

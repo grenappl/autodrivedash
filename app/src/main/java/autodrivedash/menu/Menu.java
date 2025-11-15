@@ -10,8 +10,6 @@ import autodrivedash.menu.options.OptionsController;
 import autodrivedash.menu.signup.SignupController;
 import autodrivedash.menu.start.StartController;
 
-import static com.almasb.fxgl.dsl.FXGL.tpf;
-
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -69,6 +67,8 @@ public class Menu extends FXGLMenu {
         return (OptionsController) this.controllers.get(OPTIONS);
     }
 
+    public final MenuUtils utils = new MenuUtils();
+
     public Menu(MenuType type) {
         super(type);
         App.setDb(new Database());
@@ -92,11 +92,5 @@ public class Menu extends FXGLMenu {
 
     public void startGame() {
         fireNewGame();
-    }
-
-    public void setMouseFocuses(Parent focusedPane, Parent... unfocusedPanes) {
-        focusedPane.setMouseTransparent(false);
-        for (Parent unfocusedPane : unfocusedPanes)
-            unfocusedPane.setMouseTransparent(true);
     }
 }

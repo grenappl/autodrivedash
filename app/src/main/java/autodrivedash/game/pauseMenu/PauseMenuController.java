@@ -1,6 +1,5 @@
 package autodrivedash.game.pauseMenu;
 
-import autodrivedash.App;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 

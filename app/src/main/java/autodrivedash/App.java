@@ -7,23 +7,12 @@ import autodrivedash.db.Database;
 import autodrivedash.game.GameController;
 import autodrivedash.game.GameInputManager;
 import autodrivedash.game.GameMenu;
-import autodrivedash.game.GameModel;
-import autodrivedash.game.entity.EntitySpawner;
-import autodrivedash.game.entity.EntityType;
-import autodrivedash.game.entity.player.Player;
-import autodrivedash.game.entity.tile.TileSpawner;
 import autodrivedash.menu.Menu;
-import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Cursor;
-import javafx.util.Duration;
 
 import com.almasb.fxgl.app.GameApplication;
 import com.almasb.fxgl.app.GameSettings;
-import com.almasb.fxgl.dsl.FXGL;
-import com.almasb.fxgl.entity.Entity;
-import com.almasb.fxgl.input.UserAction;
-import com.almasb.fxgl.physics.CollisionHandler;
 
 import static com.almasb.fxgl.dsl.FXGL.*;
 

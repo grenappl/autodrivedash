@@ -4,7 +4,6 @@
 
 - `Create Logo`
 - Create Color Pallete
-- Finish UI
 
 ## Page Designs
 

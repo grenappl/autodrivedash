@@ -1,15 +1,9 @@
 package autodrivedash.menu.signup;
 
-import java.awt.Color;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 
 import autodrivedash.App;
 import autodrivedash.menu.login.LoginController;
-import javafx.animation.FadeTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -17,7 +11,6 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
-import javafx.util.Duration;
 
 public class SignupController {
     @FXML
@@ -30,6 +23,10 @@ public class SignupController {
     private Pane popUpCtn, signupCtn;
     @FXML
     private Text errorText;
+
+    public Button getSignupBtn() {
+        return this.signupBtn;
+    }
 
     @FXML
     private void goToStart() {
@@ -51,13 +48,10 @@ public class SignupController {
         String password = passwordTf.getText();
         String confPassword = confPasswordTf.getText();
 
-        if (checkEmptyFields(username, email, password, confPassword)) {
-            displayError("One or more inputs are empty!");
-            return;
-        }
+        try {
+            Signup.checkEmptyFields(username, email, password, confPassword);
 
-        if (Signup.confirmPasswords(password, confPassword)) {
-            try {
+            if (Signup.confirmPasswords(password, confPassword)) {
                 ResultSet result = Signup.find(email);
                 if (result.next()) {
                     displayError("Duplicate user found!");
@@ -65,38 +59,21 @@ public class SignupController {
                     Signup.register(username, email, password);
                     Signup.goLogin();
                 }
-            } catch (SQLException e1) {
-                displayError(e1.getMessage());
+            } else {
+                throw new Exception("Passwords don't match!");
             }
-        } else {
-            displayError("Passwords don't match!");
+        } catch (Exception e1) {
+            displayError(e1.getMessage());
         }
-    }
-
-    private boolean checkEmptyFields(String... details) {
-        for (String detail : details) {
-            if (detail.isEmpty())
-                return true;
-        }
-        return false;
     }
 
     @FXML
     public void hidePopUp() {
-        App.getMainMenu().setMouseFocuses(signupCtn, popUpCtn);
+        App.getMainMenu().utils.setMouseFocuses(signupCtn, popUpCtn);
         popUpCtn.setOpacity(0);
     }
 
-    public Button getSignupBtn() {
-        return this.signupBtn;
-    }
-
     private void displayError(String error) {
-        App.getMainMenu().setMouseFocuses(popUpCtn, signupCtn);
-        errorText.setText("Error: " + error);
-        FadeTransition ft = new FadeTransition(Duration.millis(50), popUpCtn);
-        ft.setFromValue(0.0);
-        ft.setToValue(1.0);
-        ft.play();
+        App.getMainMenu().utils.displayError(popUpCtn, signupCtn, errorText, error);
     }
 }

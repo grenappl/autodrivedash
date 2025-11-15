@@ -1,6 +1,5 @@
 package autodrivedash.menu.signup;
 
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -9,6 +8,19 @@ import autodrivedash.App;
 import autodrivedash.db.Database;
 
 public class Signup {
+    public static void checkEmptyFields(String username, String email, String password, String confPassword)
+            throws Exception {
+        if (username.isBlank()) {
+            throw new Exception("Username field cannot be empty!");
+        } else if (email.isBlank()) {
+            throw new Exception("Email field cannot be empty!");
+        } else if (password.isBlank()) {
+            throw new Exception("Password field cannot be empty!");
+        } else if (confPassword.isBlank()) {
+            throw new Exception("Confirm password field cannot be empty!");
+        }
+    }
+
     public static boolean confirmPasswords(String password, String confPassword) {
         return password.equals(confPassword) ? true : false;
     }
@@ -28,7 +40,7 @@ public class Signup {
         String emailCol = Database.getUserTable().getColumn(2);
         String pwCol = Database.getUserTable().getColumn(3);
 
-        String hashedPassword = null; // need to hash passwords
+        // String hashedPassword = null; // need to hash passwords maybe
 
         String query = "INSERT INTO " + tableName + " (" + nameCol + ", " + emailCol + ", " + pwCol + ") " +
                 "VALUES (?, ?, ?)";

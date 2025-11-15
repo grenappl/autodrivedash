@@ -12,7 +12,7 @@ import javafx.util.Duration;
 
 import static com.almasb.fxgl.dsl.FXGL.*;
 
-public class GameModel implements ScreenConstants {
+public class Game implements ScreenConstants {
     // game init
     public void spawnEntities() {
         getGameWorld().addEntityFactory(new EntitySpawner());
