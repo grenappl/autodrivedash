@@ -52,6 +52,7 @@ app/                                  # Main App folder
 ├── build.gradle.kts                  # Build file with dependencies
 └── src/main/
     ├── resources/                    # Assets folder containing images, styles, ui, etc.
-    └── java/autodrivedash/           # Java folder containing source code
-        └── App.java                    # Entry File with main method and static methods
+    └── java/                         # Java folder containing source code
+        └── autodrivedash/            # Main package folder
+            └── App.java              # Entry File with main method and static methods
 ```
