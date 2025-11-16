@@ -52,7 +52,7 @@
             <Image url="@../images/logo.png" />
          </image>
          <cursor>
-            <Cursor fx:constant="HAND" />
+            <Cursor fx:constant="DEFAULT" />
          </cursor>
       </ImageView>
       <Label layoutX="25.0" layoutY="570.0" prefHeight="27.0" prefWidth="135.0" styleClass="highest-score" text="Highest Score:  " />

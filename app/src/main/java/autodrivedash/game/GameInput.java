@@ -9,22 +9,22 @@ import java.util.Map;
 
 import com.almasb.fxgl.input.UserAction;
 
-public final class GameInputManager {
+public abstract class GameInput {
     private static boolean upPressed = false, downPressed = false, leftPressed = false, rightPressed = false;
 
-    public static boolean getUpPressed() {
+    public static boolean upPressed() {
         return upPressed;
     }
 
-    public static boolean getDownPressed() {
+    public static boolean downPressed() {
         return downPressed;
     }
 
-    public static boolean getLeftPressed() {
+    public static boolean leftPressed() {
         return leftPressed;
     }
 
-    public static boolean getRightPressed() {
+    public static boolean rightPressed() {
         return rightPressed;
     }
 
@@ -103,51 +103,51 @@ public final class GameInputManager {
         setUpAction(new UserAction("UP") {
             @Override
             protected void onActionBegin() {
-                GameInputManager.setUpPressed(true);
+                GameInput.setUpPressed(true);
             }
 
             @Override
             protected void onActionEnd() {
-                GameInputManager.setUpPressed(false);
+                GameInput.setUpPressed(false);
             }
         });
         setDownAction(new UserAction("DOWN") {
             @Override
             protected void onActionBegin() {
-                GameInputManager.setDownPressed(true);
+                GameInput.setDownPressed(true);
             }
 
             @Override
             protected void onActionEnd() {
-                GameInputManager.setDownPressed(false);
+                GameInput.setDownPressed(false);
             }
         });
         setLeftAction(new UserAction("LEFT") {
             @Override
             protected void onActionBegin() {
-                GameInputManager.setLeftPressed(true);
+                GameInput.setLeftPressed(true);
             }
 
             @Override
             protected void onActionEnd() {
-                GameInputManager.setLeftPressed(false);
+                GameInput.setLeftPressed(false);
             }
         });
         setRightAction(new UserAction("RIGHT") {
             @Override
             protected void onActionBegin() {
-                GameInputManager.setRightPressed(true);
+                GameInput.setRightPressed(true);
             }
 
             @Override
             protected void onActionEnd() {
-                GameInputManager.setRightPressed(false);
+                GameInput.setRightPressed(false);
             }
         });
 
-        getInput().addAction(GameInputManager.getUpAction(), GameInputManager.getKeyCode("UP"));
-        getInput().addAction(GameInputManager.getDownAction(), GameInputManager.getKeyCode("DOWN"));
-        getInput().addAction(GameInputManager.getLeftAction(), GameInputManager.getKeyCode("LEFT"));
-        getInput().addAction(GameInputManager.getRightAction(), GameInputManager.getKeyCode("RIGHT"));
+        getInput().addAction(GameInput.getUpAction(), GameInput.getKeyCode("UP"));
+        getInput().addAction(GameInput.getDownAction(), GameInput.getKeyCode("DOWN"));
+        getInput().addAction(GameInput.getLeftAction(), GameInput.getKeyCode("LEFT"));
+        getInput().addAction(GameInput.getRightAction(), GameInput.getKeyCode("RIGHT"));
     }
 }

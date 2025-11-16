@@ -6,6 +6,7 @@ import java.sql.SQLException;
 
 import autodrivedash.App;
 import autodrivedash.db.Database;
+import autodrivedash.db.DatabaseTable;
 
 public class Signup {
     public static void checkEmptyFields(String username, String email, String password, String confPassword)
@@ -25,20 +26,22 @@ public class Signup {
         return password.equals(confPassword) ? true : false;
     }
 
-    public static ResultSet find(String email) throws SQLException {
-        String emailCol = Database.getUserTable().getColumn(2);
+    public static boolean isFound(String email) throws SQLException {
+        String emailCol = App.getDb().getUserTable().getColumn(2);
 
         String query = "SELECT * FROM users WHERE " + emailCol + " = ?";
         PreparedStatement stmt = App.getDb().getConn().prepareStatement(query);
         stmt.setString(1, email);
-        return stmt.executeQuery();
+        ResultSet result = stmt.executeQuery();
+        return (result.next()) ? true : false;
     }
 
     public static int register(String username, String email, String password) throws SQLException {
-        String tableName = Database.getUserTable().getName();
-        String nameCol = Database.getUserTable().getColumn(1);
-        String emailCol = Database.getUserTable().getColumn(2);
-        String pwCol = Database.getUserTable().getColumn(3);
+        DatabaseTable userTable = App.getDb().getUserTable();
+        String tableName = userTable.getName();
+        String nameCol = userTable.getColumn(1);
+        String emailCol = userTable.getColumn(2);
+        String pwCol = userTable.getColumn(3);
 
         // String hashedPassword = null; // need to hash passwords maybe
 
@@ -52,6 +55,7 @@ public class Signup {
     }
 
     public static void goLogin() {
+        // show popup of successful registration in login here
         App.getMainMenu().displayLoginPage();
     }
 }

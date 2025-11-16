@@ -1,7 +1,5 @@
 package autodrivedash.menu.signup;
 
-import java.sql.ResultSet;
-
 import autodrivedash.App;
 import autodrivedash.menu.login.LoginController;
 import javafx.event.ActionEvent;
@@ -52,12 +50,14 @@ public class SignupController {
             Signup.checkEmptyFields(username, email, password, confPassword);
 
             if (Signup.confirmPasswords(password, confPassword)) {
-                ResultSet result = Signup.find(email);
-                if (result.next()) {
+                if (Signup.isFound(email)) {
                     displayError("Duplicate user found!");
                 } else {
-                    Signup.register(username, email, password);
-                    Signup.goLogin();
+                    if (Signup.register(username, email, password) == 1) {
+                        Signup.goLogin();
+                    } else {
+                        displayError("Something went wrong!");
+                    }
                 }
             } else {
                 throw new Exception("Passwords don't match!");

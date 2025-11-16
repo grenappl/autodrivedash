@@ -15,11 +15,11 @@ public final class Database {
         return this.conn;
     }
 
-    private static DatabaseTable userTable = new DatabaseTable(
+    private DatabaseTable userTable = new DatabaseTable(
             "users",
             new String[] { "username", "email", "password", "highest_score" });
 
-    public static DatabaseTable getUserTable() {
+    public DatabaseTable getUserTable() {
         return userTable;
     }
 
@@ -29,6 +29,7 @@ public final class Database {
             System.out.println("Database connected successfully!");
         } catch (SQLException e) {
             System.out.println(e.getMessage());
+            System.out.println();
         }
     }
 }

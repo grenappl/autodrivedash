@@ -5,7 +5,7 @@ import java.util.Map;
 
 import autodrivedash.db.Database;
 import autodrivedash.game.GameController;
-import autodrivedash.game.GameInputManager;
+import autodrivedash.game.GameInput;
 import autodrivedash.game.GameMenu;
 import autodrivedash.menu.Menu;
 import javafx.fxml.FXMLLoader;
@@ -75,7 +75,7 @@ public final class App extends GameApplication implements ScreenConstants {
         settings.setWidth(SCREEN_WIDTH);
         settings.setHeight(SCREEN_HEIGHT);
         settings.setTitle(NAME);
-        settings.setSceneFactory(new AppMenuFactory());
+        settings.setSceneFactory(new AppSceneFactory());
         settings.setMainMenuEnabled(true);
         settings.setGameMenuEnabled(true);
         settings.setDeveloperMenuEnabled(true); // debug
@@ -83,7 +83,7 @@ public final class App extends GameApplication implements ScreenConstants {
 
     @Override
     protected void initInput() {
-        GameInputManager.setInputs();
+        GameInput.setInputs();
     }
 
     @Override

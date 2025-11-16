@@ -6,6 +6,7 @@ import java.sql.SQLException;
 
 import autodrivedash.App;
 import autodrivedash.db.Database;
+import autodrivedash.db.DatabaseTable;
 
 public class Login {
     public static void checkEmptyFields(String email, String password) throws Exception {
@@ -17,8 +18,9 @@ public class Login {
     }
 
     public static ResultSet find(String email, String password) throws SQLException {
-        String emailCol = Database.getUserTable().getColumn(2);
-        String passwordCol = Database.getUserTable().getColumn(3);
+        DatabaseTable userTable = App.getDb().getUserTable();
+        String emailCol = userTable.getColumn(2);
+        String passwordCol = userTable.getColumn(3);
 
         String query = "SELECT * FROM users WHERE " + emailCol + " = ? AND " + passwordCol + " = ?";
         PreparedStatement stmt = App.getDb().getConn().prepareStatement(query);
@@ -27,10 +29,11 @@ public class Login {
         return stmt.executeQuery();
     }
 
-    public static void goStart(ResultSet result) throws SQLException {
-        System.out.println(result.getString("username"));
-        System.out.println(result.getString("email"));
-        System.out.println(result.getString("password"));
+    public static void start(ResultSet result) throws SQLException {
+        DatabaseTable userTable = App.getDb().getUserTable();
+        System.out.println(result.getString(userTable.getColumn(1)));
+        System.out.println(result.getString(userTable.getColumn(2)));
+        System.out.println(result.getString(userTable.getColumn(3)));
         // add login details to start page
         App.getMainMenu().displayStartPage();
     }

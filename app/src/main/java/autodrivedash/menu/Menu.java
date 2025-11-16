@@ -82,12 +82,11 @@ public class Menu extends FXGLMenu {
                 System.out.println("Controller for " + key + " = " + loader.getController());
                 System.out.println();
             }
+            displayStartPage();
+            getContentRoot().setCursor(Cursor.DEFAULT);
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-        displayStartPage();
-        getContentRoot().setCursor(Cursor.DEFAULT);
     }
 
     public void startGame() {

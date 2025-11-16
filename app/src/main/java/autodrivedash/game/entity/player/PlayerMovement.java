@@ -2,7 +2,7 @@ package autodrivedash.game.entity.player;
 
 import com.almasb.fxgl.entity.component.Component;
 import autodrivedash.ScreenConstants;
-import autodrivedash.game.GameInputManager;
+import autodrivedash.game.GameInput;
 
 public class PlayerMovement extends Component implements ScreenConstants {
     private double vx = 0;
@@ -18,13 +18,13 @@ public class PlayerMovement extends Component implements ScreenConstants {
 
     @Override
     public void onUpdate(double tpf) {
-        if (GameInputManager.getRightPressed())
+        if (GameInput.rightPressed())
             vx += accel * tpf;
-        if (GameInputManager.getLeftPressed())
+        if (GameInput.leftPressed())
             vx -= accel * tpf;
-        if (GameInputManager.getDownPressed())
+        if (GameInput.downPressed())
             vy += accel * tpf;
-        if (GameInputManager.getUpPressed())
+        if (GameInput.upPressed())
             vy -= accel * tpf;
 
         double posY = entity.getY();
@@ -39,9 +39,9 @@ public class PlayerMovement extends Component implements ScreenConstants {
         if (posX + TILE_SIZE >= SCREEN_WIDTH)
             entity.setX(SCREEN_WIDTH - TILE_SIZE);
 
-        if (!GameInputManager.getLeftPressed() && !GameInputManager.getRightPressed())
+        if (!GameInput.leftPressed() && !GameInput.rightPressed())
             vx *= friction;
-        if (!GameInputManager.getUpPressed() && !GameInputManager.getDownPressed())
+        if (!GameInput.upPressed() && !GameInput.downPressed())
             vy *= friction;
 
         vx = clamp(vx, -maxSpd, maxSpd);

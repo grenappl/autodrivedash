@@ -5,6 +5,8 @@ import com.almasb.fxgl.physics.HitBox;
 public class PlayerCharacter {
     private String spritePath;
     private double width, height;
+    private HitBox hitbox;
+    private PlayerMovement movement;
 
     public String getSpritePath() {
         return this.spritePath;
@@ -18,13 +20,9 @@ public class PlayerCharacter {
         return this.height;
     }
 
-    private HitBox hitbox;
-
     public HitBox getHitbox() {
         return this.hitbox;
     }
-
-    private PlayerMovement movement;
 
     public PlayerMovement getMovement() {
         return this.movement;

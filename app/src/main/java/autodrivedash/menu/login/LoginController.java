@@ -49,7 +49,7 @@ public class LoginController {
             Login.checkEmptyFields(email, password);
             ResultSet result = Login.find(email, password);
             if (result.next()) {
-                Login.goStart(result);
+                Login.start(result);
             } else {
                 throw new Exception("Invalid email or password!");
             }
