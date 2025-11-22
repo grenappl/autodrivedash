@@ -55,8 +55,10 @@
             <Cursor fx:constant="DEFAULT" />
          </cursor>
       </ImageView>
-      <Label layoutX="25.0" layoutY="570.0" prefHeight="27.0" prefWidth="135.0" styleClass="highest-score" text="Highest Score:  " />
-      <Label fx:id="highestScoreLabel" layoutX="160.0" layoutY="570.0" prefHeight="27.0" prefWidth="450.0" styleClass="highest-score" text="0" />
+      <Label layoutX="25.0" layoutY="570.0" prefHeight="27.0" prefWidth="135.0" styleClass="text-md" text="Highest Score:  " />
+      <Label fx:id="highestScoreLabel" layoutX="160.0" layoutY="570.0" prefHeight="27.0" prefWidth="450.0" styleClass="text-md" text="0" />
+      <Label fx:id="usernameLabel" layoutX="116.0" layoutY="31.0" prefHeight="27.0" prefWidth="450.0" styleClass="text-lg" text="Guest" />
+      <Label fx:id="emailLabel" layoutX="116.0" layoutY="59.0" prefHeight="27.0" prefWidth="450.0" styleClass="text-md" text="guest@gmail.com" />
    </children>
    <stylesheets>
       <URL value="@../styles/global.css" />

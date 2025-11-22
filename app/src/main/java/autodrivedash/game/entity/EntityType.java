@@ -1,7 +1,7 @@
 package autodrivedash.game.entity;
 
 public enum EntityType {
-    PLAYER, 
+    PLAYER,
     ENEMY_CAR,
 
     ROAD,

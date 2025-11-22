@@ -9,7 +9,12 @@
     -fx-background-color: linear-gradient(to bottom, #CCCCCC, #999999);
 }
 
-.highest-score {
+.text-md {
     -fx-text-fill: white;
     -fx-font-size: 18px;
+}
+
+.text-lg {
+    -fx-text-fill: white;
+    -fx-font-size: 24px;
 }

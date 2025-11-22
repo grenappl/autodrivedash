@@ -21,8 +21,8 @@ public class AppSceneFactory extends SceneFactory {
         return App.getGameMenu();
     }
 
-    @Override
-    public LoadingScene newLoadingScene() {
-        return new AppLoadingScene();
-    }
+    // @Override
+    // public LoadingScene newLoadingScene() {
+    // return new AppLoadingScene();
+    // }
 }

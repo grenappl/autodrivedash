@@ -1,6 +1,7 @@
 package autodrivedash.menu.signup;
 
 import autodrivedash.App;
+import autodrivedash.menu.MenuPageController;
 import autodrivedash.menu.login.LoginController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -10,7 +11,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 
-public class SignupController {
+public class SignupController extends MenuPageController {
     @FXML
     private TextField usernameTf, emailTf;
     @FXML
@@ -51,29 +52,25 @@ public class SignupController {
 
             if (Signup.confirmPasswords(password, confPassword)) {
                 if (Signup.isFound(email)) {
-                    displayError("Duplicate user found!");
+                    displayError("Duplicate user found!", popUpCtn, signupCtn, errorText);
                 } else {
                     if (Signup.register(username, email, password) == 1) {
                         Signup.goLogin();
                     } else {
-                        displayError("Something went wrong!");
+                        displayError("Something went wrong!", popUpCtn, signupCtn, errorText);
                     }
                 }
             } else {
                 throw new Exception("Passwords don't match!");
             }
         } catch (Exception e1) {
-            displayError(e1.getMessage());
+            displayError(e1.getMessage(), popUpCtn, signupCtn, errorText);
         }
     }
 
     @FXML
     public void hidePopUp() {
-        App.getMainMenu().utils.setMouseFocuses(signupCtn, popUpCtn);
+        setMouseFocuses(signupCtn, popUpCtn);
         popUpCtn.setOpacity(0);
-    }
-
-    private void displayError(String error) {
-        App.getMainMenu().utils.displayError(popUpCtn, signupCtn, errorText, error);
     }
 }

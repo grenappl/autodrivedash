@@ -10,9 +10,10 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import autodrivedash.App;
+import autodrivedash.menu.MenuPageController;
 import autodrivedash.menu.signup.SignupController;
 
-public class LoginController {
+public class LoginController extends MenuPageController {
     @FXML
     private TextField emailTf;
     @FXML
@@ -49,22 +50,20 @@ public class LoginController {
             Login.checkEmptyFields(email, password);
             ResultSet result = Login.find(email, password);
             if (result.next()) {
+                emailTf.setText(null);
+                passwordTf.setText(null);
                 Login.start(result);
             } else {
                 throw new Exception("Invalid email or password!");
             }
         } catch (Exception e1) {
-            displayError(e1.getMessage());
+            displayError(e1.getMessage(), popUpCtn, loginCtn, errorText);
         }
     }
 
     @FXML
     public void hidePopUp() {
-        App.getMainMenu().utils.setMouseFocuses(loginCtn, popUpCtn);
+        setMouseFocuses(loginCtn, popUpCtn);
         popUpCtn.setOpacity(0);
-    }
-
-    private void displayError(String error) {
-        App.getMainMenu().utils.displayError(popUpCtn, loginCtn, errorText, error);
     }
 }

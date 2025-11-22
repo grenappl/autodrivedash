@@ -28,15 +28,15 @@ public final class Player implements ScreenConstants {
         return invincibilityDuration;
     }
 
-    public static void setSelectedCharacter(PlayerCharacter newSelectedCharacter) {
-        selectedCharacter = newSelectedCharacter;
+    public static void setSelectedCharacter(PlayerCharacter selectedCharacter) {
+        Player.selectedCharacter = selectedCharacter;
     }
 
-    public static void setIsInvincible(boolean newIsInvincible) {
-        isInvincible = newIsInvincible;
+    public static void setIsInvincible(boolean isInvincible) {
+        Player.isInvincible = isInvincible;
     }
 
-    public static void setInvincibilityDuration(int newInvincibilityDuration) {
-        invincibilityDuration = newInvincibilityDuration;
+    public static void setInvincibilityDuration(int invincibilityDuration) {
+        Player.invincibilityDuration = invincibilityDuration;
     }
 }

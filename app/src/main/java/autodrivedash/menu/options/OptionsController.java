@@ -1,4 +1,6 @@
 package autodrivedash.menu.options;
 
-public class OptionsController {
+import autodrivedash.menu.MenuPageController;
+
+public class OptionsController extends MenuPageController {
 }

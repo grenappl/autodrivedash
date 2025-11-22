@@ -1,5 +1,9 @@
 package autodrivedash.menu.start;
 
-public class Start {
+import autodrivedash.App;
 
+public class Start {
+    public void fireGame() {
+        App.getMainMenu().startGame();
+    }
 }

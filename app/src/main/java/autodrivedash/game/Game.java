@@ -42,7 +42,6 @@ public class Game implements ScreenConstants {
                     runOnce(() -> {
                         Player.setIsInvincible(false);
                     }, Duration.seconds(Player.invincibilityDuration()));
-                } else {
                     FXGL.getGameController().pauseEngine();
                     FXGL.getGameController().gotoGameMenu();
                 }

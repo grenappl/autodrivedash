@@ -1,5 +1,9 @@
 package autodrivedash.game.entity.tile;
 
-public class Tile {
-    
+import com.almasb.fxgl.texture.Texture;
+
+public class Tile extends Texture {
+    public Tile(String imgPath) {
+        
+    }
 }

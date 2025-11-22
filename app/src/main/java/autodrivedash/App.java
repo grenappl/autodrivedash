@@ -75,6 +75,7 @@ public final class App extends GameApplication implements ScreenConstants {
         settings.setWidth(SCREEN_WIDTH);
         settings.setHeight(SCREEN_HEIGHT);
         settings.setTitle(NAME);
+        setDb(new Database());
         settings.setSceneFactory(new AppSceneFactory());
         settings.setMainMenuEnabled(true);
         settings.setGameMenuEnabled(true);

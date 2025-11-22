@@ -3,8 +3,6 @@ package autodrivedash.menu;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Cursor;
 import javafx.scene.Parent;
-import autodrivedash.App;
-import autodrivedash.db.Database;
 import autodrivedash.menu.login.LoginController;
 import autodrivedash.menu.options.OptionsController;
 import autodrivedash.menu.signup.SignupController;
@@ -18,14 +16,14 @@ import com.almasb.fxgl.app.scene.FXGLMenu;
 import com.almasb.fxgl.app.scene.MenuType;
 
 public class Menu extends FXGLMenu {
-    private static final String START = "/ui/start.fxml";
-    private static final String LOGIN = "/ui/login.fxml";
-    private static final String SIGNUP = "/ui/signup.fxml";
-    private static final String OPTIONS = "/ui/options.fxml";
+    public static final String START = "/ui/start.fxml";
+    public static final String LOGIN = "/ui/login.fxml";
+    public static final String SIGNUP = "/ui/signup.fxml";
+    public static final String OPTIONS = "/ui/options.fxml";
 
-    private String[] keys = { START, LOGIN, SIGNUP, OPTIONS };
+    private String keys[] = { START, LOGIN, SIGNUP, OPTIONS };
 
-    private Map<String, Parent> ui = new HashMap<>();
+    public Map<String, Parent> ui = new HashMap<>();
 
     public void displayStartPage() {
         display(this.ui.get(START));
@@ -43,13 +41,13 @@ public class Menu extends FXGLMenu {
         display(this.ui.get(OPTIONS));
     }
 
-    private void display(Parent newPage) {
+    public void display(Parent newPage) {
         if (!getContentRoot().getChildren().isEmpty())
             getContentRoot().getChildren().removeLast();
         getContentRoot().getChildren().add(newPage);
     }
 
-    private Map<String, Object> controllers = new HashMap<>();
+    private Map<String, MenuPageController> controllers = new HashMap<>();
 
     public LoginController getLoginController() {
         return (LoginController) this.controllers.get(LOGIN);
@@ -67,11 +65,8 @@ public class Menu extends FXGLMenu {
         return (OptionsController) this.controllers.get(OPTIONS);
     }
 
-    public final MenuUtils utils = new MenuUtils();
-
     public Menu(MenuType type) {
         super(type);
-        App.setDb(new Database());
         try {
             for (String key : keys) {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource(key));
