@@ -1,17 +1,13 @@
-package autodrivedash.game.entity.tile;
+package autodrivedash.game.tile;
 
 import static com.almasb.fxgl.dsl.FXGL.*;
 
-import com.almasb.fxgl.dsl.FXGL;
 import com.almasb.fxgl.entity.Entity;
 import com.almasb.fxgl.entity.EntityFactory;
 import com.almasb.fxgl.entity.SpawnData;
 import com.almasb.fxgl.entity.Spawns;
-import com.almasb.fxgl.texture.Texture;
 
 import autodrivedash.ScreenConstants;
-import autodrivedash.game.entity.EntityType;
-import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
@@ -22,13 +18,9 @@ public class TileSpawner implements EntityFactory, ScreenConstants {
 
     @Spawns(ROAD_KEY)
     public Entity newRoadTile(SpawnData data) {
-        // Image img = new Image("../../images/tiles/road.png");
-        // Texture tile = new Texture(img);
-        // tile.setFitWidth(TILE_SIZE);
-        // tile.setFitHeight(TILE_SIZE);
         return entityBuilder(data)
-                .type(EntityType.ROAD)
-                .view(FXGL.texture("../../images/tiles/road.png"))
+                .type(TileType.ROAD)
+                .view(new Tile("road.png"))
                 .with(new TileMovement())
                 .build();
     }
@@ -36,8 +28,8 @@ public class TileSpawner implements EntityFactory, ScreenConstants {
     @Spawns(ROAD_STRIPE_KEY)
     public Entity newRoadStripeTile(SpawnData data) {
         return entityBuilder(data)
-                .type(EntityType.ROAD)
-                .view(FXGL.texture("../../images/tiles/road-stripe.png", TILE_SIZE, TILE_SIZE))
+                .type(TileType.ROAD)
+                .view(new Tile("road-stripe.png"))
                 .with(new TileMovement())
                 .build();
     }
@@ -45,9 +37,8 @@ public class TileSpawner implements EntityFactory, ScreenConstants {
     @Spawns(SIDE_KEY)
     public Entity newSideTile(SpawnData data) {
         return entityBuilder(data)
-                .type(EntityType.SIDE)
+                .type(TileType.SIDE)
                 .view(new Rectangle(TILE_SIZE, TILE_SIZE, Color.LIGHTGRAY))
-                .with(new TileMovement())
                 .build();
     }
 }

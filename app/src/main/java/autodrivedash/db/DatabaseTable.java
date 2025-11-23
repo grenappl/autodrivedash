@@ -14,6 +14,9 @@ public class DatabaseTable {
     }
 
     public String getColumn(int i) {
-        return columns[i - 1];
+        if (i > 0)
+            return columns[i - 1];
+        else
+            return "";
     }
 }

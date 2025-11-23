@@ -5,8 +5,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import autodrivedash.App;
-import autodrivedash.db.Database;
 import autodrivedash.db.DatabaseTable;
+import autodrivedash.menu.start.StartController;
 
 public class Login {
     public static void checkEmptyFields(String email, String password) throws Exception {
@@ -29,12 +29,11 @@ public class Login {
         return stmt.executeQuery();
     }
 
-    public static void start(ResultSet result) throws SQLException {
+    public static void setUser(ResultSet result) throws SQLException {
         DatabaseTable userTable = App.getDb().getUserTable();
-        System.out.println(result.getString(userTable.getColumn(1)));
-        System.out.println(result.getString(userTable.getColumn(2)));
-        System.out.println(result.getString(userTable.getColumn(3)));
-        // add login details to start page
-        App.getMainMenu().displayStartPage();
+        StartController startCtrl = App.getMainMenu().getStartController();
+        startCtrl.getUsernameLabel().setText(result.getString(userTable.getColumn(1)));
+        startCtrl.getEmailLabel().setText(result.getString(userTable.getColumn(2)));
+        startCtrl.getHighestScoreLabel().setText(String.valueOf(result.getInt(userTable.getColumn(4))));
     }
 }

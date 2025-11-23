@@ -62,13 +62,14 @@
             </ImageView>
          </children>
       </Pane>
-      <Pane fx:id="popUpCtn" mouseTransparent="true" opacity="0.0">
+      <Pane fx:id="popUpCtn" mouseTransparent="true">
          <children>
             <Rectangle arcHeight="5.0" arcWidth="5.0" height="624.0" stroke="BLACK" strokeType="INSIDE" styleClass="popup-bg" width="768.0" />
-            <Pane layoutX="216.0" layoutY="179.0" prefHeight="266.0" prefWidth="336.0" styleClass="popup-ctn">
+            <Pane layoutX="237.0" layoutY="218.0" prefHeight="189.0" prefWidth="294.0" styleClass="popup-ctn">
                <children>
-                  <Button fx:id="errorOkBtn" layoutX="128.0" layoutY="154.0" mnemonicParsing="false" onAction="#hidePopUp" prefHeight="25.0" prefWidth="80.0" styleClass="signin-btn" text="Ok" />
-                  <Text fx:id="errorText" layoutX="40.0" layoutY="115.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Error" textAlignment="CENTER" wrappingWidth="260.0" />
+                  <Button fx:id="errorOkBtn" layoutX="107.0" layoutY="115.0" mnemonicParsing="false" onAction="#hidePopUp" prefHeight="25.0" prefWidth="80.0" styleClass="signin-btn" text="Ok" />
+                  <Text fx:id="popupText" layoutX="47.0" layoutY="80.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Error message here" textAlignment="CENTER" wrappingWidth="200.0" />
+                  <Label fx:id="popupLabel" alignment="CENTER" layoutX="97.0" layoutY="40.0" prefHeight="27.0" prefWidth="100.0" styleClass="error-label" text="Error!" textFill="WHITE" />
                </children>
             </Pane>
          </children>

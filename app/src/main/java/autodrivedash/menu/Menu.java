@@ -78,9 +78,10 @@ public class Menu extends FXGLMenu {
                 System.out.println();
             }
             displayStartPage();
+            getStartController().getEmailLabel().setText(null);
             getContentRoot().setCursor(Cursor.DEFAULT);
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
     }
 

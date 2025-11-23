@@ -19,11 +19,9 @@ public class LoginController extends MenuPageController {
     @FXML
     private PasswordField passwordTf;
     @FXML
-    private Button loginBtn, createAccBtn, errorOkBtn;
+    private Button loginBtn;
     @FXML
-    private Pane popUpCtn, loginCtn;
-    @FXML
-    private Text errorText;
+    private Pane loginCtn;
 
     public Button getLoginBtn() {
         return this.loginBtn;
@@ -52,12 +50,13 @@ public class LoginController extends MenuPageController {
             if (result.next()) {
                 emailTf.setText(null);
                 passwordTf.setText(null);
-                Login.start(result);
+                Login.setUser(result);
+                App.getMainMenu().displayStartPage();
             } else {
                 throw new Exception("Invalid email or password!");
             }
         } catch (Exception e1) {
-            displayError(e1.getMessage(), popUpCtn, loginCtn, errorText);
+            displayPopUp(e1.getMessage(), false, loginCtn);
         }
     }
 

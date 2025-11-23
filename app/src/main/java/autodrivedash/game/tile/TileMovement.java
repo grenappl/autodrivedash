@@ -1,4 +1,4 @@
-package autodrivedash.game.entity.tile;
+package autodrivedash.game.tile;
 
 import com.almasb.fxgl.entity.component.Component;
 

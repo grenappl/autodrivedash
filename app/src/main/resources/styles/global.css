@@ -13,4 +13,10 @@
 
 .popup-ctn {
     -fx-background-color: white;
+    -fx-background-radius: 15px;
+}
+
+.error-label {
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
 }

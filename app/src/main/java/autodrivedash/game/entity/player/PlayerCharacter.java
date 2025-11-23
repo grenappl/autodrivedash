@@ -2,6 +2,8 @@ package autodrivedash.game.entity.player;
 
 import com.almasb.fxgl.physics.HitBox;
 
+import javafx.scene.image.Image;
+
 public class PlayerCharacter {
     private String spritePath;
     private double width, height;
@@ -28,8 +30,8 @@ public class PlayerCharacter {
         return this.movement;
     }
 
-    public PlayerCharacter(String spritePath, double width, double height, HitBox hitbox, PlayerMovement movement) {
-        this.spritePath = spritePath;
+    public PlayerCharacter(String spriteFile, double width, double height, HitBox hitbox, PlayerMovement movement) {
+        this.spritePath = "/images/sprites/player/" + spriteFile;
         this.width = width;
         this.height = height;
         this.hitbox = hitbox;

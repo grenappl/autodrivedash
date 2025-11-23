@@ -24,6 +24,10 @@ public class GameMenu extends FXGLMenu {
         display(this.ui.get(PAUSE_MENU));
     }
 
+    public void displayGameOver() {
+        display(this.ui.get(PAUSE_MENU));
+    }
+
     private void display(Parent newPage) {
         if (!getContentRoot().getChildren().isEmpty())
             getContentRoot().getChildren().removeLast();

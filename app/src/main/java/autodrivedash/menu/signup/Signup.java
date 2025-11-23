@@ -53,9 +53,4 @@ public class Signup {
         stmt.setString(3, password);
         return stmt.executeUpdate();
     }
-
-    public static void goLogin() {
-        // show popup of successful registration in login here
-        App.getMainMenu().displayLoginPage();
-    }
 }

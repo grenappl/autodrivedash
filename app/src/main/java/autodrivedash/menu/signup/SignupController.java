@@ -9,7 +9,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
-import javafx.scene.text.Text;
 
 public class SignupController extends MenuPageController {
     @FXML
@@ -19,9 +18,7 @@ public class SignupController extends MenuPageController {
     @FXML
     private Button signupBtn;
     @FXML
-    private Pane popUpCtn, signupCtn;
-    @FXML
-    private Text errorText;
+    private Pane signupCtn;
 
     public Button getSignupBtn() {
         return this.signupBtn;
@@ -52,19 +49,26 @@ public class SignupController extends MenuPageController {
 
             if (Signup.confirmPasswords(password, confPassword)) {
                 if (Signup.isFound(email)) {
-                    displayError("Duplicate user found!", popUpCtn, signupCtn, errorText);
+                    displayPopUp("Duplicate user found!", false, signupCtn);
                 } else {
                     if (Signup.register(username, email, password) == 1) {
-                        Signup.goLogin();
+                        usernameTf.setText(null);
+                        emailTf.setText(null);
+                        passwordTf.setText(null);
+                        confPasswordTf.setText(null);
+                        LoginController loginCtrl = App.getMainMenu().getLoginController();
+                        App.getMainMenu().displayLoginPage();
+                        loginCtrl.getLoginBtn().requestFocus();
+                        loginCtrl.displayPopUp("You may log in to your account.", true, popUpCtn);
                     } else {
-                        displayError("Something went wrong!", popUpCtn, signupCtn, errorText);
+                        displayPopUp("Something went wrong!", false, signupCtn);
                     }
                 }
             } else {
                 throw new Exception("Passwords don't match!");
             }
         } catch (Exception e1) {
-            displayError(e1.getMessage(), popUpCtn, signupCtn, errorText);
+            displayPopUp(e1.getMessage(), false, signupCtn);
         }
     }
 
