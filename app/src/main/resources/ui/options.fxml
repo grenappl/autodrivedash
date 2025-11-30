@@ -1,6 +1,91 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.URL?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" />
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="624.0" prefWidth="768.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="autodrivedash.menu.options.OptionsController">
+   <children>
+      <Pane fx:id="optionsCtn" prefHeight="624.0" prefWidth="768.0">
+         <children>
+            <ImageView fitHeight="624.0" fitWidth="768.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/main-menu-bg.png" />
+               </image>
+            </ImageView>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" height="500.0" layoutY="62.0" stroke="TRANSPARENT" strokeType="INSIDE" styleClass="transparent-ctn" width="768.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="114.0" layoutX="142.0" layoutY="162.0" stroke="BLACK" strokeType="INSIDE" styleClass="option-ctn" width="485.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="245.0" layoutX="142.0" layoutY="287.0" stroke="BLACK" strokeType="INSIDE" styleClass="option-ctn" width="485.0" />
+            <Label alignment="CENTER" layoutX="206.0" layoutY="88.0" prefHeight="49.0" prefWidth="356.0" text="Options" textFill="WHITE">
+               <font>
+                  <Font name="SansSerif Bold" size="42.0" />
+               </font>
+               <effect>
+                  <DropShadow height="0.0" offsetX="2.0" offsetY="2.0" radius="0.0" width="0.0">
+                     <color>
+                        <Color red="0.6666666865348816" green="0.6666666865348816" blue="0.6666666865348816" />
+                     </color>
+                  </DropShadow>
+               </effect>
+            </Label>
+            <Slider fx:id="volumeSlider" blockIncrement="0.1" layoutX="206.0" layoutY="226.0" max="1.0" prefHeight="32.0" prefWidth="356.0" value="1.0" />
+            <Label alignment="CENTER" layoutX="316.0" layoutY="184.0" prefHeight="35.0" prefWidth="136.0" styleClass="options-label" text="Volume" />
+            <Label alignment="CENTER" layoutX="323.0" layoutY="312.0" prefHeight="17.0" prefWidth="122.0" styleClass="options-label" text="Controls" />
+            <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="38.0" layoutY="88.0" onMousePressed="#goToStart" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/back-home.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
+            <Button layoutX="328.0" layoutY="463.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="113.0" styleClass="blue-btn" text="Save" />
+            <Pane fx:id="upCtn" layoutX="191.0" layoutY="400.0" onMousePressed="#updateKeyBind" prefHeight="32.0" prefWidth="68.0" styleClass="key-ctn">
+               <children>
+                  <Text fx:id="upText" layoutX="3.0" layoutY="20.0" mouseTransparent="true" strokeType="OUTSIDE" strokeWidth="0.0" text="up" textAlignment="CENTER" wrappingWidth="60.0" />
+               </children>
+            </Pane>
+            <Pane fx:id="downCtn" layoutX="271.0" layoutY="400.0" onMousePressed="#updateKeyBind" prefHeight="32.0" prefWidth="68.0" styleClass="key-ctn">
+               <children>
+                  <Text fx:id="downText" layoutX="3.0" layoutY="20.0" mouseTransparent="true" strokeType="OUTSIDE" strokeWidth="0.0" text="down" textAlignment="CENTER" wrappingWidth="60.0" />
+               </children>
+            </Pane>
+            <Pane fx:id="leftCtn" layoutX="351.0" layoutY="400.0" onMousePressed="#updateKeyBind" prefHeight="32.0" prefWidth="68.0" styleClass="key-ctn">
+               <children>
+                  <Text fx:id="leftText" layoutX="3.0" layoutY="20.0" mouseTransparent="true" strokeType="OUTSIDE" strokeWidth="0.0" text="left" textAlignment="CENTER" wrappingWidth="60.0" />
+               </children>
+            </Pane>
+            <Pane fx:id="rightCtn" layoutX="431.0" layoutY="400.0" onMousePressed="#updateKeyBind" prefHeight="32.0" prefWidth="68.0" styleClass="key-ctn">
+               <children>
+                  <Text fx:id="rightText" layoutX="2.0" layoutY="20.0" mouseTransparent="true" strokeType="OUTSIDE" strokeWidth="0.0" text="right" textAlignment="CENTER" wrappingWidth="60.0" />
+               </children>
+            </Pane>
+            <Pane fx:id="boostCtn" layoutX="511.0" layoutY="400.0" onMousePressed="#updateKeyBind" prefHeight="32.0" prefWidth="68.0" styleClass="key-ctn">
+               <children>
+                  <Text fx:id="boostText" layoutX="3.0" layoutY="20.0" mouseTransparent="true" strokeType="OUTSIDE" strokeWidth="0.0" text="shift" textAlignment="CENTER" wrappingWidth="60.0" />
+               </children>
+            </Pane>
+            <Label layoutX="216.0" layoutY="371.0" styleClass="key-label" text="Up" />
+            <Label layoutX="286.0" layoutY="371.0" styleClass="key-label" text="Down" />
+            <Label layoutX="372.0" layoutY="371.0" styleClass="key-label" text="Left" />
+            <Label layoutX="446.0" layoutY="371.0" styleClass="key-label" text="Right" />
+            <Label layoutX="527.0" layoutY="371.0" styleClass="key-label" text="Boost" />
+         </children>
+      </Pane>
+   </children>
+   <stylesheets>
+      <URL value="@../styles/global.css" />
+      <URL value="@../styles/options.css" />
+   </stylesheets>
+</AnchorPane>

@@ -5,60 +5,125 @@
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="624.0" prefWidth="768.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="autodrivedash.menu.start.StartController">
    <children>
-      <ImageView fitHeight="624.0" fitWidth="768.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../images/main-menu-bg.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="70.0" fitWidth="70.0" layoutX="673.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../images/start/options.png" />
-         </image>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </ImageView>
-      <Button fx:id="playBtn" layoutX="280.0" layoutY="290.0" mnemonicParsing="false" onAction="#showGame" prefHeight="60.0" prefWidth="210.0" stylesheets="@../styles/mainMenu.css" text="Play">
-         <styleClass>
-            <String fx:value="start-btn" />
-            <String fx:value="transparent-btn" />
-         </styleClass></Button>
-      <Button layoutX="279.0" layoutY="365.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="210.0" stylesheets="@../styles/mainMenu.css" text="Select">
-         <styleClass>
-            <String fx:value="start-btn" />
-            <String fx:value="transparent-btn" />
-         </styleClass></Button>
-      <Button fx:id="exitBtn" layoutX="279.0" layoutY="440.0" mnemonicParsing="false" onAction="#exitGame" prefHeight="60.0" prefWidth="210.0" stylesheets="@../styles/mainMenu.css" text="Exit">
-         <styleClass>
-            <String fx:value="start-btn" />
-            <String fx:value="transparent-btn" />
-         </styleClass></Button>
-      <ImageView fx:id="accountIcon" fitHeight="70.0" fitWidth="70.0" layoutX="26.0" layoutY="24.0" onMouseClicked="#checkAccount" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../images/start/acc.png" />
-         </image>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </ImageView>
-      <ImageView fitHeight="161.0" fitWidth="647.0" layoutX="61.0" layoutY="137.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../images/logo.png" />
-         </image>
-         <cursor>
-            <Cursor fx:constant="DEFAULT" />
-         </cursor>
-      </ImageView>
-      <Label layoutX="25.0" layoutY="570.0" prefHeight="27.0" prefWidth="135.0" styleClass="text-md" text="Highest Score:  " />
-      <Label fx:id="highestScoreLabel" layoutX="160.0" layoutY="570.0" prefHeight="27.0" prefWidth="450.0" styleClass="text-md" text="0" />
-      <Label fx:id="usernameLabel" layoutX="116.0" layoutY="31.0" prefHeight="27.0" prefWidth="450.0" styleClass="text-lg" text="Guest" />
-      <Label fx:id="emailLabel" layoutX="116.0" layoutY="59.0" prefHeight="27.0" prefWidth="450.0" styleClass="text-md" text="guest@gmail.com" />
+      <Pane fx:id="startCtn" prefHeight="624.0" prefWidth="768.0">
+         <children>
+            <ImageView fitHeight="624.0" fitWidth="768.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/main-menu-bg.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="accountIcon" fitHeight="70.0" fitWidth="70.0" layoutX="26.0" layoutY="24.0" onMousePressed="#checkAccount" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/start/acc.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
+            <Label fx:id="usernameLabel" layoutX="116.0" layoutY="32.0" prefHeight="27.0" prefWidth="450.0" styleClass="text-lg" text="Guest" />
+            <Label fx:id="emailLabel" layoutX="116.0" layoutY="57.0" prefHeight="27.0" prefWidth="450.0" styleClass="text-md" text="guest@gmail.com" />
+            <ImageView fitHeight="70.0" fitWidth="70.0" layoutX="673.0" layoutY="24.0" onMousePressed="#checkOptions" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/start/options.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
+            <ImageView fitHeight="161.0" fitWidth="647.0" layoutX="61.0" layoutY="137.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/logo.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="DEFAULT" />
+               </cursor>
+            </ImageView>
+            <Button layoutX="280.0" layoutY="290.0" mnemonicParsing="false" onAction="#showGame" prefHeight="60.0" prefWidth="210.0" stylesheets="@../styles/mainMenu.css" text="Play">
+               <styleClass>
+                  <String fx:value="start-btn" />
+                  <String fx:value="transparent-btn" />
+               </styleClass>
+            </Button>
+            <Button layoutX="280.0" layoutY="365.0" mnemonicParsing="false" onAction="#checkSelection" prefHeight="60.0" prefWidth="210.0" stylesheets="@../styles/mainMenu.css" text="Select">
+               <styleClass>
+                  <String fx:value="start-btn" />
+                  <String fx:value="transparent-btn" />
+               </styleClass>
+            </Button>
+            <Button layoutX="280.0" layoutY="440.0" mnemonicParsing="false" onAction="#exitGame" prefHeight="60.0" prefWidth="210.0" stylesheets="@../styles/mainMenu.css" text="Exit">
+               <styleClass>
+                  <String fx:value="start-btn" />
+                  <String fx:value="transparent-btn" />
+               </styleClass>
+            </Button>
+            <Label layoutX="27.0" layoutY="570.0" prefHeight="27.0" prefWidth="135.0" styleClass="text-md" text="Highest Score:  " />
+            <Label fx:id="highestScoreLabel" layoutX="160.0" layoutY="570.0" prefHeight="27.0" prefWidth="450.0" styleClass="text-md" text="0" />
+            <ImageView fx:id="leaderboardIcon" fitHeight="70.0" fitWidth="70.0" layoutX="673.0" layoutY="514.0" onMousePressed="#checkLeaderboard" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/start/leaderboard.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
+         </children>
+      </Pane>
+      <Pane fx:id="popUpCtn" opacity="0.0" prefHeight="624.0" prefWidth="768.0">
+         <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" height="624.0" onMousePressed="#hidePopUp" stroke="BLACK" strokeType="INSIDE" styleClass="popup-bg" width="768.0" />
+            <Pane layoutX="237.0" layoutY="218.0" prefHeight="189.0" prefWidth="294.0" styleClass="popup-ctn">
+               <children>
+                  <Button layoutX="107.0" layoutY="115.0" mnemonicParsing="false" onAction="#hidePopUp" prefHeight="25.0" prefWidth="80.0" styleClass="blue-btn" text="Ok" />
+                  <Text fx:id="popupText" layoutX="47.0" layoutY="80.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Error message here" textAlignment="CENTER" wrappingWidth="200.0" />
+                  <Label fx:id="popupLabel" alignment="CENTER" layoutX="97.0" layoutY="40.0" prefHeight="27.0" prefWidth="100.0" styleClass="error-label" text="Error!" textFill="RED" />
+               </children>
+            </Pane>
+         </children>
+      </Pane>
+      <Pane fx:id="accCtn" prefHeight="624.0" prefWidth="768.0">
+         <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" height="624.0" onMousePressed="#hidePopUp" stroke="BLACK" strokeType="INSIDE" styleClass="popup-bg" width="768.0" />
+            <Pane layoutX="237.0" layoutY="205.0" prefHeight="215.0" prefWidth="294.0" styleClass="popup-ctn">
+               <children>
+                  <Label alignment="CENTER" layoutX="51.0" layoutY="32.0" prefHeight="27.0" prefWidth="192.0" styleClass="acc-label" text="Change Username" textFill="RED" />
+                  <TextField id="acc-text-field" fx:id="usernameTf" layoutX="47.0" layoutY="65.0" maxWidth="400.0" prefHeight="25.0" prefWidth="200.0" promptText="new username">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </TextField>
+                  <Button layoutX="47.0" layoutY="108.0" mnemonicParsing="false" onAction="#changeUsername" prefHeight="30.0" prefWidth="200.0" styleClass="blue-btn" text="Save" />
+                  <Pane layoutX="107.0" layoutY="160.0" onMousePressed="#logout" prefHeight="30.0" prefWidth="80.0">
+                     <children>
+                        <Text fill="RED" layoutX="3.0" layoutY="21.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Logout" textAlignment="CENTER" wrappingWidth="55.634765625">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Text>
+                        <ImageView fitHeight="16.0" fitWidth="19.0" layoutX="59.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/start/logout.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Pane>
+               </children>
+            </Pane>
+         </children>
+      </Pane>
    </children>
    <stylesheets>
       <URL value="@../styles/global.css" />

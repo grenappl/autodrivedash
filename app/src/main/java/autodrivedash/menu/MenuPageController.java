@@ -1,5 +1,6 @@
 package autodrivedash.menu;
 
+import autodrivedash.App;
 import javafx.animation.FadeTransition;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
@@ -18,6 +19,11 @@ public abstract class MenuPageController {
     @FXML
     protected Text popupText;
 
+    @FXML
+    private void goToStart() {
+        App.getMainMenu().displayStartPage();
+    }
+
     public void setMouseFocuses(Parent focusedPane, Parent... unfocusedPanes) {
         focusedPane.setMouseTransparent(false);
         for (Parent unfocusedPane : unfocusedPanes)
@@ -28,7 +34,7 @@ public abstract class MenuPageController {
         if (isSuccess) {
             popupLabel.setText("Success!");
             popupLabel.setTextFill(Paint.valueOf("#00bf63"));
-        } else if (popupLabel.getText() != "Error!") {
+        } else if (popupLabel.getText() == "Success!") {
             popupLabel.setText("Error!");
             popupLabel.setTextFill(Color.RED);
         }

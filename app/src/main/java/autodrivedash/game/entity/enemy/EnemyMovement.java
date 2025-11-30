@@ -2,7 +2,9 @@ package autodrivedash.game.entity.enemy;
 
 import com.almasb.fxgl.entity.component.Component;
 
-public class EnemyMovement extends Component {
+import autodrivedash.ScreenConstants;
+
+public class EnemyMovement extends Component implements ScreenConstants {
     protected int xSpd;
 
     public int getxSpd() {

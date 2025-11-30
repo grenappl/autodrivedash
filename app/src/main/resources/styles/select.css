@@ -1,0 +1,17 @@
+.select-box {
+    -fx-fill: transparent;
+    -fx-stroke-width: 2px;
+    -fx-cursor: hand;
+}
+
+.description-ctn {
+    -fx-fill: white;
+    -fx-opacity: 0.3;
+    -fx-arc-width: 50px;
+    -fx-arc-height: 50px;
+}
+
+#vehicle-label {
+    -fx-text-fill: #181818;
+    -fx-font-weight: bold;
+}

@@ -25,11 +25,6 @@ public class SignupController extends MenuPageController {
     }
 
     @FXML
-    private void goToStart() {
-        App.getMainMenu().displayStartPage();
-    }
-
-    @FXML
     private void goToLogin(ActionEvent e) {
         LoginController loginCtrl = App.getMainMenu().getLoginController();
         loginCtrl.hidePopUp();
@@ -46,6 +41,7 @@ public class SignupController extends MenuPageController {
 
         try {
             Signup.checkEmptyFields(username, email, password, confPassword);
+            Signup.validateEmail(email);
 
             if (Signup.confirmPasswords(password, confPassword)) {
                 if (Signup.isFound(email)) {
@@ -61,7 +57,7 @@ public class SignupController extends MenuPageController {
                         loginCtrl.getLoginBtn().requestFocus();
                         loginCtrl.displayPopUp("You may log in to your account.", true, popUpCtn);
                     } else {
-                        displayPopUp("Something went wrong!", false, signupCtn);
+                        throw new Exception("Something went wrong!");
                     }
                 }
             } else {

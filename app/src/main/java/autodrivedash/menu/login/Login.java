@@ -30,6 +30,7 @@ public class Login {
     }
 
     public static void setUser(ResultSet result) throws SQLException {
+        App.setLoggedUserId(result.getInt("id"));
         DatabaseTable userTable = App.getDb().getUserTable();
         StartController startCtrl = App.getMainMenu().getStartController();
         startCtrl.getUsernameLabel().setText(result.getString(userTable.getColumn(1)));

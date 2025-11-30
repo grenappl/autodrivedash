@@ -1,0 +1,38 @@
+.options-label {
+  -fx-text-fill: #181818;
+  -fx-font-size: 24px;
+  -fx-font-weight: bold;
+}
+
+.option-ctn {
+  -fx-stroke: transparent;
+  -fx-arc-height: 40px;
+  -fx-arc-width: 40px;
+  -fx-fill: white;
+  -fx-opacity: 0.5;
+}
+
+.slider .track {
+  -fx-background-color: white;
+  -fx-pref-height: 10px;
+}
+
+.slider .thumb {
+  -fx-background-color: #1800ad; /* Color of the thumb */
+  -fx-background-radius: 10px;
+  -fx-padding: 8px;
+}
+
+.key-ctn {
+  -fx-background-color: white;
+  -fx-background-radius: 20px;
+  -fx-cursor: hand;
+}
+
+.key-label {
+  -fx-text-fill: #181818;
+  -fx-font-size: 14px;
+  -fx-font-style: italic;
+  -fx-font-weight: bold;
+  -fx-alignment: center;
+}

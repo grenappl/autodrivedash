@@ -23,6 +23,14 @@ public final class Database {
         return userTable;
     }
 
+    private DatabaseTable leaderboardTable = new DatabaseTable(
+            "leaderboard",
+            new String[] { "user_id", "score", "date" });
+
+    public DatabaseTable getLeaderboardTable() {
+        return leaderboardTable;
+    }
+
     public Database() {
         try {
             this.conn = DriverManager.getConnection(URL, USER, PASSWORD);

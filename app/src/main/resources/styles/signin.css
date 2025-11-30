@@ -1,8 +1,3 @@
-.signin-ctn {
-    -fx-fill: #AAAAAA;
-    -fx-opacity: 0.3;
-}
-
 .signin-label {
     -fx-text-fill: #FFFFFF;
     -fx-font-weight: bold;
@@ -13,14 +8,6 @@
     -fx-border-color: transparent;
     -fx-background-radius: 15;
     -fx-padding: 5px 10px;
-    -fx-font-size: 14px;
-}
-
-.signin-btn {
-    -fx-background-color: #1800ad;
-    -fx-text-fill: white;
-    -fx-background-radius: 15;
-    -fx-cursor: hand;
     -fx-font-size: 14px;
 }
 

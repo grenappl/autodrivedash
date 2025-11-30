@@ -11,6 +11,11 @@
     -fx-stroke: transparent;
 }
 
+.transparent-ctn {
+    -fx-fill: #AAAAAA;
+    -fx-opacity: 0.3;
+}
+
 .popup-ctn {
     -fx-background-color: white;
     -fx-background-radius: 15px;
@@ -19,4 +24,12 @@
 .error-label {
     -fx-font-size: 18px;
     -fx-font-weight: bold;
+}
+
+.blue-btn {
+    -fx-background-color: #1800ad;
+    -fx-text-fill: white;
+    -fx-background-radius: 15;
+    -fx-cursor: hand;
+    -fx-font-size: 14px;
 }

@@ -23,7 +23,7 @@
                   <Image url="@../images/main-menu-bg.png" />
                </image>
             </ImageView>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" height="624.0" layoutX="222.0" stroke="TRANSPARENT" strokeType="INSIDE" styleClass="signin-ctn" width="325.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" height="624.0" layoutX="222.0" stroke="TRANSPARENT" strokeType="INSIDE" styleClass="transparent-ctn" width="325.0" />
             <ImageView fitHeight="110.0" fitWidth="277.0" layoutX="255.0" layoutY="83.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/logo2.png" />
@@ -40,7 +40,7 @@
                   <Button layoutX="184.0" layoutY="14.0" mnemonicParsing="false" onAction="#goToLogin" styleClass="underline-btn" text="Sign in" />
                </children>
             </Pane>
-            <Button fx:id="signupBtn" layoutX="296.0" layoutY="453.0" mnemonicParsing="false" onAction="#handleSignup" prefHeight="30.0" prefWidth="177.0" styleClass="signin-btn" text="Signup">
+            <Button fx:id="signupBtn" layoutX="296.0" layoutY="453.0" mnemonicParsing="false" onAction="#handleSignup" prefHeight="30.0" prefWidth="177.0" styleClass="blue-btn" text="Signup">
                <font>
                   <Font size="14.0" />
                </font>
@@ -65,7 +65,7 @@
                   <Font size="14.0" />
                </font>
             </PasswordField>
-            <ImageView fitHeight="24.0" fitWidth="20.0" layoutX="240.0" layoutY="20.0" onMousePressed="#goToStart" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="240.0" layoutY="20.0" onMousePressed="#goToStart" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/back-home.png" />
                </image>
@@ -75,14 +75,14 @@
             </ImageView>
          </children>
       </Pane>
-      <Pane fx:id="popUpCtn" mouseTransparent="true" prefHeight="200.0" prefWidth="200.0">
+      <Pane fx:id="popUpCtn" mouseTransparent="true" opacity="0.0" prefHeight="200.0" prefWidth="200.0">
          <children>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" height="624.0" stroke="BLACK" strokeType="INSIDE" styleClass="popup-bg" width="768.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" height="624.0" onMousePressed="#hidePopUp" stroke="BLACK" strokeType="INSIDE" styleClass="popup-bg" width="768.0" />
             <Pane layoutX="237.0" layoutY="218.0" prefHeight="189.0" prefWidth="294.0" styleClass="popup-ctn">
                <children>
                   <Text fx:id="popupText" layoutX="47.0" layoutY="80.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Error message here" textAlignment="CENTER" wrappingWidth="200.0" />
-                  <Button layoutX="107.0" layoutY="115.0" mnemonicParsing="false" onAction="#hidePopUp" prefHeight="25.0" prefWidth="80.0" styleClass="signin-btn" text="Ok" />
-                  <Label fx:id="popupLabel" alignment="CENTER" layoutX="97.0" layoutY="40.0" prefWidth="100.0" styleClass="error-label" text="Error!" />
+                  <Button layoutX="107.0" layoutY="115.0" mnemonicParsing="false" onAction="#hidePopUp" prefHeight="25.0" prefWidth="80.0" styleClass="blue-btn" text="Ok" />
+                  <Label fx:id="popupLabel" alignment="CENTER" layoutX="97.0" layoutY="40.0" prefWidth="100.0" styleClass="error-label" text="Error!" textFill="RED" />
                </children>
             </Pane>
          </children>

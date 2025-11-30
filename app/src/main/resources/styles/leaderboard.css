@@ -1,0 +1,52 @@
+.scroll-pane {
+    -fx-background-color: transparent;
+}
+
+.scroll-pane>.viewport {
+    -fx-background-color: transparent;
+}
+
+#leaderboard-title {
+    -fx-text-fill: white;
+    -fx-font-size: 52px;
+    -fx-font-weight: bold;
+}
+
+#leaderboard-ctn {
+    -fx-stroke: transparent;
+    -fx-arc-height: 40px;
+    -fx-arc-width: 40px;
+    -fx-fill: white;
+    -fx-opacity: 0.5;
+}
+
+.leaderboard-label {
+    -fx-text-fill: #181818;
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+}
+
+.detail-ctn {
+    -fx-background-color: white;
+    -fx-background-radius: 50px;
+}
+
+.scroll-bar {
+    -fx-background-color: transparent;
+}
+
+.scroll-bar .track {
+    -fx-background-color: transparent;
+}
+
+.scroll-bar:vertical .thumb {
+    -fx-background-color: #EEEFFF;
+}
+
+.increment-button, .decrement-button {
+    -fx-background-color: transparent;
+}
+
+.increment-arrow, .decrement-arrow {
+    -fx-background-color: white;
+}

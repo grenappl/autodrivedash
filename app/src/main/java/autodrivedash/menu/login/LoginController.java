@@ -8,7 +8,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
-import javafx.scene.text.Text;
 import autodrivedash.App;
 import autodrivedash.menu.MenuPageController;
 import autodrivedash.menu.signup.SignupController;
@@ -25,11 +24,6 @@ public class LoginController extends MenuPageController {
 
     public Button getLoginBtn() {
         return this.loginBtn;
-    }
-
-    @FXML
-    private void goToStart() {
-        App.getMainMenu().displayStartPage();
     }
 
     @FXML

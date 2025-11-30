@@ -7,63 +7,70 @@ import autodrivedash.game.GameInput;
 public class PlayerMovement extends Component implements ScreenConstants {
     private double vx = 0;
     private double vy = 0;
+    private double boost = 0;
 
-    private double accel, maxSpd, friction;
+    private final double friction = 0.8;
 
-    public PlayerMovement(double accel, double maxSpd, double friction) {
+    public double getVx() {
+        return vx;
+    }
+
+    public void setVx(double vx) {
+        this.vx = vx;
+    }
+
+    public double getVy() {
+        return vy;
+    }
+
+    public void setVy(double vy) {
+        this.vy = vy;
+    }
+
+    private double accel, maxSpd;
+
+    public PlayerMovement(double accel, double maxSpd) {
         this.accel = accel;
         this.maxSpd = maxSpd;
-        this.friction = friction;
     }
 
     @Override
     public void onUpdate(double tpf) {
+        boost = GameInput.boostPressed() ? 100 : 0;
+
         if (GameInput.rightPressed())
-            vx += accel * tpf;
+            vx += (accel + boost) * DELTA_TIME;
         if (GameInput.leftPressed())
-            vx -= accel * tpf;
+            vx -= (accel + boost) * DELTA_TIME;
         if (GameInput.downPressed())
-            vy += accel * tpf;
+            vy += (accel + boost) * DELTA_TIME;
         if (GameInput.upPressed())
-            vy -= accel * tpf;
+            vy -= (accel + boost) * DELTA_TIME;
 
         double posY = entity.getY();
         double posX = entity.getX();
 
         if (posY <= TILE_SIZE * 2)
             entity.setY(TILE_SIZE * 2);
-        if (posY + TILE_SIZE / 2 >= SCREEN_HEIGHT - TILE_SIZE * 2)
-            entity.setY(SCREEN_HEIGHT - TILE_SIZE * 2 - TILE_SIZE / 2);
+        if (posY + Player.getSelectedCharacter().getHeight() >= SCREEN_HEIGHT - TILE_SIZE * 2)
+            entity.setY(SCREEN_HEIGHT - TILE_SIZE * 2 - Player.getSelectedCharacter().getHeight());
         if (posX <= 0)
             entity.setX(0);
-        if (posX + TILE_SIZE >= SCREEN_WIDTH)
-            entity.setX(SCREEN_WIDTH - TILE_SIZE);
+        if (posX + Player.getSelectedCharacter().getWidth() >= SCREEN_WIDTH)
+            entity.setX(SCREEN_WIDTH - Player.getSelectedCharacter().getWidth());
 
         if (!GameInput.leftPressed() && !GameInput.rightPressed())
             vx *= friction;
         if (!GameInput.upPressed() && !GameInput.downPressed())
             vy *= friction;
 
-        vx = clamp(vx, -maxSpd, maxSpd);
-        vy = clamp(vy, -maxSpd, maxSpd);
+        vx = clamp(vx, -(maxSpd + boost), maxSpd + boost);
+        vy = clamp(vy, -(maxSpd + boost), maxSpd + boost);
 
-        entity.translateX(vx * tpf);
-        entity.translateY(vy * tpf);
+        entity.translate(vx * DELTA_TIME, vy * DELTA_TIME);
     }
 
     private double clamp(double val, double min, double max) {
         return Math.max(min, Math.min(max, val));
-    }
-
-    public void setAccel(double accel) {
-        this.accel = accel;
-    }
-
-    public void setMaxSpeed(double maxSpd) {
-        this.maxSpd = maxSpd;
-    }
-
-    public void setFriction(double friction) {
-        this.friction = friction;
     }
 }

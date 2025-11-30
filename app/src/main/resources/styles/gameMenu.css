@@ -1,0 +1,23 @@
+.tranaparent-bg {
+    -fx-background-color: #AAAAAA;
+    -fx-opacity: 0.4;
+}
+
+.game-menu-btn {
+    -fx-background-color: linear-gradient(to bottom, #FFFFFF, #CCCCCC);
+    -fx-background-radius: 30;
+    -fx-font-size: 14px;
+    -fx-cursor: hand;
+}
+
+.game-menu-text {
+    -fx-text-alignment: center;
+    -fx-font-size: 18px;
+}
+
+#game-over-label {
+    -fx-alignment: center;
+    -fx-font-size: 20px;
+    -fx-text-fill: red;
+    -fx-font-weight: bold;
+}

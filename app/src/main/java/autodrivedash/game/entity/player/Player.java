@@ -3,19 +3,30 @@ package autodrivedash.game.entity.player;
 import com.almasb.fxgl.physics.BoundingShape;
 import com.almasb.fxgl.physics.HitBox;
 
-import autodrivedash.ScreenConstants;
-import autodrivedash.game.entity.Entity;
+import autodrivedash.game.entity.EntityTexture;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.geometry.Point2D;
-import javafx.scene.image.Image;
 import javafx.util.Duration;
 
-public final class Player extends Entity implements ScreenConstants {
+import com.almasb.fxgl.entity.Entity;
+
+public final class Player extends EntityTexture {
     public static final PlayerCharacter CAR = new PlayerCharacter(
             "car.png", TILE_SIZE, TILE_SIZE / 2,
-            new HitBox("PlayerHitbox", new Point2D(1, 1), BoundingShape.box(TILE_SIZE - 2, TILE_SIZE / 2 - 2)),
-            new PlayerMovement(700, 150, 0.8));
+            new HitBox("PlayerHitbox", new Point2D(1, 1),
+                    BoundingShape.box(TILE_SIZE - 2, TILE_SIZE / 2 - 2)),
+            new PlayerMovement(600, 200), 3);
+    public static final PlayerCharacter BIKE = new PlayerCharacter(
+            "bike.png", TILE_SIZE - 16, TILE_SIZE / 3,
+            new HitBox("PlayerHitbox", new Point2D(1, 1),
+                    BoundingShape.box(TILE_SIZE - 16 - 2, TILE_SIZE / 3 - 2)),
+            new PlayerMovement(800, 220), 2);
+    public static final PlayerCharacter TRUCK = new PlayerCharacter(
+            "truck.png", TILE_SIZE * 2, TILE_SIZE - 16,
+            new HitBox("PlayerHitbox", new Point2D(1, 1),
+                    BoundingShape.box(TILE_SIZE * 2 - 2, TILE_SIZE - 16 - 2)),
+            new PlayerMovement(300, 180), 5);
 
     private static PlayerCharacter selectedCharacter = CAR;
     private static boolean isInvincible = false;
@@ -27,11 +38,23 @@ public final class Player extends Entity implements ScreenConstants {
         this.setFitWidth(getSelectedCharacter().getWidth());
     }
 
-    private static final Timeline invincibilityTimer = new Timeline(
-            new KeyFrame(Duration.seconds(invincibilityDuration), e -> {
-                setIsInvincible(false);
-                System.out.println("NOT invinc");
-            }));
+    private static Timeline invincibilityTimer;
+
+    public static void setInvincibilityTimer(Entity player) {
+        Player.invincibilityTimer = new Timeline(
+                new KeyFrame(Duration.seconds(invincibilityDuration), e -> {
+                    setIsInvincible(false);
+                    player.setOpacity(1);
+                }));
+    }
+
+    public static void setInvincibilityDuration(int invincibilityDuration) {
+        Player.invincibilityDuration = invincibilityDuration;
+    }
+
+    public static void setInvincible(boolean isInvincible) {
+        Player.isInvincible = isInvincible;
+    }
 
     public static Timeline getInvincibilityTimer() {
         return invincibilityTimer;
@@ -51,9 +74,5 @@ public final class Player extends Entity implements ScreenConstants {
 
     public static void setIsInvincible(boolean isInvincible) {
         Player.isInvincible = isInvincible;
-    }
-
-    public static void setInvincibilityDuration(int invincibilityDuration) {
-        Player.invincibilityDuration = invincibilityDuration;
     }
 }

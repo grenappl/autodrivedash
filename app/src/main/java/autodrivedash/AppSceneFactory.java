@@ -4,7 +4,7 @@ import com.almasb.fxgl.app.scene.FXGLMenu;
 import com.almasb.fxgl.app.scene.MenuType;
 import com.almasb.fxgl.app.scene.SceneFactory;
 
-import autodrivedash.game.GameMenu;
+import autodrivedash.game.gameMenu.GameMenu;
 import autodrivedash.menu.Menu;
 
 public class AppSceneFactory extends SceneFactory {

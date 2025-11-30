@@ -12,4 +12,9 @@ public interface ScreenConstants {
 
     public final int SCREEN_WIDTH_CENTER = SCREEN_WIDTH / 2 - (TILE_SIZE / 2);
     public final int SCREEN_HEIGHT_CENTER = SCREEN_HEIGHT / 2 - (TILE_SIZE / 2);
+
+    public final double FPS = 60;
+    public final double DELTA_TIME = 1 / FPS;
+
+    public final int SPD_SCALE = TILE_SIZE * 2;
 }

@@ -23,7 +23,7 @@
                   <Image url="@../images/main-menu-bg.png" />
                </image>
             </ImageView>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" height="624.0" layoutX="222.0" stroke="TRANSPARENT" strokeType="INSIDE" styleClass="signin-ctn" width="325.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" height="624.0" layoutX="222.0" stroke="TRANSPARENT" strokeType="INSIDE" styleClass="transparent-ctn" width="325.0" />
             <Label alignment="CENTER" layoutX="296.0" layoutY="239.0" prefHeight="35.0" prefWidth="177.0" styleClass="signin-label" text="Log In">
                <font>
                   <Font size="24.0" />
@@ -37,7 +37,7 @@
                <font>
                   <Font size="14.0" />
                </font></PasswordField>
-            <Button fx:id="loginBtn" layoutX="296.0" layoutY="400.0" mnemonicParsing="false" onAction="#handleLogin" prefHeight="30.0" prefWidth="177.0" styleClass="signin-btn" text="Login">
+            <Button fx:id="loginBtn" layoutX="296.0" layoutY="400.0" mnemonicParsing="false" onAction="#handleLogin" prefHeight="30.0" prefWidth="177.0" styleClass="blue-btn" text="Login">
                <font>
                   <Font size="14.0" />
                </font></Button>
@@ -52,7 +52,7 @@
                   <Button id="createAccBtn" fx:id="createOneBtn" layoutX="138.0" layoutY="7.0" mnemonicParsing="false" onAction="#goToSignup" prefHeight="27.0" prefWidth="80.0" styleClass="underline-btn" text="Create One" underline="true" />
                </children>
             </Pane>
-            <ImageView fitHeight="24.0" fitWidth="20.0" layoutX="240.0" layoutY="20.0" onMousePressed="#goToStart" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="240.0" layoutY="20.0" onMousePressed="#goToStart" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/back-home.png" />
                </image>
@@ -62,14 +62,14 @@
             </ImageView>
          </children>
       </Pane>
-      <Pane fx:id="popUpCtn" mouseTransparent="true">
+      <Pane fx:id="popUpCtn" mouseTransparent="true" opacity="0.0">
          <children>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" height="624.0" stroke="BLACK" strokeType="INSIDE" styleClass="popup-bg" width="768.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" height="624.0" onMousePressed="#hidePopUp" stroke="BLACK" strokeType="INSIDE" styleClass="popup-bg" width="768.0" />
             <Pane layoutX="237.0" layoutY="218.0" prefHeight="189.0" prefWidth="294.0" styleClass="popup-ctn">
                <children>
-                  <Button fx:id="errorOkBtn" layoutX="107.0" layoutY="115.0" mnemonicParsing="false" onAction="#hidePopUp" prefHeight="25.0" prefWidth="80.0" styleClass="signin-btn" text="Ok" />
+                  <Button layoutX="107.0" layoutY="115.0" mnemonicParsing="false" onAction="#hidePopUp" prefHeight="25.0" prefWidth="80.0" styleClass="blue-btn" text="Ok" />
                   <Text fx:id="popupText" layoutX="47.0" layoutY="80.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Error message here" textAlignment="CENTER" wrappingWidth="200.0" />
-                  <Label fx:id="popupLabel" alignment="CENTER" layoutX="97.0" layoutY="40.0" prefHeight="27.0" prefWidth="100.0" styleClass="error-label" text="Error!" textFill="WHITE" />
+                  <Label fx:id="popupLabel" alignment="CENTER" layoutX="97.0" layoutY="40.0" prefHeight="27.0" prefWidth="100.0" styleClass="error-label" text="Error!" textFill="RED" />
                </children>
             </Pane>
          </children>

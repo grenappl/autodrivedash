@@ -6,33 +6,47 @@ import java.util.Map;
 import autodrivedash.db.Database;
 import autodrivedash.game.GameController;
 import autodrivedash.game.GameInput;
-import autodrivedash.game.GameMenu;
+import autodrivedash.game.GameSound;
+import autodrivedash.game.gameMenu.GameMenu;
 import autodrivedash.menu.Menu;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Cursor;
+import javafx.scene.input.KeyCode;
+import javafx.scene.media.MediaPlayer;
+import javafx.scene.paint.Color;
 
 import com.almasb.fxgl.app.GameApplication;
 import com.almasb.fxgl.app.GameSettings;
+import com.almasb.fxgl.input.UserAction;
 
 import static com.almasb.fxgl.dsl.FXGL.*;
 
 public final class App extends GameApplication implements ScreenConstants {
-    private static final String NAME = "Auto Drive Dash";
-
-    private static boolean isUserLogged = false;
-
-    public static boolean isUserLogged() {
-        return isUserLogged;
+    public static void main(String[] args) {
+        launch(args);
     }
 
-    public static void setIsUserLogged(boolean logged) {
-        isUserLogged = logged;
+    private static final String NAME = "Auto Drive Dash";
+
+    private static int loggedUserId = -1;
+
+    public static int getLoggedUserId() {
+        return loggedUserId;
+    }
+
+    public static void setLoggedUserId(int loggedUserId) {
+        App.loggedUserId = loggedUserId;
     }
 
     private static Menu mainMenu;
     private static GameMenu gameMenu;
     private static GameController gameCtrl;
     private static Database db;
+    private static GameSound gameSound;
+
+    public static GameSound getGameSound() {
+        return gameSound;
+    }
 
     public static Menu getMainMenu() {
         return mainMenu;
@@ -66,8 +80,8 @@ public final class App extends GameApplication implements ScreenConstants {
         db = newDb;
     }
 
-    public static void main(String[] args) {
-        launch(args);
+    public static void setGameSound(GameSound gameSound) {
+        App.gameSound = gameSound;
     }
 
     @Override
@@ -85,6 +99,14 @@ public final class App extends GameApplication implements ScreenConstants {
     @Override
     protected void initInput() {
         GameInput.setInputs();
+        getInput().addAction(new UserAction("ESC") {
+            @Override
+            protected void onActionBegin() {
+                MediaPlayer bgMusic = getGameSound().getCurrentGameMusic();
+                if (bgMusic.getStatus().equals(MediaPlayer.Status.PLAYING))
+                    getGameSound().getCurrentGameMusic().pause();
+            }
+        }, KeyCode.ESCAPE);
     }
 
     @Override
@@ -99,10 +121,11 @@ public final class App extends GameApplication implements ScreenConstants {
             getGameScene().addUINode(gameLoader.load());
             setGameCtrl(gameLoader.getController());
             getGameScene().setCursor(Cursor.DEFAULT);
+            getGameScene().setBackgroundColor(Color.GRAY);
+            gameCtrl.startGame();
         } catch (IOException e) {
             e.printStackTrace();
         }
-        gameCtrl.startGame();
     }
 
     @Override

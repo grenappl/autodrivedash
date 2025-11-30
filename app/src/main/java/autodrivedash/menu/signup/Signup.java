@@ -5,7 +5,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import autodrivedash.App;
-import autodrivedash.db.Database;
 import autodrivedash.db.DatabaseTable;
 
 public class Signup {
@@ -19,6 +18,12 @@ public class Signup {
             throw new Exception("Password field cannot be empty!");
         } else if (confPassword.isBlank()) {
             throw new Exception("Confirm password field cannot be empty!");
+        }
+    }
+
+    public static void validateEmail(String email) throws Exception {
+        if (!email.endsWith(".com")) {
+            throw new Exception("Invalid email address!");
         }
     }
 
@@ -42,8 +47,6 @@ public class Signup {
         String nameCol = userTable.getColumn(1);
         String emailCol = userTable.getColumn(2);
         String pwCol = userTable.getColumn(3);
-
-        // String hashedPassword = null; // need to hash passwords maybe
 
         String query = "INSERT INTO " + tableName + " (" + nameCol + ", " + emailCol + ", " + pwCol + ") " +
                 "VALUES (?, ?, ?)";
