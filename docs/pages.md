@@ -12,6 +12,12 @@
 
 ![Signup Page](../docs/screenshots/signup.png)
 
-## Game
+## Selection Page
+
+## Options Page
+
+## Account Page
+
+## Gameplay
 
 ![Game](../docs/screenshots/game.png)
