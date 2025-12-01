@@ -37,9 +37,11 @@ public class GameController {
     public void startGame() {
         initializeHp();
         App.getGameMenu().displayPause();
+        App.getGameMenu().getPauseController().setHighScoreText();
         Game.spawnEntities();
         Game.addCollisions(health);
         Game.startCountdown(countdown);
+        Game.playMusic();
     }
 
     private void initializeHp() {
@@ -54,6 +56,5 @@ public class GameController {
 
     public void update() {
         Game.setScore(scoreCount);
-        Game.checkMusicState();
     }
 }

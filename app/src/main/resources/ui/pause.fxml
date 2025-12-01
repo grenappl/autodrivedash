@@ -11,8 +11,8 @@
       <Rectangle arcHeight="5.0" arcWidth="5.0" height="624.0" opacity="0.0" stroke="TRANSPARENT" strokeType="INSIDE" strokeWidth="0.0" styleClass="transparent-ctn" width="768.0" />
       <Button fx:id="mainMenuBtn" layoutX="298.0" layoutY="390.0" mnemonicParsing="false" onAction="#goToMainMenu" prefHeight="45.0" prefWidth="173.0" styleClass="game-menu-btn" text="Main Menu" />
       <Button layoutX="298.0" layoutY="330.0" mnemonicParsing="false" onAction="#restartGame" prefHeight="45.0" prefWidth="173.0" styleClass="game-menu-btn" text="Restart" />
-      <Button layoutX="298.0" layoutY="270.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="173.0" styleClass="game-menu-btn" text="Resume" />
-      <Text layoutX="135.0" layoutY="230.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="game-menu-text" text="Highest Score:  0" wrappingWidth="500.0" />
+      <Button layoutX="298.0" layoutY="270.0" mnemonicParsing="false" onAction="#resumeGame" prefHeight="45.0" prefWidth="173.0" styleClass="game-menu-btn" text="Resume" />
+      <Text fx:id="highScoreText" layoutX="135.0" layoutY="230.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="game-menu-text" text="Highest Score:  0" wrappingWidth="500.0" />
    </children>
    <stylesheets>
       <URL value="@../styles/global.css" />

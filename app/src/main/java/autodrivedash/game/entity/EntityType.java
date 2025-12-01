@@ -3,5 +3,6 @@ package autodrivedash.game.entity;
 public enum EntityType {
     PLAYER,
     ENEMY,
-    HP
+    HP,
+    BOOST
 }

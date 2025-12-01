@@ -6,7 +6,6 @@ import autodrivedash.game.entity.EntitySpawner;
 import autodrivedash.game.entity.player.Player;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
-import javafx.scene.media.MediaPlayer;
 import javafx.scene.text.Text;
 
 import static com.almasb.fxgl.dsl.FXGL.*;
@@ -44,6 +43,10 @@ public class Game implements ScreenConstants {
         GameCountdown.start(countdown);
     }
 
+    public static void playMusic() {
+        App.getGameSound();
+    }
+
     // constant updates
     public static void setScore(Text scoreCount) {
         if (!GameCountdown.isRunning()) {
@@ -51,11 +54,5 @@ public class Game implements ScreenConstants {
             double score = getd("SCORE");
             scoreCount.setText(String.valueOf((int) score));
         }
-    }
-
-    public static void checkMusicState() {
-        MediaPlayer bgMusic = App.getGameSound().getCurrentGameMusic();
-        if (bgMusic.getStatus().equals(MediaPlayer.Status.PAUSED))
-            App.getGameSound().getCurrentGameMusic().play();
     }
 }

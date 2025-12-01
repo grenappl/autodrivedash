@@ -11,14 +11,10 @@ import autodrivedash.game.gameMenu.GameMenu;
 import autodrivedash.menu.Menu;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Cursor;
-import javafx.scene.input.KeyCode;
-import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 
 import com.almasb.fxgl.app.GameApplication;
 import com.almasb.fxgl.app.GameSettings;
-import com.almasb.fxgl.input.UserAction;
-
 import static com.almasb.fxgl.dsl.FXGL.*;
 
 public final class App extends GameApplication implements ScreenConstants {
@@ -99,14 +95,6 @@ public final class App extends GameApplication implements ScreenConstants {
     @Override
     protected void initInput() {
         GameInput.setInputs();
-        getInput().addAction(new UserAction("ESC") {
-            @Override
-            protected void onActionBegin() {
-                MediaPlayer bgMusic = getGameSound().getCurrentGameMusic();
-                if (bgMusic.getStatus().equals(MediaPlayer.Status.PLAYING))
-                    getGameSound().getCurrentGameMusic().pause();
-            }
-        }, KeyCode.ESCAPE);
     }
 
     @Override

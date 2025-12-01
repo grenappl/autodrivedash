@@ -9,6 +9,8 @@ import javafx.util.Duration;
 public class GameSound {
     private MediaPlayer hurtAudio = new MediaPlayer(new Media(
             getClass().getResource("/audio/sfx/hurt.mp3").toExternalForm()));
+    private MediaPlayer powerupAudio = new MediaPlayer(new Media(
+            getClass().getResource("/audio/sfx/powerup.wav").toExternalForm()));
 
     private MediaPlayer menuMusic = new MediaPlayer(new Media(
             getClass().getResource("/audio/music/menu.mp3").toExternalForm()));
@@ -22,10 +24,19 @@ public class GameSound {
                     getClass().getResource("/audio/music/bgmusic3.mp3").toExternalForm()))
     };
 
+    public MediaPlayer[] getGameBgMusic() {
+        return gameBgMusic;
+    }
+
     private MediaPlayer currentGameMusic;
 
     public MediaPlayer getHurtAudio() {
         return hurtAudio;
+    }
+
+    public void playPowerupAudio() {
+        powerupAudio.play();
+        powerupAudio.seek(Duration.ZERO);
     }
 
     public MediaPlayer getMenuMusic() {
@@ -37,19 +48,17 @@ public class GameSound {
     }
 
     public void setCurrentGameMusic() {
-        this.currentGameMusic = gameBgMusic[FXGL.random(0, gameBgMusic.length - 1)];
+        this.currentGameMusic = gameBgMusic[FXGL.random(0, 2)];
+        this.currentGameMusic.seek(Duration.ZERO);
+        this.currentGameMusic.setOnEndOfMedia(() -> {
+            System.out.println("end of song!");
+            this.currentGameMusic = gameBgMusic[FXGL.random(0, 2)];
+            this.currentGameMusic.seek(Duration.ZERO);
+            this.currentGameMusic.play();
+        });
     }
 
     public GameSound() {
         menuMusic.setCycleCount(MediaPlayer.INDEFINITE);
-        setCurrentGameMusic();
-        currentGameMusic.setOnEndOfMedia(() -> {
-
-        });
-    }
-
-    public void reset() {
-        currentGameMusic.stop();
-        currentGameMusic.seek(Duration.ZERO);
     }
 }

@@ -10,8 +10,10 @@ import com.almasb.fxgl.entity.Spawns;
 import autodrivedash.ScreenConstants;
 import autodrivedash.game.entity.enemy.bike.Bike;
 import autodrivedash.game.entity.enemy.car.Car;
+import autodrivedash.game.entity.enemy.truck.Truck;
 import autodrivedash.game.entity.player.Player;
 import autodrivedash.game.entity.powerup.Repair;
+import autodrivedash.game.entity.powerup.Boost;
 import autodrivedash.game.entity.powerup.Powerup;
 import autodrivedash.game.entity.powerup.PowerupMovement;
 import autodrivedash.game.entity.road.Road;
@@ -25,8 +27,10 @@ public class EntitySpawner implements EntityFactory, ScreenConstants {
 
     public final static String ENEMY_CAR_KEY = "ENEMY_CAR";
     public final static String ENEMY_BIKE_KEY = "ENEMY_BIKE";
+    public final static String ENEMY_TRUCK_KEY = "ENEMY_TRUCK";
 
     public final static String POWERUP_HP = "HP";
+    public final static String POWERUP_BOOST = "BOOST";
 
     @Spawns(PLAYER_KEY)
     public Entity newPlayer(SpawnData data) {
@@ -88,6 +92,19 @@ public class EntitySpawner implements EntityFactory, ScreenConstants {
                 .build();
     }
 
+    @Spawns(ENEMY_TRUCK_KEY)
+    public Entity newEnemyTruck(SpawnData data) {
+        Truck truck = new Truck();
+        return entityBuilder(data)
+                .type(EntityType.ENEMY)
+                .at(SCREEN_WIDTH, Truck.yLoc())
+                .viewWithBBox(truck)
+                .with(truck.movement)
+                .collidable()
+                .zIndex(5)
+                .build();
+    }
+
     // powerups
     @Spawns(POWERUP_HP)
     public Entity newRepairPowerup(SpawnData data) {
@@ -95,6 +112,18 @@ public class EntitySpawner implements EntityFactory, ScreenConstants {
                 .type(EntityType.HP)
                 .at(SCREEN_WIDTH, Powerup.yLoc())
                 .viewWithBBox(new Repair())
+                .with(new PowerupMovement())
+                .collidable()
+                .zIndex(9)
+                .build();
+    }
+
+    @Spawns(POWERUP_BOOST)
+    public Entity newBoostPowerup(SpawnData data) {
+        return entityBuilder(data)
+                .type(EntityType.BOOST)
+                .at(SCREEN_WIDTH, Powerup.yLoc())
+                .viewWithBBox(new Boost())
                 .with(new PowerupMovement())
                 .collidable()
                 .zIndex(9)

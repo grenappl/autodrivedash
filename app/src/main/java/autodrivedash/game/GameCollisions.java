@@ -7,6 +7,7 @@ import autodrivedash.game.entity.EntityType;
 import autodrivedash.game.entity.player.Player;
 import autodrivedash.game.entity.player.PlayerMovement;
 import javafx.scene.image.ImageView;
+import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 
 public class GameCollisions {
@@ -44,7 +45,18 @@ public class GameCollisions {
                 health[currLives].setOpacity(1);
                 player.setProperty("LIVES", currLives + 1);
             }
+            App.getGameSound().playPowerupAudio();
             hp.removeFromWorld();
+        });
+        FXGL.onCollision(EntityType.PLAYER, EntityType.BOOST, (player, boost) -> {
+            int boostVal = 70;
+            Rectangle boostBar = App.getGameController().getBoostBar();
+            if (boostBar.getWidth() + boostVal >= 250)
+                boostBar.setWidth(boostBar.getWidth() + (250 - boostBar.getWidth()));
+            else
+                boostBar.setWidth(boostBar.getWidth() + boostVal);
+            App.getGameSound().playPowerupAudio();
+            boost.removeFromWorld();
         });
     }
 }

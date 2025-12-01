@@ -104,7 +104,7 @@ public class GameMenu extends FXGLMenu {
 
     public void backToMainMenu() {
         GameCountdown.reset();
-        App.getGameSound().reset();
+        App.getGameSound().getCurrentGameMusic().stop();
         App.getGameSound().getMenuMusic().seek(Duration.ZERO);
         App.getGameSound().getMenuMusic().play();
         FXGL.getGameController().resumeEngine();
@@ -113,6 +113,9 @@ public class GameMenu extends FXGLMenu {
 
     public void restartGame() {
         GameCountdown.reset();
+        App.getGameSound().getCurrentGameMusic().stop();
+        App.getGameSound().setCurrentGameMusic();
+        App.getGameSound().getCurrentGameMusic().play();
         FXGL.getGameController().resumeEngine();
         fireNewGame();
     }

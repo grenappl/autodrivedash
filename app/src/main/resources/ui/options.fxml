@@ -2,7 +2,6 @@
 
 <?import java.net.URL?>
 <?import javafx.scene.Cursor?>
-<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Slider?>
 <?import javafx.scene.effect.DropShadow?>
@@ -50,30 +49,29 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </ImageView>
-            <Button layoutX="328.0" layoutY="463.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="113.0" styleClass="blue-btn" text="Save" />
-            <Pane fx:id="upCtn" layoutX="191.0" layoutY="400.0" onMousePressed="#updateKeyBind" prefHeight="32.0" prefWidth="68.0" styleClass="key-ctn">
+            <Pane fx:id="upCtn" layoutX="191.0" layoutY="400.0" onMousePressed="#updateKeybind" prefHeight="64.0" prefWidth="68.0" styleClass="key-ctn">
                <children>
-                  <Text fx:id="upText" layoutX="3.0" layoutY="20.0" mouseTransparent="true" strokeType="OUTSIDE" strokeWidth="0.0" text="up" textAlignment="CENTER" wrappingWidth="60.0" />
+                  <Text fx:id="upText" layoutX="3.0" layoutY="35.0" mouseTransparent="true" strokeType="OUTSIDE" strokeWidth="0.0" text="up" textAlignment="CENTER" wrappingWidth="60.0" />
                </children>
             </Pane>
-            <Pane fx:id="downCtn" layoutX="271.0" layoutY="400.0" onMousePressed="#updateKeyBind" prefHeight="32.0" prefWidth="68.0" styleClass="key-ctn">
+            <Pane fx:id="downCtn" layoutX="271.0" layoutY="400.0" onMousePressed="#updateKeybind" prefHeight="64.0" prefWidth="68.0" styleClass="key-ctn">
                <children>
-                  <Text fx:id="downText" layoutX="3.0" layoutY="20.0" mouseTransparent="true" strokeType="OUTSIDE" strokeWidth="0.0" text="down" textAlignment="CENTER" wrappingWidth="60.0" />
+                  <Text fx:id="downText" layoutX="3.0" layoutY="35.0" mouseTransparent="true" strokeType="OUTSIDE" strokeWidth="0.0" text="down" textAlignment="CENTER" wrappingWidth="60.0" />
                </children>
             </Pane>
-            <Pane fx:id="leftCtn" layoutX="351.0" layoutY="400.0" onMousePressed="#updateKeyBind" prefHeight="32.0" prefWidth="68.0" styleClass="key-ctn">
+            <Pane fx:id="leftCtn" layoutX="351.0" layoutY="400.0" onMousePressed="#updateKeybind" prefHeight="64.0" prefWidth="68.0" styleClass="key-ctn">
                <children>
-                  <Text fx:id="leftText" layoutX="3.0" layoutY="20.0" mouseTransparent="true" strokeType="OUTSIDE" strokeWidth="0.0" text="left" textAlignment="CENTER" wrappingWidth="60.0" />
+                  <Text fx:id="leftText" layoutX="3.0" layoutY="35.0" mouseTransparent="true" strokeType="OUTSIDE" strokeWidth="0.0" text="left" textAlignment="CENTER" wrappingWidth="60.0" />
                </children>
             </Pane>
-            <Pane fx:id="rightCtn" layoutX="431.0" layoutY="400.0" onMousePressed="#updateKeyBind" prefHeight="32.0" prefWidth="68.0" styleClass="key-ctn">
+            <Pane fx:id="rightCtn" layoutX="431.0" layoutY="400.0" onMousePressed="#updateKeybind" prefHeight="64.0" prefWidth="68.0" styleClass="key-ctn">
                <children>
-                  <Text fx:id="rightText" layoutX="2.0" layoutY="20.0" mouseTransparent="true" strokeType="OUTSIDE" strokeWidth="0.0" text="right" textAlignment="CENTER" wrappingWidth="60.0" />
+                  <Text fx:id="rightText" layoutX="3.0" layoutY="35.0" mouseTransparent="true" strokeType="OUTSIDE" strokeWidth="0.0" text="right" textAlignment="CENTER" wrappingWidth="60.0" />
                </children>
             </Pane>
-            <Pane fx:id="boostCtn" layoutX="511.0" layoutY="400.0" onMousePressed="#updateKeyBind" prefHeight="32.0" prefWidth="68.0" styleClass="key-ctn">
+            <Pane fx:id="boostCtn" layoutX="511.0" layoutY="400.0" onMousePressed="#updateKeybind" prefHeight="64.0" prefWidth="68.0" styleClass="key-ctn">
                <children>
-                  <Text fx:id="boostText" layoutX="3.0" layoutY="20.0" mouseTransparent="true" strokeType="OUTSIDE" strokeWidth="0.0" text="shift" textAlignment="CENTER" wrappingWidth="60.0" />
+                  <Text fx:id="boostText" layoutX="3.0" layoutY="35.0" mouseTransparent="true" strokeType="OUTSIDE" strokeWidth="0.0" text="shift" textAlignment="CENTER" wrappingWidth="60.0" />
                </children>
             </Pane>
             <Label layoutX="216.0" layoutY="371.0" styleClass="key-label" text="Up" />

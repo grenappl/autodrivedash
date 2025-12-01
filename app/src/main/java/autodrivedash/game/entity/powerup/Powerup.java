@@ -25,7 +25,10 @@ public abstract class Powerup extends EntityTexture {
     public static void startSpawn() {
         spawnInterval = FXGL.random(55, 65);
         run(() -> {
-            spawn(EntitySpawner.POWERUP_HP);
+            if (FXGL.random(1, 10) <= 6)
+                spawn(EntitySpawner.POWERUP_BOOST);
+            else
+                spawn(EntitySpawner.POWERUP_HP);
             spawnInterval *= 1.5;
         }, Duration.seconds(spawnInterval));
     }

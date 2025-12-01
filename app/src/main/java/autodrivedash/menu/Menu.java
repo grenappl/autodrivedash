@@ -102,8 +102,6 @@ public class Menu extends FXGLMenu {
     public Menu(MenuType type) {
         super(type);
         try {
-            App.setGameSound(new GameSound());
-            App.getGameSound().getMenuMusic().play();
             for (String key : keys) {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource(key));
                 ui.put(key, loader.load());
@@ -118,13 +116,21 @@ public class Menu extends FXGLMenu {
             getStartController().getUsernameLabel().setText(null);
             getStartController().hidePopUp();
             getContentRoot().setCursor(Cursor.DEFAULT);
-
-            Slider volSlider = getOptionsController().getVolumeSlider();
-            MediaPlayer hurtAudio = App.getGameSound().getHurtAudio();
-            volSlider.valueProperty().bindBidirectional(hurtAudio.volumeProperty());
+            linkVolume();
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
+    }
+
+    private void linkVolume() {
+        App.setGameSound(new GameSound());
+        Slider volSlider = getOptionsController().getVolumeSlider();
+        volSlider.valueProperty().bindBidirectional(App.getGameSound().getHurtAudio().volumeProperty());
+        volSlider.valueProperty().bindBidirectional(App.getGameSound().getMenuMusic().volumeProperty());
+        for (MediaPlayer bgMusic : App.getGameSound().getGameBgMusic()) {
+            volSlider.valueProperty().bindBidirectional(bgMusic.volumeProperty());
+        }
+        App.getGameSound().getMenuMusic().play();
     }
 
     public void startGame() {

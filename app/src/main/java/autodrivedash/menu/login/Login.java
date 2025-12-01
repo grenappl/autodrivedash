@@ -6,6 +6,7 @@ import java.sql.SQLException;
 
 import autodrivedash.App;
 import autodrivedash.db.DatabaseTable;
+import autodrivedash.game.entity.player.Player;
 import autodrivedash.menu.start.StartController;
 
 public class Login {
@@ -36,5 +37,6 @@ public class Login {
         startCtrl.getUsernameLabel().setText(result.getString(userTable.getColumn(1)));
         startCtrl.getEmailLabel().setText(result.getString(userTable.getColumn(2)));
         startCtrl.getHighestScoreLabel().setText(String.valueOf(result.getInt(userTable.getColumn(4))));
+        Player.setSelectedCharacter(Player.CAR);
     }
 }

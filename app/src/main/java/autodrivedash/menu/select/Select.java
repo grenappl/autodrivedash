@@ -14,8 +14,8 @@ public class Select {
             "Truck",
             "Slow to start, hard to maneuver, but can withstand many hits.");
 
-    public static final int BIKE_UNLOCK_SCORE = 750;
-    public static final int TRUCK_UNLOCK_SCORE = 1500;
+    public static final int BIKE_UNLOCK_SCORE = 1000;
+    public static final int TRUCK_UNLOCK_SCORE = 2000;
 
     private static PlayerCharacter selectedCharacter;
 

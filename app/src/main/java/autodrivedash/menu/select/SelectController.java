@@ -42,7 +42,8 @@ public class SelectController extends MenuPageController {
                 Select.setSelectedCharacter(Player.BIKE);
                 setSelectionTexts(Select.BIKE);
             } else {
-                displayPopUp("You need a score of at least 750 to unlock this vehicle.", false, selectCtn);
+                displayPopUp("You need a score of at least " + Select.BIKE_UNLOCK_SCORE + " to unlock this vehicle.",
+                        false, selectCtn);
             }
         } else if (selectedCtn == truckCtn) {
             if (highScore >= Select.TRUCK_UNLOCK_SCORE) {
@@ -50,7 +51,8 @@ public class SelectController extends MenuPageController {
                 Select.setSelectedCharacter(Player.TRUCK);
                 setSelectionTexts(Select.TRUCK);
             } else {
-                displayPopUp("You need a score of at least 1500 to unlock this vehicle.", false, selectCtn);
+                displayPopUp("You need a score of at least " + Select.TRUCK_UNLOCK_SCORE + " to unlock this vehicle.",
+                        false, selectCtn);
             }
         }
     }
@@ -115,10 +117,14 @@ public class SelectController extends MenuPageController {
     private void setUnlocked() {
         highScore = Integer.valueOf(App.getMainMenu().getStartController().getHighestScoreLabel().getText());
         if (highScore >= Select.BIKE_UNLOCK_SCORE) {
-            bikeBg.getChildren().remove(bikeLock);
+            bikeLock.setOpacity(0);
+        } else {
+            bikeLock.setOpacity(1);
         }
         if (highScore >= Select.TRUCK_UNLOCK_SCORE) {
-            truckBg.getChildren().remove(truckLock);
+            truckLock.setOpacity(0);
+        } else {
+            truckLock.setOpacity(1);
         }
     }
 

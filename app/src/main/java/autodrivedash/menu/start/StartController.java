@@ -12,6 +12,7 @@ import javafx.util.Duration;
 import java.sql.SQLException;
 
 import autodrivedash.App;
+import autodrivedash.game.entity.player.Player;
 import autodrivedash.menu.MenuPageController;
 import autodrivedash.menu.login.LoginController;
 
@@ -91,6 +92,8 @@ public class StartController extends MenuPageController {
         emailLabel.setText(null);
         leaderboardIcon.setOpacity(0);
         leaderboardIcon.setMouseTransparent(true);
+        highestScoreLabel.setText("0");
+        Player.setSelectedCharacter(Player.CAR);
         hidePopUp();
     }
 

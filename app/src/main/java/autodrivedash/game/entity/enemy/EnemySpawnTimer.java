@@ -11,10 +11,12 @@ import javafx.util.Duration;
 public class EnemySpawnTimer {
     private double carIntervalMillis = 600;
     private double bikeIntervalMillis = 1100;
+    private double truckIntervalMillis = 1400;
 
     public EnemySpawnTimer() {
         this.spawnCar();
         this.spawnBike();
+        this.spawnTruck();
     }
 
     private void spawnCar() {
@@ -40,5 +42,18 @@ public class EnemySpawnTimer {
             if (FXGL.getd("SCORE") >= 1000)
                 bikeIntervalMillis = 900;
         }, Duration.millis(bikeIntervalMillis));
+    }
+
+    private void spawnTruck() {
+        run(() -> {
+            int random = FXGL.random(1, 6);
+            if ((FXGL.getd("SCORE") >= 700 && random == 1) ||
+                    (FXGL.getd("SCORE") >= 1600 && random <= 2))
+                spawn(EntitySpawner.ENEMY_TRUCK_KEY);
+            if (FXGL.getd("SCORE") == 1200)
+                truckIntervalMillis = 1200;
+            if (FXGL.getd("SCORE") == 2500)
+                truckIntervalMillis = 1000;
+        }, Duration.millis(truckIntervalMillis));
     }
 }

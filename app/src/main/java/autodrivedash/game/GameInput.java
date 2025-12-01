@@ -101,8 +101,18 @@ public abstract class GameInput {
         return keyBindings.get(actionKey);
     }
 
-    public static void setKeyCode(String actionKey, KeyCode keyCode) {
+    public static void rebindKey(String actionKey, KeyCode keyCode) {
         keyBindings.put(actionKey, keyCode);
+        if (actionKey == UP)
+            getInput().rebind(upAction, GameInput.getKeyCode(actionKey));
+        else if (actionKey == DOWN)
+            getInput().rebind(downAction, GameInput.getKeyCode(actionKey));
+        else if (actionKey == LEFT)
+            getInput().rebind(leftAction, GameInput.getKeyCode(actionKey));
+        else if (actionKey == RIGHT)
+            getInput().rebind(rightAction, GameInput.getKeyCode(actionKey));
+        else
+            getInput().rebind(boostAction, GameInput.getKeyCode(actionKey));
     }
 
     public static Map<String, KeyCode> getAllKeyCodes() {
