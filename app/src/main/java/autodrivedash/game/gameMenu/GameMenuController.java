@@ -12,11 +12,13 @@ public abstract class GameMenuController {
         return mainMenuBtn;
     }
 
+    // restarts game and executes init methods within App
     @FXML
     protected void restartGame() {
         App.getGameMenu().restartGame();
     }
 
+    // goes back to main menu and display start page
     @FXML
     private void goToMainMenu() {
         App.getGameMenu().backToMainMenu();

@@ -32,10 +32,12 @@ public class GameCountdown {
                 setRunning(false);
                 countdown.setOpacity(0);
                 countdownAction.expire();
+
+                // begin spawning other entities
                 new EnemySpawnTimer();
                 Powerup.startSpawn();
             } else {
-                countdown.setText(String.valueOf(startCount));
+                countdown.setText(String.valueOf(startCount)); // display countdown
             }
         }, Duration.millis(1000));
         countdown.setText(String.valueOf(startCount));

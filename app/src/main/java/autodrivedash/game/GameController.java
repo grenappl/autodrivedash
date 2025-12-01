@@ -35,13 +35,12 @@ public class GameController {
     }
 
     public void startGame() {
-        initializeHp();
+        initializeHp(); // sets hp to be displayed
         App.getGameMenu().displayPause();
         App.getGameMenu().getPauseController().setHighScoreText();
-        Game.spawnEntities();
-        Game.addCollisions(health);
-        Game.startCountdown(countdown);
-        Game.playMusic();
+        Game.spawnEntities(); // spawns player and road
+        Game.addCollisions(health); // set collisions for player, enemies, and powerups
+        Game.startCountdown(countdown); // start of game countdown
     }
 
     private void initializeHp() {

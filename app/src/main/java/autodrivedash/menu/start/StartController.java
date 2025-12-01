@@ -44,6 +44,7 @@ public class StartController extends MenuPageController {
         return this.highestScoreLabel;
     }
 
+    // executes when play is pressed
     @FXML
     protected void showGame(ActionEvent e) {
         Start.showGame();

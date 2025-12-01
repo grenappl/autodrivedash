@@ -102,6 +102,7 @@ public class Menu extends FXGLMenu {
     public Menu(MenuType type) {
         super(type);
         try {
+            // load menu pages
             for (String key : keys) {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource(key));
                 ui.put(key, loader.load());
@@ -111,12 +112,12 @@ public class Menu extends FXGLMenu {
                 System.out.println("Controller for " + key + " = " + loader.getController());
                 System.out.println();
             }
-            displayStartPage();
+            displayStartPage(); // start page to be displayed 1st
             getStartController().getEmailLabel().setText(null);
             getStartController().getUsernameLabel().setText(null);
             getStartController().hidePopUp();
             getContentRoot().setCursor(Cursor.DEFAULT);
-            linkVolume();
+            linkVolume(); //
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }

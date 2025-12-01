@@ -1,6 +1,5 @@
 package autodrivedash.game;
 
-import autodrivedash.App;
 import autodrivedash.ScreenConstants;
 import autodrivedash.game.entity.EntitySpawner;
 import autodrivedash.game.entity.player.Player;
@@ -43,11 +42,7 @@ public class Game implements ScreenConstants {
         GameCountdown.start(countdown);
     }
 
-    public static void playMusic() {
-        App.getGameSound();
-    }
-
-    // constant updates
+    // constant updates (increments score by 0.2)
     public static void setScore(Text scoreCount) {
         if (!GameCountdown.isRunning()) {
             inc("SCORE", 0.2);

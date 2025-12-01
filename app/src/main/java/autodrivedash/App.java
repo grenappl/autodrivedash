@@ -18,6 +18,7 @@ import com.almasb.fxgl.app.GameSettings;
 import static com.almasb.fxgl.dsl.FXGL.*;
 
 public final class App extends GameApplication implements ScreenConstants {
+    // start here
     public static void main(String[] args) {
         launch(args);
     }
@@ -34,12 +35,14 @@ public final class App extends GameApplication implements ScreenConstants {
         App.loggedUserId = loggedUserId;
     }
 
+    // main app variables
     private static Menu mainMenu;
     private static GameMenu gameMenu;
     private static GameController gameCtrl;
     private static Database db;
     private static GameSound gameSound;
 
+    // getters
     public static GameSound getGameSound() {
         return gameSound;
     }
@@ -60,6 +63,7 @@ public final class App extends GameApplication implements ScreenConstants {
         return db;
     }
 
+    // setters
     public static void setMainMenu(Menu newMainMenu) {
         mainMenu = newMainMenu;
     }
@@ -86,7 +90,7 @@ public final class App extends GameApplication implements ScreenConstants {
         settings.setHeight(SCREEN_HEIGHT);
         settings.setTitle(NAME);
         setDb(new Database());
-        settings.setSceneFactory(new AppSceneFactory());
+        settings.setSceneFactory(new AppSceneFactory()); // menu init
         settings.setMainMenuEnabled(true);
         settings.setGameMenuEnabled(true);
         settings.setDeveloperMenuEnabled(true); // debug
@@ -97,20 +101,23 @@ public final class App extends GameApplication implements ScreenConstants {
         GameInput.setInputs();
     }
 
+    // init global variables
     @Override
     protected void initGameVars(Map<String, Object> vars) {
         vars.put("SCORE", 0.0);
     }
 
+    // start of game after clicking play
     @Override
     protected void initGame() {
+        // when game starts, load game ui
         try {
             FXMLLoader gameLoader = new FXMLLoader(getClass().getResource("/ui/game.fxml"));
             getGameScene().addUINode(gameLoader.load());
             setGameCtrl(gameLoader.getController());
             getGameScene().setCursor(Cursor.DEFAULT);
             getGameScene().setBackgroundColor(Color.GRAY);
-            gameCtrl.startGame();
+            gameCtrl.startGame(); // call start from game controller
         } catch (IOException e) {
             e.printStackTrace();
         }

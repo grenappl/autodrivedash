@@ -56,6 +56,7 @@ public class GameMenu extends FXGLMenu {
     public GameMenu(MenuType type) {
         super(type);
         try {
+            // load game menu pages
             for (String key : keys) {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource(key));
                 ui.put(key, loader.load());
@@ -65,7 +66,7 @@ public class GameMenu extends FXGLMenu {
                 System.out.println("Controller for " + key + " = " + loader.getController());
                 System.out.println();
             }
-            displayPause();
+            displayPause(); // pause menu to be displayed 1st
         } catch (IOException e) {
             e.printStackTrace();
         }
