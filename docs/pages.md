@@ -1,23 +1,38 @@
 # Pages
 
-## Start Page
+## Start (Guest)
 
-![Start Page](../docs/screenshots/start.png)
+![Guest Start Page](../docs/screenshots/start-guest.png)
 
-## Login Page
+## Login
 
 ![Login Page](../docs/screenshots/login.png)
 
-## Signup Page
+## Signup
 
 ![Signup Page](../docs/screenshots/signup.png)
 
-## Selection Page
+## Selection
 
-## Options Page
+![Select Page](../docs/screenshots/select.png)
 
-## Account Page
+## Options
+
+![Select Page](../docs/screenshots/options.png)
+
+## Start (Authenticated)
+
+![User Start Page 1](../docs/screenshots/start-user1.png)
+
+![User Start Page 2](../docs/screenshots/start-user2.png)
+
+## Leaderboard
+
+![Leaderboard Page](../docs/screenshots/leaderboard.png)
 
 ## Gameplay
 
-![Game](../docs/screenshots/game.png)
+![Game1](../docs/screenshots/gameplay/game1.png)
+![Game2](../docs/screenshots/gameplay/game2.png)
+![Game3](../docs/screenshots/gameplay/game3.png)
+![Game4](../docs/screenshots/gameplay/game4.png)
