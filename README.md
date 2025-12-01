@@ -5,16 +5,17 @@ ADD (Auto Drive Dash) is an endless side-scrolling game that focuses on players 
 ## Major Features
 
 - **User Authentication** - Players can register, log in, and save their progress and high scores securely.
-- **Player Control** - Players can move around and accelerate to avoid obstacles and collect powerups using keyboard controls.
+- **Player Controls & Preferences** - Players can move around and accelerate to avoid obstacles and collect powerups using keyboard controls which can be changed in settings.
 - **Score & Progress Tracking** - Keeps track of the player’s score, unlocked vehicles, and highest scores during gameplay.
-- **Dynamic Game System** - Generates random obstacles and power-ups with more challenging gameplay as players reach higher scores.
+- **Dynamic Game System** - Generates random vehicle traffic and power-ups with more challenging gameplay as players reach higher scores.
 - **Automatic Data Saving** - Automatically stores player progress and high scores in a database after each session, allowing players to continue from where they left off without manual saving.
 
 ## Technologies Used
 
 #### Frameworks/Libraries
 
-- `JavaFX/FXGL`
+- `JavaFX`
+- `FXGL`
 - `MySQL Connector/J`
 
 #### Architecture
