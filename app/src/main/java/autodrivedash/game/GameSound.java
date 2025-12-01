@@ -12,6 +12,10 @@ public class GameSound {
     private MediaPlayer powerupAudio = new MediaPlayer(new Media(
             getClass().getResource("/audio/sfx/powerup.wav").toExternalForm()));
 
+    public MediaPlayer getPowerupAudio() {
+        return powerupAudio;
+    }
+
     private MediaPlayer menuMusic = new MediaPlayer(new Media(
             getClass().getResource("/audio/music/menu.mp3").toExternalForm()));
 

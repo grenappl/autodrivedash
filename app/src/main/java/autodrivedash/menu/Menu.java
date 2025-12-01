@@ -126,6 +126,7 @@ public class Menu extends FXGLMenu {
         App.setGameSound(new GameSound());
         Slider volSlider = getOptionsController().getVolumeSlider();
         volSlider.valueProperty().bindBidirectional(App.getGameSound().getHurtAudio().volumeProperty());
+        volSlider.valueProperty().bindBidirectional(App.getGameSound().getPowerupAudio().volumeProperty());
         volSlider.valueProperty().bindBidirectional(App.getGameSound().getMenuMusic().volumeProperty());
         for (MediaPlayer bgMusic : App.getGameSound().getGameBgMusic()) {
             volSlider.valueProperty().bindBidirectional(bgMusic.volumeProperty());
