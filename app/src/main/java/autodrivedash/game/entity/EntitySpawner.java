@@ -8,6 +8,7 @@ import com.almasb.fxgl.entity.SpawnData;
 import com.almasb.fxgl.entity.Spawns;
 
 import autodrivedash.ScreenConstants;
+import autodrivedash.game.entity.enemy.Enemy;
 import autodrivedash.game.entity.enemy.bike.Bike;
 import autodrivedash.game.entity.enemy.car.Car;
 import autodrivedash.game.entity.enemy.truck.Truck;
@@ -68,7 +69,7 @@ public class EntitySpawner implements EntityFactory, ScreenConstants {
     // enemies
     @Spawns(ENEMY_CAR_KEY)
     public Entity newEnemyCar(SpawnData data) {
-        Car car = new Car();
+        Enemy car = new Car();
         return entityBuilder(data)
                 .type(EntityType.ENEMY)
                 .at(SCREEN_WIDTH, Car.yLoc())
@@ -81,7 +82,7 @@ public class EntitySpawner implements EntityFactory, ScreenConstants {
 
     @Spawns(ENEMY_BIKE_KEY)
     public Entity newEnemyBike(SpawnData data) {
-        Bike bike = new Bike();
+        Enemy bike = new Bike();
         return entityBuilder(data)
                 .type(EntityType.ENEMY)
                 .at(-TILE_SIZE, Bike.yLoc())
@@ -94,7 +95,7 @@ public class EntitySpawner implements EntityFactory, ScreenConstants {
 
     @Spawns(ENEMY_TRUCK_KEY)
     public Entity newEnemyTruck(SpawnData data) {
-        Truck truck = new Truck();
+        Enemy truck = new Truck();
         return entityBuilder(data)
                 .type(EntityType.ENEMY)
                 .at(SCREEN_WIDTH, Truck.yLoc())
