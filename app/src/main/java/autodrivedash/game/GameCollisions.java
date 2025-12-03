@@ -9,8 +9,9 @@ import autodrivedash.game.entity.player.PlayerMovement;
 import javafx.scene.image.ImageView;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
+import autodrivedash.ScreenConstants;
 
-public class GameCollisions {
+public class GameCollisions implements ScreenConstants {
     public void setPlayerToEnemy(ImageView[] health) {
         FXGL.onCollision(EntityType.PLAYER, EntityType.ENEMY, (player, car) -> {
             if (!Player.isInvincible()) {
@@ -57,6 +58,16 @@ public class GameCollisions {
                 boostBar.setWidth(boostBar.getWidth() + boostVal);
             App.getGameSound().playPowerupAudio();
             boost.removeFromWorld();
+        });
+    }
+
+    public void setPlayertoSidewalk() {
+        FXGL.onCollision(EntityType.PLAYER, EntityType.SIDEWALK, (player, sidewalk) -> {
+            if (player.getY() <= TILE_SIZE * 2) {
+                player.setY((double) TILE_SIZE * 2);
+            } else if (player.getY() >= SCREEN_HEIGHT - (TILE_SIZE * 2 + Player.getSelectedCharacter().getHeight())) {
+                player.setY((double) (SCREEN_HEIGHT - (TILE_SIZE * 2 + Player.getSelectedCharacter().getHeight())));
+            }
         });
     }
 }

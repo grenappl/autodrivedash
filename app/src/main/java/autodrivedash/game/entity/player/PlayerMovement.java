@@ -47,13 +47,8 @@ public class PlayerMovement extends Component implements ScreenConstants {
         if (GameInput.upPressed())
             vy -= (accel + boost) * DELTA_TIME;
 
-        double posY = entity.getY();
         double posX = entity.getX();
 
-        if (posY <= TILE_SIZE * 2)
-            entity.setY(TILE_SIZE * 2);
-        if (posY + Player.getSelectedCharacter().getHeight() >= SCREEN_HEIGHT - TILE_SIZE * 2)
-            entity.setY(SCREEN_HEIGHT - TILE_SIZE * 2 - Player.getSelectedCharacter().getHeight());
         if (posX <= 0)
             entity.setX(0);
         if (posX + Player.getSelectedCharacter().getWidth() >= SCREEN_WIDTH)

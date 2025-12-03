@@ -13,6 +13,6 @@ public class Truck extends Enemy {
     }
 
     public static int yLoc() {
-        return FXGL.random(TILE_SIZE * 2, SCREEN_HEIGHT - (TILE_SIZE * 3 - (TILE_SIZE - 18)));
+        return FXGL.random(TILE_SIZE * 2, SCREEN_HEIGHT - (TILE_SIZE * 3 - 18));
     }
 }

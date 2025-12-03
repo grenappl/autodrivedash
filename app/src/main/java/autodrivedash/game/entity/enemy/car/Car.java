@@ -11,7 +11,7 @@ public class Car extends Enemy {
         };
         String randomFileName = fileNames[FXGL.random(0, 2)];
         super("/images/sprites/enemy/car/" + randomFileName);
-        this.movement = new CarMovement(FXGL.random(1, 4) * SPD_SCALE);
+        this.movement = new CarMovement(FXGL.random(2, 5) * SPD_SCALE);
         this.setFitWidth(TILE_SIZE - 8);
         this.setFitHeight(TILE_SIZE / 2);
     }

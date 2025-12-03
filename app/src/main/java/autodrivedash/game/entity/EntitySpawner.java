@@ -60,8 +60,10 @@ public class EntitySpawner implements EntityFactory, ScreenConstants {
     @Spawns(SIDEWALK_KEY)
     public Entity newSidewalk(SpawnData data) {
         return entityBuilder(data)
-                .view(new RoadSidewalk())
+                .type(EntityType.SIDEWALK)
+                .viewWithBBox(new RoadSidewalk())
                 .with(new RoadMovement())
+                .collidable()
                 .zIndex(1)
                 .build();
     }

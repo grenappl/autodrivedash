@@ -36,6 +36,7 @@ public class Game implements ScreenConstants {
     public static void addCollisions(ImageView[] health) {
         collisions.setPlayerToEnemy(health);
         collisions.setPlayertoPowerup(health);
+        collisions.setPlayertoSidewalk();
     }
 
     public static void startCountdown(Label countdown) {
