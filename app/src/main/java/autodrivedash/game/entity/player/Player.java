@@ -26,7 +26,7 @@ public final class Player extends EntityTexture {
             "truck.png", TILE_SIZE * 2, TILE_SIZE - 16,
             new HitBox("PlayerHitbox", new Point2D(1, 1),
                     BoundingShape.box(TILE_SIZE * 2 - 2, TILE_SIZE - 16 - 2)),
-            new PlayerMovement(300, 180), 5);
+            new PlayerMovement(400, 200), 5);
 
     private static PlayerCharacter selectedCharacter = CAR;
     private static boolean isInvincible = false;
